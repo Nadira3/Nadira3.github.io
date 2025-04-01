@@ -2,8 +2,8 @@
 layout: journal
 title: "Neural Odyssey: Chronicles of My AI Evolution"
 date: 2025-03-28
-category: Daily # Options: Daily, Special
-header_image: /assets/images/journal/aijourney.jpg
+category: Special # Options: Daily, Special
+header_image: /blob/main/assets/images/journal/aijourney.jpg
 mood: Enthusiastic
 ---
 ## My 60-Day Learning Journey: Building Foundations in Statistics & Machine Learning
