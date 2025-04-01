@@ -1,8 +1,8 @@
 # Site settings
-title: Precious A
+title: Precious Aitanun
 email: paitanun35@example.com
 description: Medical student, STEM graduate, and software engineer
-baseurl: "/personal-website/"
+baseurl: ""
 url: ""
 
 # Social media
@@ -14,10 +14,8 @@ linkedin_username: precious-aitanun
 collections:
   projects:
     output: true
-    permalink: /projects/:path/
   journal:
     output: true
-    permalink: /journal/:path/
 
 # Default front matter
 defaults:
