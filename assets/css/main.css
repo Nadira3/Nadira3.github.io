@@ -866,3 +866,85 @@ code {
     page-break-inside: avoid;
   }
 }
+
+body {
+  min-height: 100%;                                                                                                                                                                    display: flex;
+  flex-direction: column;
+}
+
+.site-content {
+  flex: 1 0 auto; /* This makes the content area take all available space */
+}
+                                                                                                                                                                                     .site-footer {
+  flex-shrink: 0; /* Prevents the footer from shrinking */                                                                                                                           }
+
+/* For mobile screens */
+@media (max-width: 768px) {
+  .site-footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+  }
+
+  /* Keep all the other mobile styles you already have */
+  .footer-column:not(:nth-child(2)) {
+    display: none;
+  }
+
+  .footer-column:nth-child(2) {
+    flex: 1;
+    min-width: 100%;
+    margin-bottom: 0;
+    text-align: center;                                                                                                                                                                }
+
+  .footer-column:nth-child(2) h3 {
+    display: none;
+  }                                                                                                                                                                                                                                                                                                                                                                         .footer-column:nth-child(2) ul {                                                                                                                                                       display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 0;
+  }                                                                                                                                                                                  
+  .footer-column:nth-child(2) ul li {
+    margin: 0 0.5rem;                                                                                                                                                                    font-size: 0.85rem;
+  }
+
+  .footer-bottom {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-column:nth-child(2) ul li {
+    font-size: 0.75rem;
+    margin: 0 0.3rem;
+  }
+}
+/* Add this to your main.css file */
+/* Extra styles for very small screens */
+@media (max-width: 576px) {
+  .footer-column:nth-child(2) ul li {
+    font-size: 0.75rem;
+    margin: 0 0.3rem;
+  }
+
+  .site-footer {
+    padding: 0.75rem 0;
+  }
+}
+
+/* Make sure the footer sticks to the bottom */
+@media (max-width: 768px) {                                                                                                                                                            html, body {
+    height: 100%;
+  }                                                                                                                                                                                  
+  body {
+    display: flex;
+    flex-direction: column;                                                                                                                                                            }
+
+  body > *:not(.site-footer) {
+    flex: 1 0 auto;
+  }
+
+  .site-footer {
+    flex-shrink: 0;                                                                                                                                                                    }
+}
+
