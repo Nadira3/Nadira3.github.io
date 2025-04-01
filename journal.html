@@ -20,7 +20,7 @@ permalink: /journal/
       {% assign sorted_entries = site.journal | sort: 'date' | reverse %}
       {% for entry in sorted_entries %}
       <article class="journal-card">
-        <div class="entry-image" style="background-image: url('{{ entry.header_image | default: "/assets/images/default-journal.jpg" }}')"></div>
+        <div class="entry-image" style="background-image: url('{{ entry.header_image | default: "/assets/images/default.jpg" }}')"></div>
         <div class="entry-content">
           <header>
             <h2><a href="{{ entry.url | relative_url }}">{{ entry.title }}</a></h2>
