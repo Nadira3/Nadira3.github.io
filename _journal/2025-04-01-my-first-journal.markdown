@@ -1,14 +1,11 @@
 ---
 layout: journal
-title: "Your Journal Entry Title"
+title: "My First Test Journal"
 date: 2025-04-01
 category: Daily # Options: Daily, Special
 header_image: /assets/images/journal/your-entry-image.jpg
 mood: Reflective # Optional: Add your mood
 ---
-
-## Date: {{ page.date | date: "%B %-d, %Y" }}
-
 Write your journal entry here. Share your thoughts, experiences, insights, or reflections.
 You can organize your entry with headings:
 
@@ -39,3 +36,5 @@ What you learned today.
 ## Final Thoughts
 
 Concluding reflections on the day.
+
+## Date: {{ page.date | date: "%B %-d, %Y" }}
