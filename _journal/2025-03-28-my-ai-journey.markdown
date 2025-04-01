@@ -6,9 +6,7 @@ category: Daily # Options: Daily, Special
 header_image: /assets/images/journal/ai-journey-image.jpg
 mood: Enthusiastic
 ---
-
-## Date: {{ page.date | date: "%B %-d, %Y" }}
-# My 60-Day Learning Journey: Building Foundations in Statistics & Machine Learning
+## My 60-Day Learning Journey: Building Foundations in Statistics & Machine Learning
 
 Welcome to my 60‑Day Learning Journey! Over the next two months, I will be strengthening my statistics fundamentals and machine learning skills through a structured plan using free resources and practical side projects. This document outlines my goals, daily tasks, milestones, and projects.
 
@@ -176,3 +174,5 @@ By the end of this project, you will:
 ## Final Thoughts
 
 This structured 60-day plan will guide you through a balanced mix of theory, hands-on practice, and documentation. By the end, you'll have built a solid foundation in statistics and machine learning while creating a portfolio to showcase your progress. Happy learning!
+
+## Date: {{ page.date | date: "%B %-d, %Y" }}
