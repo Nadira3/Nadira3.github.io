@@ -1,0 +1,275 @@
+---
+layout: default
+---
+
+<div class="container">
+  <div class="journal-page">
+    <div class="journal-header">
+      <h1 class="journal-title">{{ page.title }}</h1>
+      <div class="journal-meta">
+        <span class="journal-date">{{ page.date | date: "%B %d, %Y" }}</span>
+        {% if page.category %}
+        <span class="entry-category {{ page.category | downcase }}">{{ page.category }}</span>
+        {% endif %}
+      </div>
+    </div>
+    
+    <div class="journal-content">
+      <div class="journal-entry">
+        {{ content }}
+      </div>
+      
+      {% if page.tags.size > 0 %}
+      <div class="journal-tags">
+        <h4>Tags:</h4>
+        <ul class="tags-list">
+          {% for tag in page.tags %}
+          <li class="tag">{{ tag }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+    
+    <div class="journal-footer">
+      <div class="journal-navigation">
+        {% if page.previous.url %}
+        <a class="prev-entry" href="{{ page.previous.url | relative_url }}">
+          <i class="fas fa-arrow-left"></i> Previous Entry
+        </a>
+        {% endif %}
+        
+        {% if page.next.url %}
+        <a class="next-entry" href="{{ page.next.url | relative_url }}">
+          Next Entry <i class="fas fa-arrow-right"></i>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Journal Styling - Add this to your main.css file */
+
+/* Journal Page Layout */
+.journal-page {
+  background-color: var(--light-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin: 3rem auto;
+  max-width: 800px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Book-like styling */
+.journal-page::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  background: 
+    linear-gradient(to right, 
+      rgba(0, 0, 0, 0.05) 0%, 
+      rgba(0, 0, 0, 0.01) 100%);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+/* Header with ornate styling */
+.journal-header {
+  padding: 2.5rem 3rem 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--gray-300);
+  background: linear-gradient(to bottom, 
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0) 100%);
+  position: relative;
+}
+
+.journal-header::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 100px;
+  height: 20px;
+  background-color: var(--light-color);
+  transform: translateX(-50%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--gray-300);
+}
+
+.journal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  color: var(--dark-color);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.journal-meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.journal-date {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--gray-600);
+}
+
+/* Journal content with book-like styling */
+.journal-content {
+  padding: 2rem 4rem 3rem 4rem;
+  position: relative;
+  font-family: 'Libre Baskerville', serif;
+  line-height: 1.8;
+  color: var(--gray-900);
+}
+
+.journal-entry {
+  position: relative;
+}
+
+/* First letter styling - like old books */
+.journal-entry > p:first-of-type::first-letter {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  float: left;
+  line-height: 0.8;
+  margin-right: 0.5rem;
+  color: var(--primary-color);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Line styling for the page effect */
+.journal-content::before {
+  content: '';
+  position: absolute;
+  left: 50px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Journal tags styling */
+.journal-tags {
+  margin-top: 3rem;
+  border-top: 1px solid var(--gray-300);
+  padding-top: 1.5rem;
+}
+
+.journal-tags h4 {
+  font-family: 'Playfair Display', serif;
+  color: var(--gray-700);
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+/* Journal navigation */
+.journal-footer {
+  padding: 1.5rem 3rem;
+  border-top: 1px solid var(--gray-300);
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.journal-navigation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.prev-entry, .next-entry {
+  font-family: 'Playfair Display', serif;
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.prev-entry:hover, .next-entry:hover {
+  color: var(--secondary-color);
+}
+
+/* Journal listing page */
+.journal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .journal-page {
+    margin: 2rem 1rem;
+  }
+  
+  .journal-title {
+    font-size: 2rem;
+  }
+  
+  .journal-content {
+    padding: 1.5rem 2rem 2rem 2rem;
+  }
+  
+  .journal-entry > p:first-of-type::first-letter {
+    font-size: 2.5rem;
+  }
+  
+  .journal-content::before {
+    left: 30px;
+  }
+  
+  .journal-page::before {
+    width: 20px;
+  }
+  
+  .journal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Print styles for journal pages */
+@media print {
+  .journal-page {
+    box-shadow: none;
+    margin: 0;
+    max-width: 100%;
+  }
+  
+  .journal-header::after,
+  .journal-content::before,
+  .journal-page::before {
+    display: none;
+  }
+  
+  .journal-footer {
+    display: none;
+  }
+  
+  .journal-content {
+    padding: 0;
+  }
+}
+</style>
+

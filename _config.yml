@@ -1,0 +1,52 @@
+# Site settings
+title: Precious A
+email: paitanun35@example.com
+description: Medical student, STEM graduate, and software engineer
+baseurl: ""
+url: ""
+
+# Social media
+twitter_username: techdoctorP
+github_username: Nadira3
+linkedin_username: precious-aitanun
+
+# Collections
+collections:
+  projects:
+    output: true
+    permalink: /projects/:path/
+  journal:
+    output: true
+    permalink: /journal/:path/
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Your Name"
+      comments: false
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
+  - scope:
+      path: ""
+      type: "journal"
+    values:
+      layout: "journal"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+# Plugins
+plugins:
+  - jekyll-paginate
+
+# Blog settings
+paginate: 5
+paginate_path: "/blog/page:num/"

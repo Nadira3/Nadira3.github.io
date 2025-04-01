@@ -1,0 +1,43 @@
+---
+layout: default
+title: Journal
+permalink: /journal/
+---
+
+<div class="journal-page">
+  <div class="container">
+    <h1>Personal Journal</h1>
+    
+    <div class="journal-categories">
+      <h2>Categories</h2>
+      <ul class="category-list">
+        <li><a href="{{ '/journal/daily' | relative_url }}" class="category-button daily">Daily Entries</a></li>
+        <li><a href="{{ '/journal/special' | relative_url }}" class="category-button special">Special Moments</a></li>
+      </ul>
+    </div>
+    
+    <div class="journal-entries">
+      {% assign sorted_entries = site.journal | sort: 'date' | reverse %}
+      {% for entry in sorted_entries %}
+      <article class="journal-card">
+        <div class="entry-image" style="background-image: url('{{ entry.header_image | default: "/assets/images/default-journal.jpg" }}')"></div>
+        <div class="entry-content">
+          <header>
+            <h2><a href="{{ entry.url | relative_url }}">{{ entry.title }}</a></h2>
+            <div class="entry-meta">
+              <time datetime="{{ entry.date | date_to_xmlschema }}">{{ entry.date | date: "%b %-d, %Y" }}</time>
+              <span class="entry-category {{ entry.category | downcase }}">{{ entry.category }}</span>
+            </div>
+          </header>
+          <div class="entry-excerpt">
+            {{ entry.excerpt | truncate: 150 }}
+          </div>
+          <footer>
+            <a href="{{ entry.url | relative_url }}" class="read-more">Continue Reading →</a>
+          </footer>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</div>
