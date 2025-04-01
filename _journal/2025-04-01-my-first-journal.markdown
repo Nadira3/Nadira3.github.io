@@ -7,12 +7,9 @@ header_image: /assets/images/journal/your-entry-image.jpg
 mood: Reflective # Optional: Add your mood
 ---
 
-# {{ page.title }}
-
 ## Date: {{ page.date | date: "%B %-d, %Y" }}
 
 Write your journal entry here. Share your thoughts, experiences, insights, or reflections.
-
 You can organize your entry with headings:
 
 ## Morning Thoughts
