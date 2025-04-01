@@ -1,12 +1,11 @@
 ---
-layout: project
-title: "Your Project Title"
+layout: post
+title: "Your Post Title"
 date: 2025-04-01
-technologies: [Python, TensorFlow, React]
-github_link: https://github.com/Nadira3/portfolio
-demo_link: https://demo-link.com
-header_image: /assets/images/projects/your-project-image.jpg
-excerpt: "A brief description of your project."
+categories: [Medicine]
+tags: [research, cardiology]
+header_image: /assets/images/posts/your-header-image.jpg
+excerpt: "A brief summary of your post."
 ---
 
 # {{ page.title }}
