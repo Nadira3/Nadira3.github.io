@@ -1,9 +1,9 @@
 # Site settings
 title: Precious Aitanun
-email: paitanun35@example.com
+email: paitanun35@gmail.com
 description: Medical student, STEM graduate, and software engineer
-baseurl: ""
-url: ""
+baseurl: "/personal-website"
+url: "https://nadira3.github.io"
 
 # Social media
 twitter_username: techdoctorP
