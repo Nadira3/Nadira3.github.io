@@ -7,8 +7,6 @@ header_image: /assets/images/journal/ai-journey-image.jpg
 mood: Enthusiastic
 ---
 
-# {{ page.title }}
-
 ## Date: {{ page.date | date: "%B %-d, %Y" }}
 # My 60-Day Learning Journey: Building Foundations in Statistics & Machine Learning
 
