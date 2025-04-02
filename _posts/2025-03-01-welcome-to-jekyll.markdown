@@ -4,7 +4,7 @@ title: "My First Post"
 date: 2025-04-01
 categories: [Medicine]
 tags: [research, cardiology]
-header_image: "/assets/images/default.jpg"
+header_image: /assets/images/defaultpost.jpg
 excerpt: "A brief summary of your post."
 ---
 
