@@ -38,7 +38,7 @@ title: Home
         <ul class="project-list">
           {% for project in site.projects limit:3 %}
           <li class="project-item">
-            <div class="project-thumbnail" style="background-image: url('{{ project.header_image | default: "/assets/images/default-project.jpg" }}')"></div>
+            <div class="project-thumbnail" style="background-image: url('{{ project.header_image | default: "/assets/images/defaultpost.jpg" }}')"></div>
             <div class="project-info">
               <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
               <p>{{ project.excerpt | truncate: 100 }}</p>
