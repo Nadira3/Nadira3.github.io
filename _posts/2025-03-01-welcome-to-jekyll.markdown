@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Your Post Title"
+title: "My First Post"
 date: 2025-04-01
 categories: [Medicine]
 tags: [research, cardiology]
-header_image: /assets/images/posts/your-header-image.jpg
+header_image: /assets/images/defaultpost.jpg
 excerpt: "A brief summary of your post."
 ---
 
