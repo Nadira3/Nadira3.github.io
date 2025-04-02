@@ -976,3 +976,141 @@ body {
   }
 }
 
+/* Home page cards styling */
+/* Post and Project Lists Styling */
+.post-list, .project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-item, .project-item {
+  display: flex;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-item:hover, .project-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.05);
+}
+
+.post-thumbnail, .project-thumbnail {
+  flex: 0 0 35%;
+  min-height: 150px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.post-info, .project-info {
+  flex: 1;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-date {
+  font-size: 0.875rem;
+  color: var(--gray-600);
+  margin-bottom: 0.5rem;
+}
+
+.post-info h3, .project-info h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+}
+
+.post-info h3 a, .project-info h3 a {
+  color: var(--dark-color);
+  text-decoration: none;
+}
+
+.post-info h3 a:hover, .project-info h3 a:hover {
+  color: var(--primary-color);
+}
+
+.post-categories {
+  margin-bottom: 0.75rem;
+}
+
+.post-categories .category {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-right: 0.5rem;
+  background-color: var(--gray-200);
+  color: var(--gray-700);
+}
+
+.post-categories .category.medicine {
+  background-color: var(--medicine-color);
+  color: white;
+}
+
+.post-categories .category.technology {
+  background-color: var(--technology-color);
+  color: white;
+}
+
+.post-categories .category.security {
+  background-color: var(--security-color);
+  color: white;
+}
+
+.post-categories .category.other {
+  background-color: var(--other-color);
+  color: white;
+}
+
+/* Row and column structure */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.col-md-6 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .post-item, .project-item {
+    flex-direction: column;
+  }
+  
+  .post-thumbnail, .project-thumbnail {
+    flex: 0 0 100%;
+    height: 180px;
+  }
+}
+
+@media (max-width: 576px) {
+  .post-thumbnail, .project-thumbnail {
+    height: 150px;
+  }
+  
+  .post-info, .project-info {
+    padding: 1rem;
+  }
+}

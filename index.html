@@ -12,48 +12,40 @@ title: Home
 
 <section class="recent-content">
   <div class="container">
-    <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
-      <div style="flex: 1 1 450px;">
+    <div class="row">
+      <div class="col-md-6">
         <h2>Recent Posts</h2>
-        {% for post in site.posts limit:3 %}
-        <div class="post-card">
-          <div class="post-thumbnail" style="background-image: url('{{ post.header_image | default: site.baseurl | append: '/assets/images/defaultpost.jpg' }}')"></div>
-          <div class="post-content">
-            <div class="post-meta">
-              <span>{{ post.date | date: "%b %-d, %Y" }}</span>
+        <ul class="post-list">
+          {% for post in site.posts limit:3 %}
+          <li class="post-item">
+            <div class="post-thumbnail" style="background-image: url('{{ post.header_image | default: "assets/images/defaultpost.jpg" }}')"></div>
+            <div class="post-info">
+              <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+              <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+              <p class="post-categories">
+                {% for category in post.categories %}
+                <span class="category">{{ category }}</span>
+                {% endfor %}
+              </p>
             </div>
-            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-            <div class="post-meta">
-              {% for category in post.categories %}
-              <span class="category {{ category | downcase }}">{{ category }}</span>
-              {% endfor %}
-            </div>
-            <p>{{ post.excerpt | truncate: 120 }}</p>
-            <a href="{{ post.url | relative_url }}" class="read-more">Read More</a>
-          </div>
-        </div>
-        {% endfor %}
+          </li>
+          {% endfor %}
+        </ul>
       </div>
 
-      <div style="flex: 1 1 450px;">
+      <div class="col-md-6">
         <h2>Recent Projects</h2>
-        {% for project in site.projects limit:3 %}
-        <div class="project-card">
-          <div class="project-image" style="background-image: url('{{ project.header_image | default: "/assets/images/defaultpost.jpg" }}')"></div>
-          <div class="project-details">
-            <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
-            <p>{{ project.excerpt | truncate: 100 }}</p>
-            {% if project.technologies %}
-            <div class="project-technologies">
-              {% for tech in project.technologies %}
-              <span class="tech-tag">{{ tech }}</span>
-              {% endfor %}
+        <ul class="project-list">
+          {% for project in site.projects limit:3 %}
+          <li class="project-item">
+            <div class="project-thumbnail" style="background-image: url('{{ project.header_image | default: "/assets/images/defaultpost.jpg" }}')"></div>
+            <div class="project-info">
+              <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
+              <p>{{ project.excerpt | truncate: 100 }}</p>
             </div>
-            {% endif %}
-            <a href="{{ project.url | relative_url }}" class="view-project">View Project</a>
-          </div>
-        </div>
-        {% endfor %}
+          </li>
+          {% endfor %}
+        </ul>
       </div>
     </div>
   </div>
