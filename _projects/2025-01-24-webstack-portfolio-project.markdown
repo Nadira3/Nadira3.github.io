@@ -102,7 +102,7 @@ Docker (optional for deployment)
 ## 🔧 Setup Instructions
 
 1. **Clone the Repository**
-```
+```sh
 git clone https://github.com/Nadira3/afrikai_apis.git
 cd afrikai_apis
 ```
@@ -110,7 +110,7 @@ cd afrikai_apis
 2. **Configure Databases**
 
 Ensure MySQL databases are created for each service:
-```
+```sh
 user_service_db
 
 task_service_db
@@ -127,34 +127,34 @@ Each service has its own application.yml or .env file. Configure database creden
 
 
 4. **Build the Project**
-```
+```sh
 mvn clean install
 ```
 
 5. **Run Services Individually**
 
 Service Registry
-```
+```sh
 cd service-registry
 mvn spring-boot:run
 ```
 API Gateway
-```
+```sh
 cd api-gateway
 mvn spring-boot:run
 ```
 User Service
-```
+```sh
 cd user-service
 mvn spring-boot:run
 ```
 Task Service
-```
+```sh
 cd task-service
 mvn spring-boot:run
 ```
 Label Service
-```
+```sh
 cd label-service
 mvn spring-boot:run
 ```
@@ -184,11 +184,11 @@ Visit http://localhost:8761 to confirm that all services are registered.
 ### ✅ Running Tests
 
 Execute unit and integration tests across all services:
-```
+```sh
 mvn test
 ```
 ### 📝 Sample Test Case (User Authentication)
-```
+```sh
 @Test
 void whenValidUser_thenReturnsJwtToken() throws Exception {
     AuthRequest authRequest = new AuthRequest("user@example.com", "password123");
@@ -310,8 +310,6 @@ User Service manages authentication, user details, and JWT generation.
 
 
 6. Submit a Pull Request.
-
-
 
 
 ---

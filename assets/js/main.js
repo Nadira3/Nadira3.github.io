@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initContactForm();
   initAnimations();
   initJournalFilters();
+  mermaid.initialize({ startOnLoad: true });
 });
 
 // Navigation enhancement
