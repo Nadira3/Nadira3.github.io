@@ -101,16 +101,16 @@ Docker (optional for deployment)
 
 ## 🔧 Setup Instructions
 
-1. **Clone the Repository**
-```sh
+**Clone the Repository**
+```bash
 git clone https://github.com/Nadira3/afrikai_apis.git
 cd afrikai_apis
 ```
 
-2. **Configure Databases**
+**Configure Databases**
 
 Ensure MySQL databases are created for each service:
-```sh
+```bash
 user_service_db
 
 task_service_db
@@ -120,50 +120,46 @@ label_service_db
 
 Create these databases and update the connection configurations in application.yml files for each service with the correct username and password.
 
-
-3. **Update Environment Variables**
+**Update Environment Variables**
 
 Each service has its own application.yml or .env file. Configure database credentials and JWT secrets accordingly.
 
-
-4. **Build the Project**
-```sh
+**Build the Project**
+```bash
 mvn clean install
 ```
 
-5. **Run Services Individually**
+**Run Services Individually**
 
 Service Registry
-```sh
+```bash
 cd service-registry
 mvn spring-boot:run
 ```
 API Gateway
-```sh
+```bash
 cd api-gateway
 mvn spring-boot:run
 ```
 User Service
 ```sh
+```bash
 cd user-service
 mvn spring-boot:run
 ```
 Task Service
-```sh
+```bash
 cd task-service
 mvn spring-boot:run
 ```
 Label Service
-```sh
+```bash
 cd label-service
 mvn spring-boot:run
 ```
 
-
-6. **Verify Eureka Dashboard**
+**Verify Eureka Dashboard**
 Visit http://localhost:8761 to confirm that all services are registered.
-
-
 
 
 ---
@@ -184,11 +180,11 @@ Visit http://localhost:8761 to confirm that all services are registered.
 ### ✅ Running Tests
 
 Execute unit and integration tests across all services:
-```sh
+```bash
 mvn test
 ```
 ### 📝 Sample Test Case (User Authentication)
-```sh
+```bash
 @Test
 void whenValidUser_thenReturnsJwtToken() throws Exception {
     AuthRequest authRequest = new AuthRequest("user@example.com", "password123");
@@ -205,10 +201,10 @@ void whenValidUser_thenReturnsJwtToken() throws Exception {
 
 ## 🌐 Architecture Diagram
 **proposed design**
-![Architectural Design](docs/images/architectural_design.jpg)
+![Architectural Design]({{ "/assets/images/design.jpg" | relative_url }})
 
 **exexcution flow**
-```mermaid
+<div class="mermaid">
 graph LR
     A[Service Registry - Eureka] --> B[API Gateway]
     
@@ -270,7 +266,7 @@ graph LR
         O[Health Check]
         P[Metrics]
     end
-```
+</div>
 
 ## Key Workflow:
 
