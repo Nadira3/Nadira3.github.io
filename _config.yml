@@ -17,6 +17,9 @@ collections:
   journal:
     output: true
 
+markdown: kramdown
+highlighter: rouge
+
 # Default front matter
 defaults:
   - scope:
