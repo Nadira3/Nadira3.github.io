@@ -25,6 +25,14 @@
   
   <!-- Favicon -->
   <link rel="stylesheet" href="{{ site.baseurl | relative_url }}/assets/images/favicon.ico">
+  <!-- Scripts -->
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.0/mermaid.min.js"></script>
+  <script>
+  		document.addEventListener("DOMContentLoaded", function() {
+    			mermaid.initialize({ startOnLoad: true });
+  		});
+  </script>
 </head>
 <body>
   {% include header.html %}
@@ -35,13 +43,5 @@
   
   {% include footer.html %}
   
-  <!-- Scripts -->
-  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.0/mermaid.min.js"></script>
-  <script>
-  		document.addEventListener("DOMContentLoaded", function() {
-    			mermaid.initialize({ startOnLoad: true });
-  		});
-	</script>
 </body>
 </html>
