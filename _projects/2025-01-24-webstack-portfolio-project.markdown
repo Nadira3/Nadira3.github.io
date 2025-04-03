@@ -142,7 +142,6 @@ cd api-gateway
 mvn spring-boot:run
 ```
 User Service
-```sh
 ```bash
 cd user-service
 mvn spring-boot:run
