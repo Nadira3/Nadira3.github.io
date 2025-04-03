@@ -58,7 +58,7 @@ All other endpoints require JWT authentication. Tokens can be obtained through:
 - Login endpoint
 
 ### Architecture Design
-```mermaid
+<div class="mermaid">
 flowchart TD
     A[Client Side] -->|HTTP Request| B[API Gateway]
     B -->|Route Request| C[UserService]
@@ -76,7 +76,7 @@ flowchart TD
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style B fill:#bbf,stroke:#333,stroke-width:2px
     style C fill:#dfd,stroke:#333,stroke-width:2px
-```
+</div>
 
 ### Independent Testing
 To test the service independently (bypassing the gateway):

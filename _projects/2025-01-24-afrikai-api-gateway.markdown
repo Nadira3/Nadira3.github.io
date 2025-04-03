@@ -69,7 +69,7 @@ The API Gateway communicates with the following microservices:
 
 Below is the request flow diagram showing how the API Gateway handles incoming requests:
 
-```mermaid
+<div class="mermaid">
 sequenceDiagram
     participant Client
     participant API Gateway
@@ -100,7 +100,7 @@ sequenceDiagram
     else Token Invalid
         API Gateway-->>Client: 401 Unauthorized
     end
-```
+</div>
 
 ## Security
 
