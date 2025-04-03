@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "LockBoxes Algorithm"
-date: 2025-04-01
+date: 2025-04-02
 categories: [Technology]
 tags: [interview]
 header_image: /assets/images/defaultpost.jpg
