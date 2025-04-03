@@ -20,11 +20,11 @@ layout: default
             
             <div class="project-meta">
               <span class="project-date"><i class="far fa-calendar-alt"></i> {{ page.date | date: "%B %d, %Y" }}</span>
-              {% if page.github %}
-                <a href="{{ page.github }}" class="project-github" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+              {% if page.github_link %}
+                <a href="{{ page.github_link | relative_url }}" class="project-github" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
               {% endif %}
-              {% if page.demo %}
-                <a href="{{ page.demo }}" class="project-demo" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+              {% if page.demo_link %}
+                <a href="{{ page.demo_link | relative_url }}" class="project-demo" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
               {% endif %}
             </div>
             
