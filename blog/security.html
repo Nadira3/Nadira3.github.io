@@ -1,0 +1,86 @@
+---
+layout: default
+title: Security
+permalink: /blog/security/
+---
+
+<div class="blog-page">
+  <div class="container">
+
+    <div class="category-filters">
+      <h2>Categories</h2>
+      <ul class="categories">
+        <li><a href="{{ '/blog/' | relative_url }}" class="category all">All</a></li>
+        <li><a href="{{ '/blog/security' | relative_url }}" class="category security active">Medicine</a></li>
+        <li><a href="{{ '/blog/technology' | relative_url }}" class="category technology">Technology</a></li>
+        <li><a href="{{ '/blog/security' | relative_url }}" class="category security">Security</a></li>
+        <li><a href="{{ '/blog/other' | relative_url }}" class="category other">Other</a></li>
+      </ul>
+    </div>
+
+    <div class="posts-list">
+      {% assign security_posts = site.posts | where_exp: "post", "post.categories contains 'security'" | sort: 'date' | reverse %}
+      
+      {% if security_posts.size > 0 %}
+        {% assign current_page = paginator.page | default: 1 %}
+        {% assign offset = current_page | minus: 1 | times: 5 %}
+        
+        {% for post in security_posts limit: 5 offset: offset %}
+          <article class="post-card">
+            <div class="post-thumbnail" style="background-image: url('{{ post.header_image | default: "/assets/images/default-post.jpg" | relative_url }}')"></div>
+            <div class="post-content">
+              <header>
+                <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+                <div class="post-meta">
+                  <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+                  <span class="categories">
+                    {% for category in post.categories %}
+                    <a href="{{ '/blog/' | append: category | downcase | relative_url }}" class="category {{ category | downcase }}">{{ category }}</a>
+                    {% endfor %}
+                  </span>
+                  <span class="tags">
+                    {% for tag in post.tags %}
+                    <a href="{{ '/blog/tag/' | append: tag | downcase | relative_url }}" class="tag">{{ tag }}</a>
+                    {% endfor %}
+                  </span>
+                </div>
+              </header>
+              <div class="excerpt">
+                {{ post.excerpt }}
+              </div>
+              <footer>
+                <a href="{{ post.url | relative_url }}" class="read-more">Read More →</a>
+              </footer>
+            </div>
+          </article>
+        {% endfor %}
+      {% else %}
+        <p>No security posts found.</p>
+      {% endif %}
+    </div>
+
+    <!-- Custom Pagination -->
+    {% if security_posts.size > 5 %}
+    <div class="pagination">
+      {% assign total_pages = security_posts.size | divided_by: 5.0 | ceil %}
+      {% assign current_page = paginator.page | default: 1 %}
+      
+      {% if current_page > 1 %}
+        <a href="{{ '/blog/security/' | append: current_page | minus: 1 | prepend: 'page/' | relative_url }}" class="previous">
+          Previous
+        </a>
+      {% endif %}
+      
+      <span class="page_number">
+        Page: {{ current_page | default: 1 }} of {{ total_pages }}
+      </span>
+      
+      {% if current_page < total_pages %}
+        <a href="{{ '/blog/security/' | append: current_page | plus: 1 | prepend: 'page/' | relative_url }}" class="next">
+          Next
+        </a>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</div>
