@@ -2,7 +2,7 @@
 layout: post
 title: "My First Post"
 date: 2025-03-01
-categories: [Medicine]
+categories: [medicine]
 tags: [research, cardiology]
 header_image: /assets/images/defaultpost.jpg
 excerpt: "A brief summary of your post."
@@ -38,6 +38,11 @@ Describe what your project does and the problem it solves.
 ## Implementation Details
 
 Provide technical details about how you implemented the project.
+<div style="width: 100%; height: 0; position: relative; padding-top: 56.25%; ">
+    <iframe src="https://app.visla.us/embed/1348656515573161984" frameborder="0" allow="fullscreen *"
+        style="border: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+    </iframe>
+</div>
 
 ## Challenges and Solutions
 

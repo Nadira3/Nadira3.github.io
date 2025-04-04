@@ -2,7 +2,7 @@
 layout: post
 title: "LockBoxes Algorithm"
 date: 2025-04-02
-categories: [Technology]
+categories: [technology]
 tags: [interview]
 header_image: /assets/images/defaultpost.jpg
 excerpt: "A brief summary of your post."

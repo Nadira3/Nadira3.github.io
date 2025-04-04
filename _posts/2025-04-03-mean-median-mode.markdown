@@ -2,7 +2,7 @@
 layout: post
 title: "Fundamentals of Mean, Median, and Mode"
 date: 2025-04-03
-categories: [Technology]
+categories: [technology]
 tags: [data-analysis, statistics]
 header_image: /assets/images/defaultpost.jpg
 excerpt: "Mean is calculated by adding all values and dividing by the count. Median is the middle value when ordered. Mode is the most frequent value."
