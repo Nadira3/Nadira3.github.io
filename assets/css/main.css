@@ -239,6 +239,11 @@ img {
   color: white;
 }
 
+.category.all {
+  background-color: var(--gray-800);
+  color: white;
+}
+
 .category.technology {
   background-color: var(--technology-color);
   color: white;
@@ -819,6 +824,11 @@ img {
 
 .category-button.daily {
   background-color: var(--daily-color);
+  color: white;
+}
+
+.category-button.all {
+  background-color: var(--gray-800);
   color: white;
 }
 
