@@ -193,6 +193,14 @@ img {
   background-color: var(--gray-100);
 }
 
+
+.post-info h3, .project-info h3, .project-details h2 {
+  font-family: "Winky Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
 /* Blog Post Cards */
 .post-card {
   display: flex;
