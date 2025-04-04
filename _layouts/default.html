@@ -24,7 +24,13 @@
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
   
   <!-- Favicon -->
-  <link rel="stylesheet" href="{{ site.baseurl | relative_url }}/assets/images/favicon.ico">
+  <link rel="stylesheet" href='{{ "/assets/images/favicon.ico" | relative_url }}'>
+  <link rel="apple-touch-icon" sizes="180x180" href='{{ "/assets/images/apple-touch-icon.png" | relative_url }}'>
+  <link rel="android-chrome" type="image/png" sizes="192x192" href='{{ "/assets/images/android-chrome-192x192.png" | relative_url }}'>
+  <link rel="android-chrome" type="image/png" sizes="512x512" href='{{ "/assets/images/android-chrome-512x512.png" | relative_url }}'>
+  <link rel="icon" type="image/png" sizes="32x32" href='{{ "/assets/images/favicon-32x32.png" | relative_url }}'>
+  <link rel="icon" type="image/png" sizes="16x16" href='{{ "/assets/images/favicon-16x16.png" | relative_url }}'>
+  <link rel="manifest" href='{{ "/assets/images/site.webmanifest" | relative_url }}'>
 </head>
 <body>
   {% include header.html %}
