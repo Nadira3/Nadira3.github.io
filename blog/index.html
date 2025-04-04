@@ -10,10 +10,10 @@ title: Blog
     <div class="category-filters">
       <h2>Categories</h2>
       <ul class="categories">
-        <li><a href="{{ '/blog/category/medicine' | relative_url }}" class="category medicine">Medicine</a></li>
-        <li><a href="{{ '/blog/category/technology' | relative_url }}" class="category technology">Technology</a></li>
-        <li><a href="{{ '/blog/category/security' | relative_url }}" class="category security">Security</a></li>
-        <li><a href="{{ '/blog/category/other' | relative_url }}" class="category other">Other</a></li>
+        <li><a href="{{ '/blog/medicine' | relative_url }}" class="category medicine">Medicine</a></li>
+        <li><a href="{{ '/blog/technology' | relative_url }}" class="category technology">Technology</a></li>
+        <li><a href="{{ '/blog/security' | relative_url }}" class="category security">Security</a></li>
+        <li><a href="{{ '/blog/other' | relative_url }}" class="category other">Other</a></li>
       </ul>
     </div>
 
@@ -30,7 +30,7 @@ title: Blog
                 <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
                 <span class="categories">
                   {% for category in post.categories %}
-                  <a href="{{ '/blog/category/' | append: category | downcase | relative_url }}" class="category {{ category | downcase }}">{{ category }}</a>
+                  <a href="{{ '/blog/' | append: category | downcase | relative_url }}" class="category {{ category | downcase }}">{{ category }}</a>
                   {% endfor %}
                 </span>
                 <span class="tags">
