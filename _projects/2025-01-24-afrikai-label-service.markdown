@@ -3,7 +3,7 @@ layout: project
 title: "AFRIKAI Label Service"
 date: 2025-01-24
 technologies: [Html, CSS, Java, SpringBoot, MySQL]
-github_link: https://github.com/Nadira3/afrikai_apis/label-service
+github_link: https://github.com/Nadira3/afrikai_apis/tree/main/label-service
 demo_link: https://youtu.be/MVpJsiPd2Y8?si=u8X2jDpjmx5cNh8_
 header_image: /assets/images/logo.png
 excerpt: "A brief description of your project."
