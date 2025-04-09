@@ -170,3 +170,102 @@ function initJournalFilters() {
     });
   }
 }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Recommendations slider functionality
+    const track = document.querySelector('.recommendations-track');
+    const slides = Array.from(track.children);
+    const nextButton = document.querySelector('.next-button');
+    const prevButton = document.querySelector('.prev-button');
+    const indicators = document.querySelectorAll('.indicator');
+    
+    let currentIndex = 0;
+    const slideWidth = slides[0].getBoundingClientRect().width;
+    
+    // Arrange slides next to each other
+    const setSlidePosition = (slide, index) => {
+      slide.style.left = slideWidth * index + 'px';
+    };
+    
+    slides.forEach(setSlidePosition);
+    
+    // Move to specified slide
+    const moveToSlide = (index) => {
+      // Update the track transform
+      track.style.transform = 'translateX(-' + slideWidth * index + 'px)';
+      
+      // Update active indicator
+      document.querySelector('.indicator.active').classList.remove('active');
+      indicators[index].classList.add('active');
+      
+      // Update current index
+      currentIndex = index;
+      
+      // Optional: Disable prev/next buttons at start/end
+      prevButton.disabled = currentIndex === 0;
+      nextButton.disabled = currentIndex === slides.length - 1;
+    };
+    
+    // Next button click
+    nextButton.addEventListener('click', () => {
+      if (currentIndex < slides.length - 1) {
+        moveToSlide(currentIndex + 1);
+      } else {
+        // Optional: Loop back to first slide
+        moveToSlide(0);
+      }
+    });
+    
+    // Previous button click
+    prevButton.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        moveToSlide(currentIndex - 1);
+      } else {
+        // Optional: Loop to last slide
+        moveToSlide(slides.length - 1);
+      }
+    });
+    
+    // Indicator clicks
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', () => {
+        moveToSlide(index);
+      });
+    });
+    
+    // Auto-advancing slides (optional)
+    let slideInterval = setInterval(() => {
+      if (currentIndex < slides.length - 1) {
+        moveToSlide(currentIndex + 1);
+      } else {
+        moveToSlide(0);
+      }
+    }, 7000); // Change slide every 7 seconds
+    
+    // Pause auto-advance on hover (optional)
+    const slider = document.querySelector('.recommendations-slider');
+    slider.addEventListener('mouseenter', () => {
+      clearInterval(slideInterval);
+    });
+    
+    slider.addEventListener('mouseleave', () => {
+      slideInterval = setInterval(() => {
+        if (currentIndex < slides.length - 1) {
+          moveToSlide(currentIndex + 1);
+        } else {
+          moveToSlide(0);
+        }
+      }, 7000);
+    });
+    
+    // Initial setup - fixes an issue where the slider might not be properly positioned on page load
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        track.style.transition = 'none';
+        moveToSlide(0);
+        setTimeout(() => {
+          track.style.transition = 'transform 0.5s ease-in-out';
+        }, 50);
+      }, 100);
+    });
+  });
