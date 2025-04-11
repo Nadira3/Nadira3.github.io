@@ -23,7 +23,7 @@ title: Blog
       {% if posts.size > 0 %}
         {% for post in posts %}
         <article class="post-card">
-          <div class="post-thumbnail" style="background-image: url('{{ post.header_image | default: "/assets/images/default-post.jpg" | relative_url }}')"></div>
+          <div class="post-thumbnail" id="blog-thumbnail" style="background-image: url('{{ post.header_image | default: "/assets/images/default-post.jpg" | relative_url }}')"></div>
           <div class="post-content">
             <header>
               <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>

@@ -645,8 +645,8 @@ img {
 .excerpt {
   color: #495057;
   font-size: 1rem;
-  line-height: 1.2;
-  margin-bottom: 5px;
+  line-height: 1.6;
+  margin-bottom: 15px;
   flex: 1;
 }
 
@@ -1448,13 +1448,13 @@ body {
 
 /* Blog page Styling*/
 .post-thumbnail, .project-thumbnail {
-  height: 180px;
+  height: auto;
   background-size: cover;
   background-position: center;
   position: relative;
 }
 
-.post-thumbnail::after, .project-thumbnail::after {
+#blog-thumbnail::after, .project-thumbnail::after {
   content: '';
   position: absolute;
   bottom: 0;
