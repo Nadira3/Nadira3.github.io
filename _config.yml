@@ -1,7 +1,11 @@
 # Site settings
-title: Precious Aitanun
+title: Personal Blog Site
 email: paitanun35@gmail.com
-description: Medical student, STEM graduate, and software engineer
+description: A portfolio website to document my learning journey and track my progress
+author:
+  name: Precious Aitanun
+  email: paitanun35@gail.com
+lang: en
 baseurl: "/personal-website/"
 url: "https://nadira3.github.io/"
 
@@ -47,6 +51,8 @@ defaults:
 # Plugins
 plugins:
   - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
 # Blog settings
 paginate: 5

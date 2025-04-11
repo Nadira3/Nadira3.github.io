@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nadira3.github.io/personal-website/sitemap.xml
