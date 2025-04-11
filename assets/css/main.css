@@ -162,6 +162,246 @@ img {
   margin: 0 auto;
 }
 
+/* Elegant CV Download Section with Animations */
+.download-cv {
+  margin: 2.5rem 0;
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(95, 108, 175, 0.15), rgba(56, 178, 172, 0.15));
+  border-radius: 16px;
+  border: 1px solid rgba(95, 108, 175, 0.3);
+  box-shadow: 0 10px 30px rgba(45, 55, 72, 0.1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+/* Animated background elements */
+.download-cv::before {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, var(--accent-color) 0%, rgba(237, 137, 54, 0) 70%);
+  border-radius: 50%;
+  opacity: 0.2;
+  top: -50px;
+  right: -50px;
+  animation: float 15s ease-in-out infinite alternate;
+}
+
+.download-cv::after {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, var(--secondary-color) 0%, rgba(56, 178, 172, 0) 70%);
+  border-radius: 50%;
+  opacity: 0.2;
+  bottom: -40px;
+  left: -40px;
+  animation: float 12s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(15px, 15px) rotate(5deg); }
+  100% { transform: translate(-15px, 5px) rotate(-5deg); }
+}
+
+.download-cv h3 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  position: relative;
+  letter-spacing: 0.5px;
+}
+
+.download-cv h3::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -0.5rem;
+  right: -0.5rem;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.4); /* light overlay for better contrast */
+  border-radius: 8px;
+  z-index: -1;
+  filter: blur(2px);
+}
+
+@keyframes expand {
+  0%, 100% { width: 40%; }
+  50% { width: 60%; }
+}
+
+.download-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-cv {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  min-width: 180px;
+}
+
+.btn-cv i {
+  margin-right: 10px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-cv::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(-100%) rotate(45deg);
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.btn-cv:hover::before {
+  transform: translateX(100%) rotate(45deg);
+}
+
+.btn-cv:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn-cv:hover i {
+  transform: scale(1.2) rotate(10deg);
+}
+
+.medical-cv {
+  background: linear-gradient(135deg, var(--secondary-color), #2c9e99);
+  border: none;
+}
+
+.medical-cv:hover {
+  background: linear-gradient(135deg, #2c9e99, var(--secondary-color));
+}
+
+.tech-cv {
+  background: linear-gradient(135deg, var(--primary-color), #4a57a0);
+  border: none;
+}
+
+.tech-cv:hover {
+  background: linear-gradient(135deg, #4a57a0, var(--primary-color));
+}
+
+/* Animated icon effects */
+.medical-cv i {
+  position: relative;
+}
+
+.tech-cv i {
+  position: relative;
+}
+
+.btn-cv:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Floating animation for the entire section */
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.download-buttons .btn-cv:nth-child(1) {
+  animation: gentle-float 4s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.download-buttons .btn-cv:nth-child(2) {
+  animation: gentle-float 4s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+/* Beautiful decoration elements */
+.download-buttons::before {
+  content: "✦";
+  position: absolute;
+  top: -15px;
+  left: calc(50% - 60px);
+  color: var(--accent-color);
+  opacity: 0.5;
+  font-size: 1.2rem;
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.download-buttons::after {
+  content: "✦";
+  position: absolute;
+  top: -15px;
+  right: calc(50% - 60px);
+  color: var(--accent-color);
+  opacity: 0.5;
+  font-size: 1.2rem;
+  animation: twinkle 3s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.2); }
+}
+
+/* Button text enhancement */
+.btn-cv span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive adjustments with animations preserved */
+@media (max-width: 768px) {
+  .download-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+  
+  .btn-cv {
+    width: 80%;
+  }
+  
+  .download-cv h3 {
+    font-size: 1.5rem;
+  }
+  
+  .download-cv {
+    padding: 1.5rem 1rem;
+  }
+}
+
 /* Cards */
 .card {
   background-color: white;
@@ -345,7 +585,7 @@ img {
 .post-content h2 {
   margin: 0 0 3px;
   font-size: 1.5rem;
-  line-height: 1;
+  line-height: 1.2;
   font-weight: 700;
 }
 
