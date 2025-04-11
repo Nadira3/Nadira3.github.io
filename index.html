@@ -7,6 +7,19 @@ title: Home
   <div class="container">
     <h1>{{ site.title }}</h1>
     <p>{{ site.description }}</p>
+    <div class="download-cv">
+  	<h3>Download My Resume</h3>
+  	<div class="download-buttons">
+  	  <a href="{{ '/assets/docs/medical-cv.pdf' | relative_url }}" class="btn-cv medical-cv">
+  	    <i class="fas fa-stethoscope"></i>
+  	    <span>Medical CV</span>
+  	  </a>
+  	  <a href="{{ '/assets/docs/updated-software-engineer-cv.pdf' | relative_url }}" class="btn-cv tech-cv">
+  	    <i class="fas fa-code"></i>
+  	    <span>Software CV</span>
+  	  </a>
+  	</div>
+     </div>
   </div>
 </section>
 
