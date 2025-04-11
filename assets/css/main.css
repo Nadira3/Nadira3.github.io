@@ -320,6 +320,7 @@ img {
   height: auto;
 }
 
+
 .post-thumbnail::after {
   content: '';
   position: absolute;
@@ -338,13 +339,13 @@ img {
 }
 
 .post-content header {
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 .post-content h2 {
-  margin: 0 0 10px;
+  margin: 0 0 3px;
   font-size: 1.5rem;
-  line-height: 1.3;
+  line-height: 1;
   font-weight: 700;
 }
 
@@ -404,8 +405,8 @@ img {
 .excerpt {
   color: #495057;
   font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 20px;
+  line-height: 1.2;
+  margin-bottom: 5px;
   flex: 1;
 }
 
@@ -485,10 +486,6 @@ img {
   text-transform: uppercase;
 }
 
-/* Adding a thin border to distinguish image area */
-.post-thumbnail {
-  border-right: 1px solid #eaeaea;
-}
 
 .posts-list article:first-child .post-thumbnail {
   border-right: none;
