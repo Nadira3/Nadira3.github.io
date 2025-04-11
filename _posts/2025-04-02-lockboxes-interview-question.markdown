@@ -5,7 +5,7 @@ date: 2025-04-02
 categories: [technology]
 tags: [interview]
 header_image: /assets/images/defaultpost.jpg
-excerpt: "The Lockboxes project is an algorithmic challenge that involves determining if all locked boxes can be opened given a set of keys contained"
+excerpt: "A brief description of your post"
 ---
 
 # 0x01. Lockboxes
