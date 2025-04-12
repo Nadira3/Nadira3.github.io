@@ -353,22 +353,8 @@ So when you’re standing in that clinic hall, if John says, “My knee hurts,�
 
 Okay, I've read all these medical jargons, I have more stuff now. I need to ask John the right questions to know where his pain is coming from. 
 
- Listen to our interaction:
+ Examination mind map:
 
- <audio controls>
-  <source src="{{ '/assets/audios/john.mp3' | relative_url }}" type="audio/mp3">
-  Your browser does not support the audio element.
-</audio>
-
-
-* * *
-
-Exam
-<audio controls>
-  <source src="{{ '/assets/audios/john-exam.mp3' | relative_url }}" type="audio/mp3">
-  Your browser does not support the audio element.
-</audio>
-Examination mind-map
 <img src="{{ '/assets/docs/john-map.png' | relative_url }}">
 
 * * *
