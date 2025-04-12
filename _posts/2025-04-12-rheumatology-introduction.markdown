@@ -2,6 +2,7 @@
 layout: post
 title: "Rheumatology: Signs And Symptoms"
 date: 2025-04-12
+author: Precious Aitanun
 categories: [medicine]
 tags: [casual]
 header_image: /assets/images/rheumatology-signs.jpeg
