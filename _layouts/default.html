@@ -46,5 +46,182 @@
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.0/mermaid.min.js"></script>
   <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+
+  <!-- Floating Telegram Icon -->
+  <style>
+    .telegram-float {
+      position: fixed;
+      left: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 60px;
+      height: 60px;
+      background-color: #0088cc;
+      border-radius: 50%;
+      box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      cursor: move; /* Changed cursor to indicate draggable */
+      transition: box-shadow 0.3s ease, background-color 0.3s ease;
+      animation: pulse 2s infinite;
+      user-select: none; /* Prevents text selection during drag */
+      touch-action: none; /* Improves touch behavior */
+    }
+    
+    .telegram-float:hover {
+      box-shadow: 0 6px 20px rgba(0, 136, 204, 0.6);
+      background-color: #0099e6;
+    }
+    
+    .telegram-float i {
+      color: white;
+      font-size: 28px;
+      animation: wiggle 3s ease-in-out infinite;
+      transform-origin: center;
+      pointer-events: none; /* Makes icon not interfere with dragging */
+    }
+    
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(0, 136, 204, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 15px rgba(0, 136, 204, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 136, 204, 0);
+      }
+    }
+    
+    @keyframes wiggle {
+      0%, 100% {
+        transform: rotate(0deg);
+      }
+      25% {
+        transform: rotate(10deg);
+      }
+      75% {
+        transform: rotate(-10deg);
+      }
+    }
+    
+    /* Notification dot */
+    .telegram-float::after {
+      content: '';
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 12px;
+      height: 12px;
+      background-color: #ff3366;
+      border-radius: 50%;
+      border: 2px solid white;
+      animation: blink 1.5s infinite;
+      pointer-events: none; /* Makes dot not interfere with dragging */
+    }
+    
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+  </style>
+  
+  <a id="telegram-float" href="https://t.me/YourCommunityLink" class="telegram-float" title="Join our Telegram Community">
+    <i class="fab fa-telegram-plane"></i>
+  </a>
+  
+  <script>
+    // Draggable functionality for the Telegram float button
+    document.addEventListener('DOMContentLoaded', function() {
+      const telegramFloat = document.getElementById('telegram-float');
+      let isDragging = false;
+      let offsetX, offsetY;
+      
+      // Prevent default link behavior while dragging
+      telegramFloat.addEventListener('click', function(e) {
+        if (isDragging) {
+          e.preventDefault();
+        }
+      });
+      
+      // Mouse events for desktop
+      telegramFloat.addEventListener('mousedown', function(e) {
+        isDragging = true;
+        offsetX = e.clientX - telegramFloat.getBoundingClientRect().left;
+        offsetY = e.clientY - telegramFloat.getBoundingClientRect().top;
+        e.preventDefault(); // Prevent text selection
+      });
+      
+      document.addEventListener('mousemove', function(e) {
+        if (isDragging) {
+          const x = e.clientX - offsetX;
+          const y = e.clientY - offsetY;
+          
+          // Keep button within viewport bounds
+          const maxX = window.innerWidth - telegramFloat.offsetWidth;
+          const maxY = window.innerHeight - telegramFloat.offsetHeight;
+          
+          telegramFloat.style.left = Math.max(0, Math.min(x, maxX)) + 'px';
+          telegramFloat.style.top = Math.max(0, Math.min(y, maxY)) + 'px';
+          telegramFloat.style.transform = 'none'; // Remove the initial transform
+        }
+      });
+      
+      document.addEventListener('mouseup', function() {
+        if (isDragging) {
+          isDragging = false;
+          // Store position in localStorage to persist across page loads
+          localStorage.setItem('telegramFloatX', telegramFloat.style.left);
+          localStorage.setItem('telegramFloatY', telegramFloat.style.top);
+        }
+      });
+      
+      // Touch events for mobile
+      telegramFloat.addEventListener('touchstart', function(e) {
+        isDragging = true;
+        offsetX = e.touches[0].clientX - telegramFloat.getBoundingClientRect().left;
+        offsetY = e.touches[0].clientY - telegramFloat.getBoundingClientRect().top;
+      });
+      
+      document.addEventListener('touchmove', function(e) {
+        if (isDragging) {
+          const x = e.touches[0].clientX - offsetX;
+          const y = e.touches[0].clientY - offsetY;
+          
+          // Keep button within viewport bounds
+          const maxX = window.innerWidth - telegramFloat.offsetWidth;
+          const maxY = window.innerHeight - telegramFloat.offsetHeight;
+          
+          telegramFloat.style.left = Math.max(0, Math.min(x, maxX)) + 'px';
+          telegramFloat.style.top = Math.max(0, Math.min(y, maxY)) + 'px';
+          telegramFloat.style.transform = 'none'; // Remove the initial transform
+          e.preventDefault(); // Prevent scrolling while dragging
+        }
+      }, { passive: false });
+      
+      document.addEventListener('touchend', function() {
+        if (isDragging) {
+          isDragging = false;
+          // Store position in localStorage
+          localStorage.setItem('telegramFloatX', telegramFloat.style.left);
+          localStorage.setItem('telegramFloatY', telegramFloat.style.top);
+        }
+      });
+      
+      // Restore position from localStorage if available
+      window.addEventListener('load', function() {
+        const savedX = localStorage.getItem('telegramFloatX');
+        const savedY = localStorage.getItem('telegramFloatY');
+        
+        if (savedX && savedY) {
+          telegramFloat.style.left = savedX;
+          telegramFloat.style.top = savedY;
+          telegramFloat.style.transform = 'none'; // Remove the initial transform
+        }
+      });
+    });
+  </script>
 </body>
 </html>
