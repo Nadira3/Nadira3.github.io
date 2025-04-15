@@ -1,7 +1,8 @@
 # Site settings
-title: Precious Aitanun
+title: precious.codes() + Rx
+author: Precious Aitanun
 email: paitanun35@gmail.com
-description: A personal website to document my learning journey and track my progress
+description: Exploring the intersection of medicine, creativity, and technology. I craft stories and visuals while decoding the human body—one pixel and pulse at a time.
 lang: en
 baseurl: "/personal-website/"
 url: "https://nadira3.github.io/"

@@ -5,20 +5,69 @@ title: Home
 
 <section class="hero">
   <div class="container">
-    <h1>{{ site.title }}</h1>
-    <p>{{ site.description }}</p>
+    <!-- Animation Container -->
+    <div id="keyboard-animation" class="keyboard-animation">
+      <div class="animation-wrapper">
+        <!-- Keyboard -->
+        <div class="keyboard">
+          <div id="ctrl-key" class="key ctrl-key">CTRL</div>
+          <div id="alt-key" class="key alt-key">ALT</div>
+          <div id="esc-key" class="key esc-key">ESC</div>
+        </div>
+        
+        <!-- Stethoscope -->
+        <div id="stethoscope" class="stethoscope">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" 
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"></path>
+            <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"></path>
+            <circle cx="20" cy="10" r="2"></circle>
+          </svg>
+        </div>
+        
+        <!-- EKG Line -->
+        <div id="ekg-line" class="ekg-line">
+          <div class="ekg-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+          </div>
+          <div class="ekg-graph">
+            <svg viewBox="0 0 120 20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 0,10 L 5,10 L 10,2 L 15,18 L 20,0 L 25,10 L 30,10 L 35,10 L 40,10 L 45,2 L 50,18 L 55,0 L 60,10 L 65,10 L 70,10 L 75,10 L 80,2 L 85,18 L 90,0 L 95,10 L 100,10 L 105,10 L 110,10 L 115,10 L 120,10"
+                    fill="none" stroke="#ef4444" stroke-width="1" />
+            </svg>
+          </div>
+          <div class="ekg-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+          </div>
+        </div>
+        
+        <!-- Title -->
+        <div id="animation-title" class="animation-title">
+          <p>Click any key to restart animation</p>
+          <h1>Precious Aitanun</h1>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Original content starts here -->
     <div class="download-cv">
-  	<h3>Download My Resume</h3>
-  	<div class="download-buttons">
-  	  <a href="{{ '/assets/docs/medical-cv.pdf' | relative_url }}" class="btn-cv medical-cv">
-  	    <i class="fas fa-stethoscope"></i>
-  	    <span>Medical CV</span>
-  	  </a>
-  	  <a href="{{ '/assets/docs/updated-software-engineer-cv.pdf' | relative_url }}" class="btn-cv tech-cv">
-  	    <i class="fas fa-code"></i>
-  	    <span>Software CV</span>
-  	  </a>
-  	</div>
+        <h3>Download My Resume</h3>
+        <div class="download-buttons">
+          <a href="{{ '/assets/docs/medical-cv.pdf' | relative_url }}" class="btn-cv medical-cv">
+            <i class="fas fa-stethoscope"></i>
+            <span>Medical CV</span>
+          </a>
+          <a href="{{ '/assets/docs/updated-software-engineer-cv.pdf' | relative_url }}" class="btn-cv tech-cv">
+            <i class="fas fa-code"></i>
+            <span>Software CV</span>
+          </a>
+        </div>
      </div>
   </div>
 </section>
@@ -31,7 +80,7 @@ title: Home
         <ul class="post-list">
           {% for post in site.posts limit:3 %}
           <li class="post-item">
-		  <div class="post-thumbnail" style="background-image: url('{{ post.header_image | relative_url }}')"></div>
+                  <div class="post-thumbnail" style="background-image: url('{{ post.header_image | relative_url }}')"></div>
             <div class="project-info">
               <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
               <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
@@ -51,11 +100,11 @@ title: Home
         <ul class="project-list">
           {% for project in site.projects limit:3 %}
           <li class="project-item">
-	    <div class="project-thumbnail" style="background-image: url('{{ project.header_image | relative_url }}')"></div>
+            <div class="project-thumbnail" style="background-image: url('{{ project.header_image | relative_url }}')"></div>
             <div class="project-info">
               <span class="post-date">{{ project.date | date: "%b %-d, %Y" }}</span>
               <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
-	      <p>{{ project.excerpt | truncate: 100 }}</p>
+              <p>{{ project.excerpt | truncate: 100 }}</p>
             </div>
           </li>
         {% endfor %}
@@ -75,7 +124,7 @@ title: Home
             <div class="quote-icon">"</div>
             <p>Working with this talented developer was an absolute pleasure. The attention to detail and technical expertise brought our project to life in ways we couldn't have imagined.</p>
             <div class="recommendation-author">
-		    <div class="author-image" style="background-image: url('{{ "/assets/images/sarah-johnson.jpeg" | relative_url }}')"></div>
+                    <div class="author-image" style="background-image: url('{{ "/assets/images/sarah-johnson.jpeg" | relative_url }}')"></div>
               <div class="author-info">
                 <h4>Sarah Johnson</h4>
                 <p>CEO, CompanyA</p>
@@ -83,13 +132,13 @@ title: Home
             </div>
           </div>
         </div>
-        
+
         <div class="recommendation-card">
           <div class="recommendation-content">
             <div class="quote-icon">"</div>
             <p>I was impressed by the clean code and innovative solutions provided. Our website not only looks amazing but performs exceptionally well across all devices.</p>
             <div class="recommendation-author">
-		    <div class="author-image" style="background-image: url('{{ "/assets/images/michael-chen.jpeg" | relative_url }}')"></div>
+                    <div class="author-image" style="background-image: url('{{ "/assets/images/michael-chen.jpeg" | relative_url }}')"></div>
               <div class="author-info">
                 <h4>Michael Chen</h4>
                 <p>Lead Designer, CompanyB</p>
@@ -97,13 +146,13 @@ title: Home
             </div>
           </div>
         </div>
-        
+
         <div class="recommendation-card">
           <div class="recommendation-content">
             <div class="quote-icon">"</div>
             <p>The work delivered exceeded our expectations in every way. The combination of technical expertise and creative approach resulted in a product our customers love.</p>
             <div class="recommendation-author">
-		    <div class="author-image" style="background-image: url('{{ "/assets/images/emily-rodiguez.jpeg" | relative_url }}')"></div>
+                    <div class="author-image" style="background-image: url('{{ "/assets/images/emily-rodiguez.jpeg" | relative_url }}')"></div>
               <div class="author-info">
                 <h4>Emily Rodriguez</h4>
                 <p>Product Manager, CompanyC</p>
@@ -111,13 +160,13 @@ title: Home
             </div>
           </div>
         </div>
-        
+
         <div class="recommendation-card">
           <div class="recommendation-content">
             <div class="quote-icon">"</div>
             <p>Outstanding development skills paired with excellent communication. Our complex project was handled with expertise and delivered ahead of schedule.</p>
             <div class="recommendation-author">
-		    <div class="author-image" style="background-image: url('{{ "/assets/images/david-park.jpeg" | relative_url }}')"></div>
+                    <div class="author-image" style="background-image: url('{{ "/assets/images/david-park.jpeg" | relative_url }}')"></div>
               <div class="author-info">
                 <h4>David Park</h4>
                 <p>CTO, CompanyD</p>
@@ -126,7 +175,7 @@ title: Home
           </div>
         </div>
       </div>
-      
+
       <div class="slider-controls">
         <button class="prev-button" aria-label="Previous recommendation">
           <span>&larr;</span>
@@ -144,3 +193,267 @@ title: Home
     </div>
   </div>
 </section>
+
+<!-- Audio elements -->
+<audio id="keyClickSound" preload="auto" style="display: none;">
+  <source src="{{ '/assets/sounds/key-click.mp3' | relative_url }}" type="audio/mp3">
+</audio>
+<audio id="heartbeatSound" preload="auto" style="display: none;">
+  <source src="{{ '/assets/sounds/heartbeat.mp3' | relative_url }}" type="audio/mp3">
+</audio>
+
+<!-- Animation CSS -->
+<style>
+.keyboard-animation {
+  height: 260px;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.animation-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.keyboard {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 64px;
+  position: relative;
+}
+
+.key {
+  width: 80px;
+  height: 64px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--gray-600);
+  background-color: var(--gray-800);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: monospace;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: var(--gray-100);
+}
+
+.key:hover {
+  background-color: var(--gray-700);
+}
+
+.key.active {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  transform: translateY(4px);
+}
+
+.esc-key.active {
+  background-color: var(--danger-color);
+  border-color: var(--danger-color);
+}
+
+.stethoscope {
+  position: absolute;
+  top: 64px;
+  right: calc(50% - 130px);
+  color: var(--secondary-color);
+  opacity: 0;
+  transform: translateY(-24px);
+  transition: all 0.7s ease;
+}
+
+.stethoscope.appear {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stethoscope.press {
+  transform: translateY(8px);
+}
+
+.ekg-line {
+  height: 32px;
+  width: 100%;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.ekg-line.active {
+  opacity: 1;
+}
+
+.ekg-icon {
+  color: var(--danger-color);
+}
+
+.ekg-graph {
+  height: 16px;
+  width: 192px;
+  overflow: hidden;
+  position: relative;
+  margin: 0 8px;
+}
+
+.ekg-graph svg {
+  height: 100%;
+  width: 100%;
+}
+
+.ekg-graph.active svg path {
+  animation: pulse 1.5s ease infinite;
+  stroke: var(--danger-color);
+}
+
+.animation-title {
+  margin-top: 16px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease;
+}
+
+.animation-title.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animation-title h1 {
+  font-size: 2.25rem;
+  font-weight: bold;
+  font-family: monospace;
+  background: linear-gradient(to right, var(--accent-color), white, var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 4px;
+}
+
+.animation-title p {
+  color: var(--gray-500);
+  font-size: 0.875rem;
+}
+
+.pulse-effect {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background-color: var(--danger-color);
+  opacity: 0.3;
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+</style>
+
+<!-- Animation JavaScript -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const ctrlKey = document.getElementById('ctrl-key');
+    const altKey = document.getElementById('alt-key');
+    const escKey = document.getElementById('esc-key');
+    const stethoscope = document.getElementById('stethoscope');
+    const ekgLine = document.getElementById('ekg-line');
+    const ekgGraph = document.querySelector('.ekg-graph');
+    const animationTitle = document.getElementById('animation-title');
+    const keyClickSound = document.getElementById('keyClickSound');
+    const heartbeatSound = document.getElementById('heartbeatSound');
+    
+    // Key elements
+    const keys = [ctrlKey, altKey, escKey];
+    
+    // Function to play sounds safely
+    function playSoundSafely(audioElement) {
+      if (audioElement) {
+        const playPromise = audioElement.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            console.log('Audio playback error:', error);
+          });
+        }
+      }
+    }
+    
+    // Function to reset animation state
+    function resetAnimation() {
+      ctrlKey.classList.remove('active');
+      altKey.classList.remove('active');
+      escKey.classList.remove('active');
+      stethoscope.classList.remove('appear', 'press');
+      ekgLine.classList.remove('active');
+      ekgGraph.classList.remove('active');
+      animationTitle.classList.remove('show');
+      
+      // Remove any existing pulse effects
+      const pulseElements = document.querySelectorAll('.pulse-effect');
+      pulseElements.forEach(el => el.remove());
+    }
+    
+    // Animation sequence
+    async function runAnimationSequence() {
+      resetAnimation();
+      
+      // 1. Press CTRL key
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      ctrlKey.classList.add('active');
+      playSoundSafely(keyClickSound);
+      
+      // 2. Press ALT key
+      await new Promise(resolve => setTimeout(resolve, 800));
+      altKey.classList.add('active');
+      playSoundSafely(keyClickSound);
+      
+      // 3. Show stethoscope
+      await new Promise(resolve => setTimeout(resolve, 800));
+      stethoscope.classList.add('appear');
+      
+      // 4. Press ESC key with stethoscope
+      await new Promise(resolve => setTimeout(resolve, 800));
+      escKey.classList.add('active');
+      stethoscope.classList.add('press');
+      playSoundSafely(keyClickSound);
+      
+      // 5. Add pulse effect to ESC key
+      await new Promise(resolve => setTimeout(resolve, 500));
+      const pulseEffect = document.createElement('div');
+      pulseEffect.className = 'pulse-effect';
+      escKey.appendChild(pulseEffect);
+      ekgLine.classList.add('active');
+      ekgGraph.classList.add('active');
+      playSoundSafely(heartbeatSound);
+      
+      // 6. Show title
+      await new Promise(resolve => setTimeout(resolve, 600));
+      animationTitle.classList.add('show');
+    }
+    
+    // Run animation on page load
+    runAnimationSequence();
+    
+    // Allow restarting animation by clicking keys
+    keys.forEach(key => {
+      key.addEventListener('click', runAnimationSequence);
+    });
+  });
+</script>
