@@ -38,11 +38,6 @@ Describe what your project does and the problem it solves.
 ## Implementation Details
 
 Provide technical details about how you implemented the project.
-<div style="width: 100%; height: 0; position: relative; padding-top: 56.25%; ">
-    <iframe src="https://app.visla.us/embed/1348656515573161984" frameborder="0" allow="fullscreen *"
-        style="border: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-    </iframe>
-</div>
 
 ## Challenges and Solutions
 
