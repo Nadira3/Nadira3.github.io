@@ -196,7 +196,7 @@ title: Home
 
 <!-- Audio elements -->
 <audio id="keyClickSound" preload="auto" style="display: none;">
-  <source src="{{ '/assets/sounds/key-click.wav' | relative_url }}" type="audio/mp3">
+  <source src="{{ '/assets/sounds/key-click.wav' | relative_url }}" type="audio/wav">
 </audio>
 <audio id="heartbeatSound" preload="auto" style="display: none;">
   <source src="{{ '/assets/sounds/heartbeat.mp3' | relative_url }}" type="audio/mp3">
@@ -350,6 +350,31 @@ title: Home
   animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
+/* Add this to your existing <style> section */
+@media (max-width: 768px) {
+  .keyboard-animation {
+    height: 300px; /* Increase height to accommodate title */
+  }
+  
+  .animation-title h1 {
+    font-size: 1.75rem; /* Smaller font size on mobile */
+  }
+
+}
+
+  /* Make keys smaller on mobile */
+@media (max-width: 480px) {
+  .key {
+    width: 60px;
+    height: 48px;
+    font-size: 14px;
+  }
+  
+  .stethoscope {
+    right: calc(50% - 100px);
+  }
+}
+
 @keyframes ping {
   75%, 100% {
     transform: scale(2);
@@ -370,90 +395,162 @@ title: Home
 <!-- Animation JavaScript -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const ctrlKey = document.getElementById('ctrl-key');
-    const altKey = document.getElementById('alt-key');
-    const escKey = document.getElementById('esc-key');
-    const stethoscope = document.getElementById('stethoscope');
-    const ekgLine = document.getElementById('ekg-line');
-    const ekgGraph = document.querySelector('.ekg-graph');
-    const animationTitle = document.getElementById('animation-title');
-    const keyClickSound = document.getElementById('keyClickSound');
-    const heartbeatSound = document.getElementById('heartbeatSound');
-    
-    // Key elements
-    const keys = [ctrlKey, altKey, escKey];
-    
-    // Function to play sounds safely
-    function playSoundSafely(audioElement) {
-      if (audioElement) {
-        const playPromise = audioElement.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(error => {
-            console.log('Audio playback error:', error);
-          });
-        }
+  const ctrlKey = document.getElementById('ctrl-key');
+  const altKey = document.getElementById('alt-key');
+  const escKey = document.getElementById('esc-key');
+  const stethoscope = document.getElementById('stethoscope');
+  const ekgLine = document.getElementById('ekg-line');
+  const ekgGraph = document.querySelector('.ekg-graph');
+  const animationTitle = document.getElementById('animation-title');
+  const keyClickSound = document.getElementById('keyClickSound');
+  const heartbeatSound = document.getElementById('heartbeatSound');
+  
+  // Key elements
+  const keys = [ctrlKey, altKey, escKey];
+  
+  // Audio context initialization
+  let audioInitialized = false;
+  
+  // Preload sounds
+  function preloadSounds() {
+    keyClickSound.load();
+    heartbeatSound.load();
+  }
+  
+  // Call preload immediately
+  preloadSounds();
+  
+  // Function to initialize audio on first user interaction
+  function initializeAudio() {
+    if (!audioInitialized) {
+      // Create user gesture context for audio
+      keyClickSound.volume = 0.5;
+      heartbeatSound.volume = 0.5;
+      
+      // Try to play and immediately pause to activate audio context
+      keyClickSound.play().then(() => {
+        keyClickSound.pause();
+        keyClickSound.currentTime = 0;
+      }).catch(() => {});
+      
+      heartbeatSound.play().then(() => {
+        heartbeatSound.pause();
+        heartbeatSound.currentTime = 0;
+      }).catch(() => {});
+      
+      audioInitialized = true;
+    }
+  }
+  
+  // Function to play sounds safely
+  function playSoundSafely(audioElement) {
+    if (audioElement) {
+      // Always reset to beginning before playing
+      audioElement.currentTime = 0;
+      
+      const playPromise = audioElement.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.log('Audio playback error:', error);
+          // If audio fails, try initializing again on next interaction
+          audioInitialized = false;
+        });
       }
     }
+  }
+  
+  // Function to reset animation state
+  function resetAnimation() {
+    ctrlKey.classList.remove('active');
+    altKey.classList.remove('active');
+    escKey.classList.remove('active');
+    stethoscope.classList.remove('appear', 'press');
+    ekgLine.classList.remove('active');
+    ekgGraph.classList.remove('active');
+    animationTitle.classList.remove('show');
     
-    // Function to reset animation state
-    function resetAnimation() {
-      ctrlKey.classList.remove('active');
-      altKey.classList.remove('active');
-      escKey.classList.remove('active');
-      stethoscope.classList.remove('appear', 'press');
-      ekgLine.classList.remove('active');
-      ekgGraph.classList.remove('active');
-      animationTitle.classList.remove('show');
-      
-      // Remove any existing pulse effects
-      const pulseElements = document.querySelectorAll('.pulse-effect');
-      pulseElements.forEach(el => el.remove());
+    // Stop any playing sounds
+    keyClickSound.pause();
+    keyClickSound.currentTime = 0;
+    heartbeatSound.pause();
+    heartbeatSound.currentTime = 0;
+    
+    // Remove any existing pulse effects
+    const pulseElements = document.querySelectorAll('.pulse-effect');
+    pulseElements.forEach(el => el.remove());
+  }
+  
+  // Animation sequence with sound flag
+  async function runAnimationSequence(withSound = true) {
+    resetAnimation();
+    
+    // Initialize audio if this is user-triggered
+    if (withSound) {
+      initializeAudio();
     }
     
-    // Animation sequence
-    async function runAnimationSequence() {
-      resetAnimation();
-      
-      // 1. Press CTRL key
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      ctrlKey.classList.add('active');
-      playSoundSafely(keyClickSound);
-      
-      // 2. Press ALT key
-      await new Promise(resolve => setTimeout(resolve, 800));
-      altKey.classList.add('active');
-      playSoundSafely(keyClickSound);
-      
-      // 3. Show stethoscope
-      await new Promise(resolve => setTimeout(resolve, 800));
-      stethoscope.classList.add('appear');
-      
-      // 4. Press ESC key with stethoscope
-      await new Promise(resolve => setTimeout(resolve, 800));
-      escKey.classList.add('active');
-      stethoscope.classList.add('press');
-      playSoundSafely(keyClickSound);
-      
-      // 5. Add pulse effect to ESC key
-      await new Promise(resolve => setTimeout(resolve, 500));
-      const pulseEffect = document.createElement('div');
-      pulseEffect.className = 'pulse-effect';
-      escKey.appendChild(pulseEffect);
-      ekgLine.classList.add('active');
-      ekgGraph.classList.add('active');
-      playSoundSafely(heartbeatSound);
-      
-      // 6. Show title
-      await new Promise(resolve => setTimeout(resolve, 600));
-      animationTitle.classList.add('show');
-    }
+    // 1. Press CTRL key
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    ctrlKey.classList.add('active');
+    if (withSound) playSoundSafely(keyClickSound);
     
-    // Run animation on page load
-    runAnimationSequence();
+    // 2. Press ALT key
+    await new Promise(resolve => setTimeout(resolve, 800));
+    altKey.classList.add('active');
+    if (withSound) playSoundSafely(keyClickSound);
     
-    // Allow restarting animation by clicking keys
-    keys.forEach(key => {
-      key.addEventListener('click', runAnimationSequence);
-    });
+    // 3. Show stethoscope
+    await new Promise(resolve => setTimeout(resolve, 800));
+    stethoscope.classList.add('appear');
+    
+    // 4. Press ESC key with stethoscope
+    await new Promise(resolve => setTimeout(resolve, 800));
+    escKey.classList.add('active');
+    stethoscope.classList.add('press');
+    if (withSound) playSoundSafely(keyClickSound);
+    
+    // 5. Add pulse effect to ESC key and play heartbeat
+    await new Promise(resolve => setTimeout(resolve, 500));
+    const pulseEffect = document.createElement('div');
+    pulseEffect.className = 'pulse-effect';
+    escKey.appendChild(pulseEffect);
+    ekgLine.classList.add('active');
+    ekgGraph.classList.add('active');
+    
+    // Play heartbeat sound specifically when pulse effect is added
+    if (withSound) playSoundSafely(heartbeatSound);
+    
+    // 6. Show title
+    await new Promise(resolve => setTimeout(resolve, 600));
+    animationTitle.classList.add('show');
+  }
+  
+  // Attempt to run initial animation (browser may block sound)
+  runAnimationSequence(true);
+  
+  // Initialize audio and run animation on user interaction
+  function userTriggeredAnimation() {
+    audioInitialized = true; // Force initialization
+    runAnimationSequence(true);
+  }
+  
+  // Add click listeners to keys
+  keys.forEach(key => {
+    key.addEventListener('click', userTriggeredAnimation);
   });
+  
+  // Add click listener to the animation area
+  document.getElementById('keyboard-animation').addEventListener('click', function(e) {
+    // Only trigger if not clicking directly on a key (to avoid double triggering)
+    if (!e.target.classList.contains('key')) {
+      userTriggeredAnimation();
+    }
+  });
+  
+  // Add a global click event listener to initialize audio
+  document.addEventListener('click', function initAudioOnFirstClick() {
+    initializeAudio();
+    // Don't remove the listener - might need multiple attempts due to browser policies
+  }, { once: false });
+});
 </script>
