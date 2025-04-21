@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Case Study</title>
+  <style>
+    :root {
+      --primary-color: #2c6e9b;
+      --secondary-color: #e9f2f9;
+      --doctor-color: #e9f2f9;
+      --student-color: #f5f9fc;
+      --border-color: #d1e4f3;
+      --text-color: #333;
+      --heading-color: #1a4971;
+      --accent-color: #64a1d0;
+    }
+
+    body {
+      font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: #f9fbfd;
+      margin: 0;
+      padding: 0;
+      max-width: 100%;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .case-header {
+      margin-bottom: 2rem;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 1rem;
+    }
+
+    .case-title {
+      font-size: 2rem;
+      color: var(--heading-color);
+      margin: 0 0 0.5rem 0;
+      font-weight: 600;
+    }
+
+    .case-subtitle {
+      font-size: 1.1rem;
+      color: #667785;
+      margin: 0 0 1rem 0;
+    }
+
+    .case-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .detail-box {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .detail-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #667785;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .detail-value {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .case-summary {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .summary-title {
+      color: var(--heading-color);
+      font-size: 1.25rem;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .conversation {
+      margin-bottom: 2.5rem;
+    }
+
+    .message {
+      margin-bottom: 1.25rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .message-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+      margin-right: 0.75rem;
+    }
+
+    .doctor-avatar {
+      background-color: var(--primary-color);
+    }
+
+    .student-avatar {
+      background-color: var(--accent-color);
+    }
+
+    .name {
+      font-weight: 600;
+    }
+
+    .doctor-name {
+      color: var(--primary-color);
+    }
+
+    .student-name {
+      color: var(--accent-color);
+    }
+
+    .timestamp {
+      margin-left: auto;
+      color: #8898aa;
+      font-size: 0.85rem;
+    }
+
+    .message-content {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      line-height: 1.7;
+      font-size: 1rem;
+      margin-left: 40px;
+      position: relative;
+    }
+
+    .message-content::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: -8px;
+      width: 15px;
+      height: 15px;
+      background: white;
+      border-left: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      transform: rotate(45deg);
+    }
+
+    .doctor .message-content {
+      background-color: var(--doctor-color);
+    }
+
+    .student .message-content {
+      background-color: var(--student-color);
+    }
+
+    .key-points {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .key-points-title {
+      color: var(--heading-color);
+      font-size: 1.25rem;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .key-points-list {
+      margin: 0;
+      padding-left: 1.5rem;
+    }
+
+    .key-points-list li {
+      margin-bottom: 0.5rem;
+    }
+
+    .case-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .case-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      background-color: #e1ebf5;
+      border-radius: 50px;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.8rem;
+      color: var(--primary-color);
+      font-weight: 500;
+    }
+
+    .additional-resources {
+      border-top: 1px solid var(--border-color);
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+    }
+
+    .resources-title {
+      color: var(--heading-color);
+      font-size: 1.2rem;
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    .resources-list {
+      margin: 0;
+      padding-left: 1.5rem;
+    }
+
+    .resources-list li {
+      margin-bottom: 0.5rem;
+    }
+
+    .resources-list a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .resources-list a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .case-details {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .detail-box {
+        flex: none;
+      }
+
+      .message-content {
+        margin-left: 0;
+      }
+
+      .message-header {
+        margin-bottom: 0.75rem;
+      }
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3rem;
+    }
+
+    .pagination a {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.6rem 1rem;
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .pagination a:hover {
+      background: var(--secondary-color);
+    }
+
+    .pagination svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .prev-link svg {
+      margin-right: 8px;
+    }
+
+    .next-link svg {
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="case-header">
+      <h1 class="case-title">{{ page.title }}</h1>
+      <p class="case-subtitle">{{ page.subtitle }}</p>
+      
+      <div class="case-details">
+        <div class="detail-box">
+          <div class="detail-label">Patient</div>
+          <div class="detail-value">{{ page.patient_details }}</div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-label">Category</div>
+          <div class="detail-value">{{ page.category }}</div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-label">Difficulty</div>
+          <div class="detail-value">{{ page.difficulty }}</div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-label">Date</div>
+          <div class="detail-value">{{ page.date | date: "%B %d, %Y" }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-summary">
+      <h2 class="summary-title">Case Overview</h2>
+      <p>{{ page.summary }}</p>
+    </div>
+
+    <div class="conversation" id="case-conversation">
+      <!-- Conversation will be dynamically populated via JavaScript -->
+      <!-- Template for each message: -->
+      
+      <!-- Doctor message template -->
+      <div class="message doctor">
+        <div class="message-header">
+          <div class="avatar doctor-avatar">D</div>
+          <div class="name doctor-name">Dr. {{ page.doctor_name }}</div>
+        </div>
+        <div class="message-content">
+          This is where the doctor's message will appear. The content will be parsed from the markdown.
+        </div>
+      </div>
+      
+      <!-- Student message template -->
+      <div class="message student">
+        <div class="message-header">
+          <div class="avatar student-avatar">S</div>
+          <div class="name student-name">Student</div>
+        </div>
+        <div class="message-content">
+          This is where the student's message will appear. The content will be parsed from the markdown.
+        </div>
+      </div>
+    </div>
+
+    <div class="key-points">
+      <h2 class="key-points-title">Key Learning Points</h2>
+      <ul class="key-points-list">
+        {% for point in page.key_points %}
+          <li>{{ point }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="case-footer">
+      <div class="case-tags">
+        {% for tag in page.tags %}
+          <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="additional-resources">
+      <h3 class="resources-title">Additional Resources</h3>
+      <ul class="resources-list">
+        {% for resource in page.additional_resources %}
+          <li><a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="pagination">
+      {% if page.previous.url %}
+      <a class="prev-link" href="{{ page.previous.url }}">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Previous Case
+      </a>
+      {% else %}
+      <span></span>
+      {% endif %}
+      
+      {% if page.next.url %}
+      <a class="next-link" href="{{ page.next.url }}">
+        Next Case
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Parse the markdown content
+      const conversationElement = document.getElementById('case-conversation');
+      
+      // Clear placeholder content
+      conversationElement.innerHTML = '';
+      
+      // Get conversation content from Jekyll frontmatter variable
+      // Assuming your markdown file has a front matter variable called 'conversation' that contains the conversation text
+      const conversationText = `{{ page.conversation | strip }}`;
+      
+      // Split the conversation by speaker indicators
+      // This regex looks for "Doctor:" or "Student:" at the start of a line
+      const parts = conversationText.split(/(?=^Doctor:|^Student:)/m);
+      
+      // Process each part
+      parts.forEach(part => {
+        if (!part.trim()) return;
+        
+        // Determine speaker
+        let speaker, name, avatar, speakerClass;
+        
+        if (part.startsWith('Doctor:')) {
+          speaker = 'Doctor';
+          name = '{{ page.doctor_name }}';
+          avatar = 'D';
+          speakerClass = 'doctor';
+        } else if (part.startsWith('Student:')) {
+          speaker = 'Student';
+          name = 'Student';
+          avatar = 'S';
+          speakerClass = 'student';
+        } else {
+          // If no speaker is specified at the beginning, skip this part
+          return;
+        }
+        
+        // Extract content (remove the speaker prefix)
+        const content = part.replace(/^(Doctor:|Student:)/, '').trim();
+        
+        // Create message element
+        const messageElement = document.createElement('div');
+        messageElement.className = `message ${speakerClass}`;
+        
+        // Create message header
+        const headerElement = document.createElement('div');
+        headerElement.className = 'message-header';
+        
+        const avatarElement = document.createElement('div');
+        avatarElement.className = `avatar ${speakerClass}-avatar`;
+        avatarElement.textContent = avatar;
+        
+        const nameElement = document.createElement('div');
+        nameElement.className = `name ${speakerClass}-name`;
+        nameElement.textContent = name;
+        
+        headerElement.appendChild(avatarElement);
+        headerElement.appendChild(nameElement);
+        
+        // Create message content
+        const contentElement = document.createElement('div');
+        contentElement.className = 'message-content';
+        contentElement.innerHTML = content;
+        
+        // Assemble message
+        messageElement.appendChild(headerElement);
+        messageElement.appendChild(contentElement);
+        
+        // Add to conversation
+        conversationElement.appendChild(messageElement);
+      });
+    });
+  </script>
+</body>
+</html>
