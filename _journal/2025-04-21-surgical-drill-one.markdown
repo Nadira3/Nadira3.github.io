@@ -1,5 +1,5 @@
 ---
-layout: journal
+layout: post
 title: "Surgical Drill: Epigastric Pain"
 date: 2025-04-20
 category: Daily
