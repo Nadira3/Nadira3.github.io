@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap-grid.min.css">
   
   <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
     
@@ -536,7 +537,7 @@
     }
 
     @media (max-width: 768px) {
-      .case-container {
+      .container {
         padding: 1rem;
         margin: 1rem auto;
       }
@@ -641,7 +642,6 @@
       100% { transform: translate(0, 0); }
     }
   </style>
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
 </head>
 <body>
   {% include header.html %}
@@ -749,139 +749,93 @@
 
   {% include footer.html %}
   <script>
-	  // Update the script section in your HTML
-document.addEventListener('DOMContentLoaded', function() {
-  // Fade in elements as they appear on screen
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
+    document.addEventListener('DOMContentLoaded', function() {
+      // Fade in elements as they appear on screen
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      
+      // Observe elements that should fade in
+      document.querySelectorAll('.case-summary, .key-points, .additional-resources, .case-footer').forEach(el => {
+        observer.observe(el);
+      });
+      
+      // Parse the markdown content
+      const conversationElement = document.getElementById('case-conversation');
+      
+      // Clear placeholder content
+      conversationElement.innerHTML = '';
+      
+      // Get conversation content from Jekyll frontmatter
+      const conversationText = `{{ page.conversation | strip }}`;
+      
+      // Split the conversation by speaker indicators
+      const parts = conversationText.split(/(?=^Doctor:|^Student:)/m);
+      
+      // Process each part with a delay for animation
+      parts.forEach((part, index) => {
+        if (!part.trim()) return;
+        
+        // Determine speaker
+        let speaker, name, avatar, speakerClass;
+        
+        if (part.startsWith('Doctor:')) {
+          speaker = 'Doctor';
+          name = '{{ page.doctor_name }}';
+          avatar = 'D';
+          speakerClass = 'doctor';
+        } else if (part.startsWith('Student:')) {
+          speaker = 'Student';
+          name = 'Student';
+          avatar = 'S';
+          speakerClass = 'student';
+        } else {
+          return;
+        }
+        
+        // Extract content (remove the speaker prefix)
+        const content = part.replace(/^(Doctor:|Student:)/, '').trim();
+        
+        // Create message element
+        const messageElement = document.createElement('div');
+        messageElement.className = `message ${speakerClass}`;
+        messageElement.style.animationDelay = `${0.2 + index * 0.2}s`;
+        
+        // Create message header
+        const headerElement = document.createElement('div');
+        headerElement.className = 'message-header';
+        
+        const avatarElement = document.createElement('div');
+        avatarElement.className = `avatar ${speakerClass}-avatar`;
+        avatarElement.textContent = avatar;
+        
+        const nameElement = document.createElement('div');
+        nameElement.className = `name ${speakerClass}-name`;
+        nameElement.textContent = name;
+        
+        headerElement.appendChild(avatarElement);
+        headerElement.appendChild(nameElement);
+        
+        // Create message content
+        const contentElement = document.createElement('div');
+        contentElement.className = 'message-content';
+        contentElement.innerHTML = content;
+        
+        // Assemble message
+        messageElement.appendChild(headerElement);
+        messageElement.appendChild(contentElement);
+        
+        // Add to conversation
+        conversationElement.appendChild(messageElement);
+      });
     });
-  }, {
-    threshold: 0.1
-  });
-  
-  // Observe elements that should fade in
-  document.querySelectorAll('.case-summary, .key-points, .additional-resources, .case-footer').forEach(el => {
-    observer.observe(el);
-  });
-  
-  // Parse the conversation content
-  const conversationElement = document.getElementById('case-conversation');
-  
-  // Clear placeholder content
-  conversationElement.innerHTML = '';
-  
-  // Get conversation content from Jekyll frontmatter
-  const conversationText = `{{ page.conversation | strip }}`;
-  
-  // First, split by speaker indicators
-  const speakerRegex = /^(Doctor|Student):/gm;
-  let matches = [];
-  let match;
-  
-  // Find all speaker indicators and their positions
-  while ((match = speakerRegex.exec(conversationText)) !== null) {
-    matches.push({
-      speaker: match[1],
-      position: match.index
-    });
-  }
-  
-  // Extract conversation segments
-  let segments = [];
-  for (let i = 0; i < matches.length; i++) {
-    const currentMatch = matches[i];
-    const nextMatch = matches[i + 1];
-    
-    const start = currentMatch.position;
-    const end = nextMatch ? nextMatch.position : conversationText.length;
-    
-    const content = conversationText.substring(start, end).trim();
-    segments.push({
-      speaker: currentMatch.speaker,
-      content: content.replace(/^(Doctor|Student):/, '').trim()
-    });
-  }
-  
-  // Function to convert markdown-like formatting to HTML
-  function formatContent(text) {
-    // Handle paragraphs
-    let formattedText = text.split(/\n\s*\n/).map(p => `<p>${p.trim()}</p>`).join('');
-    
-    // Handle unordered lists
-    formattedText = formattedText.replace(/<p>((?:\s*-\s+.+\n?)+)<\/p>/g, function(match, listContent) {
-      const items = listContent.split(/\s*-\s+/).filter(Boolean);
-      return '<ul>' + items.map(item => `<li>${item.trim()}</li>`).join('') + '</ul>';
-    });
-    
-    // Handle ordered lists
-    formattedText = formattedText.replace(/<p>((?:\s*\d+\.\s+.+\n?)+)<\/p>/g, function(match, listContent) {
-      const items = listContent.split(/\s*\d+\.\s+/).filter(Boolean);
-      return '<ol>' + items.map(item => `<li>${item.trim()}</li>`).join('') + '</ol>';
-    });
-    
-    // Handle bold text
-    formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    
-    // Handle italic text
-    formattedText = formattedText.replace(/\*(.*?)\*/g, '<em>$1</em>');
-    
-    // Handle single line breaks within paragraphs
-    formattedText = formattedText.replace(/<p>(.*?)\n(.*?)<\/p>/g, '<p>$1 $2</p>');
-    
-    return formattedText;
-  }
-  
-  // Create message elements for each segment
-  segments.forEach((segment, index) => {
-    let speakerClass, avatarText, speakerName;
-    
-    if (segment.speaker === 'Doctor') {
-      speakerClass = 'doctor';
-      avatarText = 'D';
-      speakerName = '{{ page.doctor_name }}';
-    } else {
-      speakerClass = 'student';
-      avatarText = 'S';
-      speakerName = 'Student';
-    }
-    
-    // Format the content
-    const formattedContent = formatContent(segment.content);
-    
-    // Create the message element
-    const messageElement = document.createElement('div');
-    messageElement.className = `message ${speakerClass}`;
-    
-    // Create the message header
-    const headerElement = document.createElement('div');
-    headerElement.className = 'message-header';
-    
-    const avatarElement = document.createElement('div');
-    avatarElement.className = `avatar ${speakerClass}-avatar`;
-    avatarElement.textContent = avatarText;
-    
-    const nameElement = document.createElement('div');
-    nameElement.className = `name ${speakerClass}-name`;
-    nameElement.textContent = speakerName;
-    
-    headerElement.appendChild(avatarElement);
-    headerElement.appendChild(nameElement);
-    
-    // Create the message content
-    const contentElement = document.createElement('div');
-    contentElement.className = 'message-content';
-    contentElement.innerHTML = formattedContent;
-    
-    // Assemble the message
-    messageElement.appendChild(headerElement);
-    messageElement.appendChild(contentElement);
-    
-    // Add to the conversation
-    conversationElement.appendChild(messageElement);
-  });
-});
   </script>
+</body>
+</html>
