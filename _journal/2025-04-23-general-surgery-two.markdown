@@ -54,9 +54,9 @@ A difference ≥ 1 cm suggests unilateral swelling.
 <details>
 <summary><strong>Midline</strong></summary>
 
-- Infraumbilical (lower midline)  
-- Supraumbilical (upper midline)  
-- Combined “Cape to Cairo”: xiphoid → pubic symphysis for rapid access in trauma.  
+- Infraumbilical (lower midline)<br>
+- Supraumbilical (upper midline)<br>   
+- Combined “Cape to Cairo”: xiphoid → pubic symphysis for rapid access in trauma<br>. 
 </details>
 
 <details>
@@ -68,8 +68,8 @@ A difference ≥ 1 cm suggests unilateral swelling.
 <details>
 <summary><strong>Subcostal (Kocher’s)</strong></summary>
 
-- Right: cholecystectomy, biliary surgery.  
-- Left: splenectomy (rare).  
+- Right: cholecystectomy, biliary surgery.<br>  
+- Left: splenectomy (rare).<br> 
 </details>
 
 ---
@@ -103,9 +103,9 @@ Differential:
 <details>
 <summary><strong>Case: Suspected Parotid Tumor</strong></summary>
 
-- Investigations: FNAC, ultrasound/CT.  
-- Imaging: Lobulated soft‐tissue opacity inferior to mastoid; no calcifications.  
-- Likely Dx: Pleomorphic adenoma.  
+- Investigations: FNAC, ultrasound/CT.<br>  
+- Imaging: Lobulated soft‐tissue opacity inferior to mastoid; no calcifications.<br>  
+- Likely Dx: Pleomorphic adenoma.<br>  
 </details>
 
 ---
