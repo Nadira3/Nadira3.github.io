@@ -209,7 +209,7 @@ Tutorials
 | Antimetabolites           | S              | Inhibit DNA synthesis                        | Methotrexate, 5-FU, Cytarabine, 6-Mercaptopurine                 |
 | Vinca Alkaloids           | M              | Inhibit microtubule polymerization           | Vincristine, Vinblastine                                         |
 | Taxanes                   | M              | Stabilize microtubules, prevent disassembly  | Paclitaxel, Docetaxel                                            |
-| Topoisomerase Inhibitors  | S & G2         | Inhibit topoisomerase I/II                   | Irinotecan (Topo I), Etoposide (Topo II)                         |
+| Topoisomerase Inhibitors  | S & G2         | Inhibit topoisomerase I/II                   | Irinotecan (Topo I), Etoposide (Topo II)                      
 
 ### 2. Non-Cell-Cycle Specific Agents  
 | Class                   | Mechanism                                    | Examples                           |
