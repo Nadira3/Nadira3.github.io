@@ -1,3 +1,11 @@
+---
+layout: journal
+title: "GS2 – Day Three: Tutorials"
+date: 2025-04-25
+category: Daily # Options: Daily, Special
+header_image: /assets/images/aijourney.jpg
+mood: Serious # Optional: Add your mood
+---
 # Day Three
 
 ## 1. Complications of Blood Transfusion
