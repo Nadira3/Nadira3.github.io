@@ -6,6 +6,8 @@ category: Daily # Options: Daily, Special
 header_image: /assets/images/aijourney.jpg
 mood: Serious # Optional: Add your mood
 ---
+Surgical clinical basics
+
 # GS2 – Day One: Surgical Clinical Basics
 
 ---
@@ -22,15 +24,15 @@ mood: Serious # Optional: Add your mood
 2. Measure circumference at a set distance (e.g., 10 cm proximal or distal).  
 3. Repeat on contralateral limb and compare.
 
-**Interpretation:**  
+Interpretation:  
 A difference ≥ 1 cm suggests unilateral swelling.  
 </details>
 
 ---
 
 ## 2. Surgical Wound Healing  
-- **Primary intention** (thin scar): clean incision, edges neatly approximated.  
-- **Secondary intention** (broad scar): follows infection or dehiscence; wound heals by granulation and contraction.
+- Primary intention (thin scar): clean incision, edges neatly approximated.  
+- Secondary intention (broad scar): follows infection or dehiscence; wound heals by granulation and contraction.
 
 ---
 
@@ -40,21 +42,21 @@ A difference ≥ 1 cm suggests unilateral swelling.
 <details>
 <summary><strong>Transverse</strong></summary>
 
-- **Lanz**: follows Langer’s lines → cosmetic, less pain; common for appendectomy.  
+- Lanz: follows Langer’s lines → cosmetic, less pain; common for appendectomy.  
 </details>
 
 <details>
 <summary><strong>Oblique</strong></summary>
 
-- **Gridiron**: muscle-splitting; alternative for appendectomy.  
+- Gridiron: muscle-splitting; alternative for appendectomy.  
 </details>
 
 <details>
 <summary><strong>Midline</strong></summary>
 
-- **Infraumbilical** (lower midline)  
-- **Supraumbilical** (upper midline)  
-- **Combined “Cape to Cairo”**: xiphoid → pubic symphysis for rapid access in trauma.  
+- Infraumbilical (lower midline)  
+- Supraumbilical (upper midline)  
+- Combined “Cape to Cairo”: xiphoid → pubic symphysis for rapid access in trauma.  
 </details>
 
 <details>
@@ -66,21 +68,21 @@ A difference ≥ 1 cm suggests unilateral swelling.
 <details>
 <summary><strong>Subcostal (Kocher’s)</strong></summary>
 
-- **Right**: cholecystectomy, biliary surgery.  
-- **Left**: splenectomy (rare).  
+- Right: cholecystectomy, biliary surgery.  
+- Left: splenectomy (rare).  
 </details>
 
 ---
 
 ## 4. Surgical Specimens  
-> **Rule:** All excised tissue **must** be sent for histology—no exceptions.
+> Rule: All excised tissue must be sent for histology—no exceptions.
 
 ---
 
 ## 5. Appendicitis – Age & Anatomy  
-- **Peak:** 12–30 years.  
-- **Rare in <5 yrs:** lumen wide, low obstruction risk.  
-- **Rare in elderly:** lymphoid atrophy; alternate differentials prevail.
+- Peak: 12–30 years.  
+- Rare in <5 yrs: lumen wide, low obstruction risk.  
+- Rare in elderly: lymphoid atrophy; alternate differentials prevail.
 
 ---
 
@@ -89,10 +91,10 @@ A difference ≥ 1 cm suggests unilateral swelling.
 <details>
 <summary><strong>Key Sign</strong></summary>
 
-Swelling that **raises the earlobe** → pathognomonic for parotid gland involvement.  
+Swelling that raises the earlobe → pathognomonic for parotid gland involvement.  
 </details>
 
-**Differential:**  
+Differential:  
 - Mumps parotitis  
 - Pleomorphic adenoma / Warthin’s tumor  
 - Sjögren’s syndrome  
@@ -101,9 +103,9 @@ Swelling that **raises the earlobe** → pathognomonic for parotid gland involve
 <details>
 <summary><strong>Case: Suspected Parotid Tumor</strong></summary>
 
-- **Investigations:** FNAC, ultrasound/CT.  
-- **Imaging:** Lobulated soft‐tissue opacity inferior to mastoid; no calcifications.  
-- **Likely Dx:** Pleomorphic adenoma.  
+- Investigations: FNAC, ultrasound/CT.  
+- Imaging: Lobulated soft‐tissue opacity inferior to mastoid; no calcifications.  
+- Likely Dx: Pleomorphic adenoma.  
 </details>
 
 ---
@@ -112,13 +114,13 @@ Swelling that **raises the earlobe** → pathognomonic for parotid gland involve
 
 | Type                   | Tissue Removed                                                   |
 |------------------------|------------------------------------------------------------------|
-| **Simple (Total)**     | Breast tissue only                                               |
-| **Modified Radical**   | Breast + Level I/II axillary nodes; pectoralis major preserved   |
-| **Radical (Halsted)**  | Breast + nodes + pectoralis major & minor                        |
-| **Lumpectomy**         | Tumor + margin (breast preserved; usually + radiotherapy)        |
-| **Skin-/Nipple‐Sparing** | Preserves skin envelope and/or nipple complex                   |
+| Simple (Total)     | Breast tissue only                                               |
+| Modified Radical   | Breast + Level I/II axillary nodes; pectoralis major preserved   |
+| Radical (Halsted)  | Breast + nodes + pectoralis major & minor                        |
+| Lumpectomy         | Tumor + margin (breast preserved; usually + radiotherapy)        |
+| Skin-/Nipple‐Sparing | Preserves skin envelope and/or nipple complex                   |
 
-> **Variants:** Patey’s, Auchincloss, Scanlon (vary by muscle dissection).
+> Variants: Patey’s, Auchincloss, Scanlon (vary by muscle dissection).
 
 ---
-*End of Day One Notes*
+End of Day One Notes
