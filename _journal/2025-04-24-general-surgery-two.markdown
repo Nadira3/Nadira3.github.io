@@ -1262,20 +1262,3 @@ B. Nerve Injuries
   > Day 1 post–loop colostomy, 50-year-old exhibits dusky stoma → OR within hours for relocation due to necrosis  
 </details>
 
-<style>
-details {
-  margin-bottom: 1em;
-  padding: 0.5em;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-details[open] {
-  padding-bottom: 0.75em;
-}
-
-summary {
-  cursor: pointer;
-  font-weight: bold;
-}
-</style>
