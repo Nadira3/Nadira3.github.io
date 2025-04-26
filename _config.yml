@@ -14,14 +14,14 @@ linkedin_username: precious-aitanun
 
 # Collections
 collections:
+  posts:
+    output: true
   projects:
     output: true
   journal:
     output: true
 
 markdown: GFM
-commonmark:
-  extensions: ["strikethrough", "autolink", "table", "tagfilter", "tasklist"]
 
 # Default front matter
 defaults:
@@ -49,13 +49,13 @@ defaults:
 
 # Plugins
 plugins:
-  - jekyll-paginate
+  - jekyll-paginate-v2
   - jekyll-seo-tag
   - jekyll-sitemap
 
 # Blog settings
-paginate: 5
-paginate_path: "/blog/page:num/"
+pagination:
+  enabled: true
 
 exclude:
   - README.md

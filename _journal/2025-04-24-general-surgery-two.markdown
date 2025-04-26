@@ -3,7 +3,7 @@ layout: journal
 title: "GS2 – Day Two: Surgical Case Studies"
 date: 2025-04-24
 category: Daily # Options: Daily, Special
-header_image: /assets/images/aijourney.jpg
+header_image: /assets/images/day-two.jpeg
 mood: Serious # Optional: Add your mood
 ---
 Case Study: Euthyroid Patient with Anterior Neck Swelling

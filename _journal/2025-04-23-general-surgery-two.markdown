@@ -3,7 +3,7 @@ layout: journal
 title: "GS2 – Day One: Surgical Clinical Basics"
 date: 2025-04-23
 category: Daily # Options: Daily, Special
-header_image: /assets/images/aijourney.jpg
+header_image: /assets/images/day-one.jpeg
 mood: Serious # Optional: Add your mood
 ---
 Surgical clinical basics

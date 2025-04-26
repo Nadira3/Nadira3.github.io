@@ -3,10 +3,10 @@ layout: journal
 title: "GS2 – Day Three: Tutorials"
 date: 2025-04-25
 category: Daily # Options: Daily, Special
-header_image: /assets/images/aijourney.jpg
+header_image: /assets/images/day-three.jpeg
 mood: Serious # Optional: Add your mood
 ---
-Tutorials
+Tutorial note on blood transfusion and chemotherapy
 
 # Day Three
 
