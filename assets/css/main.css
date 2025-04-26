@@ -82,56 +82,133 @@ img {
   height: auto;
 }
 /* Tables */
-/* Style all tables */
+/* Book-style Table Styling */
 table {
   width: 100%;
-  border-collapse: collapse;
-  margin: 2rem 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 2.5rem 0;
   font-family: 'Libre Baskerville', serif;
-  background: #fff;
-  border: 1px solid var(--gray-300, #d1d5db);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  background: #fff9f0; /* Cream background for aged paper look */
+  border: none;
+  border-radius: 0;
+  box-shadow: 
+    0 3px 6px rgba(0,0,0,0.16), 
+    0 3px 6px rgba(0,0,0,0.23),
+    0 0 0 1px rgba(160, 120, 85, 0.1);
+  position: relative;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  max-height: 80vh; /* Limit height and enable vertical scrolling if needed */
+  overflow-y: auto;
+}
+
+/* Add book-like border effect */
+table::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid rgba(160, 120, 85, 0.3);
+  pointer-events: none;
 }
 
 /* Table headers */
+thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
 th {
-  background-color: var(--primary-color, #3b82f6);
-  color: white;
+  background-color: #61412e; /* Rich brown color */
+  color: #f3e8d8;
   font-weight: 700;
   text-align: left;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   font-family: 'Playfair Display', serif;
+  border-bottom: 2px solid #8c6e4e;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+  letter-spacing: 0.05em;
 }
 
 /* Table rows */
 td {
-  padding: 1rem;
-  border-top: 1px solid var(--gray-300, #d1d5db);
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(160, 120, 85, 0.2);
+  color: #382718;
+  line-height: 1.6;
 }
 
-/* Zebra-striping effect */
+/* Last row no bottom border */
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* Subtle zebra-striping effect */
 tbody tr:nth-child(even) {
-  background-color: #f9fafb;
+  background-color: rgba(160, 120, 85, 0.05);
 }
 
 /* Hover effect */
 tbody tr:hover {
-  background-color: #f1f5f9;
+  background-color: rgba(160, 120, 85, 0.1);
 }
 
-/* Responsive - optional */
+/* Table caption styling for book-like chapter headings */
+caption {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.2rem;
+  padding: 1rem;
+  caption-side: top;
+  text-align: center;
+  color: #61412e;
+}
+
+/* Add a vintage page number effect to the bottom right */
+table::after {
+  content: attr(data-page);
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: rgba(60, 40, 20, 0.5);
+}
+
+/* Responsive - maintain horizontal scrolling */
 @media (max-width: 768px) {
-  table, thead, tbody, th, td, tr {
-    display: block;
+  table {
+    font-size: 0.9rem;
   }
-  tr {
-    margin-bottom: 1rem;
-  }
+  
   th, td {
     padding: 0.75rem 1rem;
+    min-width: 120px; /* Ensure columns don't get too narrow */
   }
+}
+
+/* Optional: Custom scrollbar styling for a more vintage look */
+table::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+table::-webkit-scrollbar-track {
+  background: rgba(160, 120, 85, 0.1);
+}
+
+table::-webkit-scrollbar-thumb {
+  background: rgba(160, 120, 85, 0.5);
+  border-radius: 5px;
+}
+
+table::-webkit-scrollbar-thumb:hover {
+  background: rgba(160, 120, 85, 0.7);
 }
 
 /* Navigation */
