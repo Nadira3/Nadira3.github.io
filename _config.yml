@@ -19,10 +19,7 @@ collections:
   journal:
     output: true
 
-markdown: kramdown
-kramdown:
-  parse_block_html: true
-highlighter: rouge
+markdown: GFM
 
 # Default front matter
 defaults:
