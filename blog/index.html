@@ -8,57 +8,49 @@ pagination:
 ---
 <div class="blog-page">
   <div class="container">
-    <h1>Blog</h1>
+    <h1>{{ page.title | default: "Blog" }}</h1>
 
     <div class="category-filters">
       <h2>Categories</h2>
       <ul class="categories">
         <li><a href="{{ '/blog/' | relative_url }}" class="category all">All</a></li>
-        <li><a href="{{ '/blog/medicine' | relative_url }}" class="category medicine">Medicine</a></li>
-        <li><a href="{{ '/blog/technology' | relative_url }}" class="category technology">Technology</a></li>
-        <li><a href="{{ '/blog/security' | relative_url }}" class="category security">Security</a></li>
-        <li><a href="{{ '/blog/other' | relative_url }}" class="category other">Other</a></li>
+        <li><a href="{{ '/blog/medicine/' | relative_url }}" class="category medicine">Medicine</a></li>
+        <li><a href="{{ '/blog/technology/' | relative_url }}" class="category technology">Technology</a></li>
+        <li><a href="{{ '/blog/security/' | relative_url }}" class="category security">Security</a></li>
+        <li><a href="{{ '/blog/other/' | relative_url }}" class="category other">Other</a></li>
       </ul>
     </div>
 
     <div class="posts-list">
-  {% assign filtered_posts = paginator.posts %}
-
-  {% if page.category %}
-    {% assign filtered_posts = paginator.posts | where: "categories", page.category %}
-  {% endif %}
-
-  {% assign filtered_posts = filtered_posts | sort: "date" | reverse %} <!-- Sort by date in descending order -->
-
-  {% if filtered_posts.size > 0 %}
-    {% for post in filtered_posts %}
-    <article class="post-card">
-      <div class="post-thumbnail" style="background-image: url('{{ post.header_image | default: '/assets/images/default-post.jpg' | relative_url }}')"></div>
-      <div class="post-content">
-        <header>
-          <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-          <div class="post-meta">
-            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
-            <span class="categories">
-              {% for category in post.categories %}
-              <a href="{{ '/blog/' | append: category | downcase | relative_url }}" class="category {{ category | downcase }}">{{ category }}</a>
-              {% endfor %}
-            </span>
+      {% if paginator.posts and paginator.posts.size > 0 %}
+        {% for post in paginator.posts %}
+        <article class="post-card">
+          <div class="post-thumbnail" style="background-image: url('{{ post.header_image | default: '/assets/images/default-post.jpg' | relative_url }}')"></div>
+          <div class="post-content">
+            <header>
+              <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+              <div class="post-meta">
+                <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+                <span class="categories">
+                  {% for category in post.categories %}
+                  <a href="{{ '/blog/' | append: category | downcase | relative_url }}" class="category {{ category | downcase }}">{{ category }}</a>
+                  {% endfor %}
+                </span>
+              </div>
+            </header>
+            <div class="excerpt">
+              {{ post.excerpt }}
+            </div>
+            <footer>
+              <a href="{{ post.url | relative_url }}" class="read-more">Read More →</a>
+            </footer>
           </div>
-        </header>
-        <div class="excerpt">
-          {{ post.excerpt }}
-        </div>
-        <footer>
-          <a href="{{ post.url | relative_url }}" class="read-more">Read More →</a>
-        </footer>
-      </div>
-    </article>
-    {% endfor %}
-  {% else %}
-    <p>No posts found.</p>
-  {% endif %}
-</div>
+        </article>
+        {% endfor %}
+      {% else %}
+        <p>No posts found.</p>
+      {% endif %}
+    </div>
 
     <!-- Pagination -->
     <div class="pagination">
