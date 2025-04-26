@@ -20,6 +20,8 @@ collections:
     output: true
 
 markdown: GFM
+commonmark:
+  extensions: ["strikethrough", "autolink", "table", "tagfilter", "tasklist"]
 
 # Default front matter
 defaults:
