@@ -82,7 +82,7 @@ img {
   height: auto;
 }
 /* Tables */
-/* Book-style Table Styling */
+/* Book-style Table Styling that works with markdown-generated tables */
 table {
   width: 100%;
   border-collapse: separate;
@@ -90,28 +90,15 @@ table {
   margin: 2.5rem 0;
   font-family: 'Libre Baskerville', serif;
   background: #fff9f0; /* Cream background for aged paper look */
-  border: none;
-  border-radius: 0;
+  border: 1px solid rgba(160, 120, 85, 0.3);
+  border-radius: 2px;
   box-shadow: 
     0 3px 6px rgba(0,0,0,0.16), 
-    0 3px 6px rgba(0,0,0,0.23),
-    0 0 0 1px rgba(160, 120, 85, 0.1);
+    0 3px 6px rgba(0,0,0,0.23);
   position: relative;
+  display: block; /* Critical for enabling overflow scrolling */
   overflow-x: auto; /* Enable horizontal scrolling */
-  max-height: 80vh; /* Limit height and enable vertical scrolling if needed */
-  overflow-y: auto;
-}
-
-/* Add book-like border effect */
-table::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border: 1px solid rgba(160, 120, 85, 0.3);
-  pointer-events: none;
+  max-width: 100%;
 }
 
 /* Table headers */
@@ -131,6 +118,7 @@ th {
   border-bottom: 2px solid #8c6e4e;
   text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
   letter-spacing: 0.05em;
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 /* Table rows */
@@ -156,21 +144,20 @@ tbody tr:hover {
   background-color: rgba(160, 120, 85, 0.1);
 }
 
-/* Table caption styling for book-like chapter headings */
-caption {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-weight: 600;
-  font-size: 1.2rem;
-  padding: 1rem;
-  caption-side: top;
-  text-align: center;
-  color: #61412e;
+/* Add a style for the right margin of the table to create a scroll fadeout effect */
+table::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 15px;
+  background: linear-gradient(to right, transparent, rgba(160, 120, 85, 0.1));
+  pointer-events: none;
 }
 
-/* Add a vintage page number effect to the bottom right */
-table::after {
-  content: attr(data-page);
+/* Custom page number styling - add with JavaScript */
+.table-page-number {
   position: absolute;
   bottom: 8px;
   right: 12px;
@@ -178,24 +165,28 @@ table::after {
   font-style: italic;
   font-size: 0.85rem;
   color: rgba(60, 40, 20, 0.5);
+  z-index: 2;
 }
 
-/* Responsive - maintain horizontal scrolling */
+/* Ensure minimum width for the table to prevent squashing */
+table tbody, table thead {
+  min-width: 650px;
+  display: table;
+  width: 100%;
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  table {
-    font-size: 0.9rem;
-  }
-  
   th, td {
     padding: 0.75rem 1rem;
-    min-width: 120px; /* Ensure columns don't get too narrow */
+    font-size: 0.9rem;
   }
 }
 
 /* Optional: Custom scrollbar styling for a more vintage look */
 table::-webkit-scrollbar {
   width: 10px;
-  height: 10px;
+  height: 8px;
 }
 
 table::-webkit-scrollbar-track {
@@ -209,6 +200,27 @@ table::-webkit-scrollbar-thumb {
 
 table::-webkit-scrollbar-thumb:hover {
   background: rgba(160, 120, 85, 0.7);
+}
+
+/* Indicate scrollable content on mobile with subtle pulsing edge */
+@media (max-width: 768px) {
+  table::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 5px;
+    background: rgba(160, 120, 85, 0.2);
+    animation: pulseBorder 2s infinite;
+    z-index: 5;
+  }
+  
+  @keyframes pulseBorder {
+    0% { opacity: 0.2; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.2; }
+  }
 }
 
 /* Navigation */
