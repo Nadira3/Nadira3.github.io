@@ -56,7 +56,7 @@ A difference ≥ 1 cm suggests unilateral swelling.
 
 - Infraumbilical (lower midline)<br>
 - Supraumbilical (upper midline)<br>   
-- Combined “Cape to Cairo”: xiphoid → pubic symphysis for rapid access in trauma<br>
+- Combined “Cape to Cairo”: xiphoid → pubic symphysis for rapid access in trauma<br>. 
 </details>
 
 <details>
