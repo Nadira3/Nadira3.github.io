@@ -9,17 +9,26 @@ title: Journal
     <div class="journal-categories">
       <h2>Categories</h2>
       <ul class="category-list">
-        <li><a href="{{ '/journal/' | relative_url }}" class="category-button all">All</a></li>
-        <li><a href="{{ '/journal/daily' | relative_url }}" class="category-button daily">Daily Entries</a></li>
-        <li><a href="{{ '/journal/special' | relative_url }}" class="category-button special">Special Moments</a></li>
+        <li><a href="{{ '/journal/' | relative_url }}" class="category-button all {% if page.url == '/journal/' %}active{% endif %}">All</a></li>
+        <li><a href="{{ '/journal/daily' | relative_url }}" class="category-button daily {% if page.url contains '/journal/daily' %}active{% endif %}">Daily Entries</a></li>
+        <li><a href="{{ '/journal/special' | relative_url }}" class="category-button special {% if page.url contains '/journal/special' %}active{% endif %}">Special Moments</a></li>
       </ul>
     </div>
     
-    <div class="journal-entries">
+    <div class="journal-entries" id="journal-entries">
       {% assign sorted_entries = site.journal | sort: 'date' | reverse %}
-      {% for entry in sorted_entries %}
-      <article class="journal-card">
-	<div class="entry-image" style="background-image: url('{% if entry.header_image %}{{ entry.header_image | relative_url }}{% else %}{{ "/assets/images/default.jpg" | relative_url }}{% endif %}')"></div>
+      
+      {% if page.url contains '/journal/daily' %}
+        {% assign filtered_entries = sorted_entries | where: "category", "Daily" %}
+      {% elsif page.url contains '/journal/special' %}
+        {% assign filtered_entries = sorted_entries | where: "category", "Special" %}
+      {% else %}
+        {% assign filtered_entries = sorted_entries %}
+      {% endif %}
+      
+      {% for entry in filtered_entries %}
+      <article class="journal-card" data-category="{{ entry.category | downcase }}">
+        <div class="entry-image" style="background-image: url('{% if entry.header_image %}{{ entry.header_image | relative_url }}{% else %}{{ "/assets/images/default.jpg" | relative_url }}{% endif %}')"></div>
         <div class="entry-content">
           <header>
             <h2><a href="{{ entry.url | relative_url }}">{{ entry.title }}</a></h2>
@@ -39,24 +48,189 @@ title: Journal
       {% endfor %}
     </div>
 
-    <!-- Pagination -->
-    <div class="pagination">
-      {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path | relative_url }}" class="previous">
-          Previous
-        </a>
-      {% endif %}
-      <span class="page_number">
-        Page: {{ paginator.page }} of {{ paginator.total_pages }}
-      </span>
-      {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path | relative_url }}" class="next">
-          Next
-        </a>
-      {% endif %}
+    <!-- Professional Pagination -->
+    <div class="pagination-container">
+      <div class="pagination-wrapper" id="custom-pagination"></div>
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Configuration
+    const entriesPerPage = 5;
+    const journalEntries = document.querySelectorAll('.journal-card');
+    const totalEntries = journalEntries.length;
+    const totalPages = Math.ceil(totalEntries / entriesPerPage);
+    
+    // Get URL parameters and current path for category detection
+    const urlParams = new URLSearchParams(window.location.search);
+    let currentPage = parseInt(urlParams.get('page')) || 1;
+    const currentPath = window.location.pathname;
+    
+    // Ensure currentPage is valid
+    if (currentPage < 1) currentPage = 1;
+    if (currentPage > totalPages) currentPage = totalPages;
+    
+    // Function to show entries for current page
+    function showCurrentPageEntries() {
+      if (totalEntries === 0) {
+        const entriesContainer = document.getElementById('journal-entries');
+        entriesContainer.innerHTML = '<div class="no-entries-message">No journal entries found for this category.</div>';
+        document.getElementById('custom-pagination').style.display = 'none';
+        return;
+      }
+      
+      const startIndex = (currentPage - 1) * entriesPerPage;
+      const endIndex = startIndex + entriesPerPage;
+      
+      // Hide all entries
+      journalEntries.forEach(entry => {
+        entry.style.display = 'none';
+      });
+      
+      // Show only entries for current page
+      let visibleCount = 0;
+      for (let i = startIndex; i < endIndex && i < totalEntries; i++) {
+        journalEntries[i].style.display = 'flex';
+        visibleCount++;
+      }
+      
+      // Update URL without reloading the page
+      const url = new URL(window.location);
+      url.searchParams.set('page', currentPage);
+      window.history.pushState({}, '', url);
+      
+      // Update pagination controls
+      renderPagination();
+    }
+    
+    // Function to create modern pagination
+    function renderPagination() {
+      if (totalPages <= 1) {
+        document.getElementById('custom-pagination').innerHTML = '';
+        return;
+      }
+      
+      const paginationElement = document.getElementById('custom-pagination');
+      paginationElement.innerHTML = '';
+      
+      // Previous button
+      const prevButton = document.createElement('a');
+      prevButton.classList.add('pagination-arrow', 'prev');
+      prevButton.setAttribute('aria-label', 'Previous page');
+      prevButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>';
+      
+      if (currentPage === 1) {
+        prevButton.classList.add('disabled');
+      } else {
+        prevButton.href = `?page=${currentPage - 1}`;
+        prevButton.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (currentPage > 1) {
+            currentPage--;
+            showCurrentPageEntries();
+          }
+        });
+      }
+      paginationElement.appendChild(prevButton);
+      
+      // Calculate page range
+      let startPage = 1;
+      let endPage = totalPages;
+      const maxVisiblePages = 5;
+      
+      if (totalPages > maxVisiblePages) {
+        // Always show current page and some pages before and after
+        const pagesBeforeAfter = Math.floor((maxVisiblePages - 1) / 2);
+        startPage = Math.max(1, currentPage - pagesBeforeAfter);
+        endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+        
+        // Adjust if we're near the end
+        if (endPage - startPage < maxVisiblePages - 1) {
+          startPage = Math.max(1, endPage - maxVisiblePages + 1);
+        }
+      }
+      
+      // First page and ellipsis if needed
+      if (startPage > 1) {
+        const firstPageLink = createPageLink(1);
+        paginationElement.appendChild(firstPageLink);
+        
+        if (startPage > 2) {
+          const ellipsis = document.createElement('span');
+          ellipsis.classList.add('pagination-ellipsis');
+          ellipsis.textContent = '…';
+          paginationElement.appendChild(ellipsis);
+        }
+      }
+      
+      // Page numbers
+      for (let i = startPage; i <= endPage; i++) {
+        const pageLink = createPageLink(i);
+        paginationElement.appendChild(pageLink);
+      }
+      
+      // Last page and ellipsis if needed
+      if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+          const ellipsis = document.createElement('span');
+          ellipsis.classList.add('pagination-ellipsis');
+          ellipsis.textContent = '…';
+          paginationElement.appendChild(ellipsis);
+        }
+        
+        const lastPageLink = createPageLink(totalPages);
+        paginationElement.appendChild(lastPageLink);
+      }
+      
+      // Next button
+      const nextButton = document.createElement('a');
+      nextButton.classList.add('pagination-arrow', 'next');
+      nextButton.setAttribute('aria-label', 'Next page');
+      nextButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>';
+      
+      if (currentPage === totalPages) {
+        nextButton.classList.add('disabled');
+      } else {
+        nextButton.href = `?page=${currentPage + 1}`;
+        nextButton.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (currentPage < totalPages) {
+            currentPage++;
+            showCurrentPageEntries();
+          }
+        });
+      }
+      paginationElement.appendChild(nextButton);
+    }
+    
+    // Helper function to create page links
+    function createPageLink(pageNumber) {
+      const pageLink = document.createElement('a');
+      pageLink.href = `?page=${pageNumber}`;
+      pageLink.textContent = pageNumber;
+      pageLink.classList.add('pagination-number');
+      
+      if (currentPage === pageNumber) {
+        pageLink.classList.add('active');
+        pageLink.setAttribute('aria-current', 'page');
+      }
+      
+      pageLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        currentPage = pageNumber;
+        showCurrentPageEntries();
+      });
+      
+      return pageLink;
+    }
+    
+    // Initialize page display
+    showCurrentPageEntries();
+  });
+</script>
+
 <style>
 /* Journal Page Styling */
 .journal-page {
@@ -138,6 +312,7 @@ title: Journal
   display: flex;
   flex-direction: column;
   gap: 40px;
+  min-height: 200px;
 }
 
 .journal-card {
@@ -228,11 +403,11 @@ title: Journal
 }
 
 .entry-category.daily {
-  background-color: var(--daily-color);
+  background-color: var(--daily-color, #5e81ac);
 }
 
 .entry-category.special {
-  background-color: var(--special-color);
+  background-color: var(--special-color, #bf616a);
 }
 
 .entry-excerpt {
@@ -278,6 +453,80 @@ title: Journal
   line-height: 27px;
 }
 
+/* Professional Pagination Styling */
+.pagination-container {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pagination-number,
+.pagination-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 0.95rem;
+  color: #444;
+  border: 1px solid #e0e0e0;
+  background-color: white;
+  transition: all 0.2s ease;
+}
+
+.pagination-number:hover,
+.pagination-arrow:hover {
+  background-color: #f7f7f7;
+  border-color: #ccc;
+}
+
+.pagination-number.active {
+  background-color: #5e81ac;
+  color: white;
+  border-color: #5e81ac;
+  font-weight: 500;
+}
+
+.pagination-arrow svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.pagination-arrow.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+  cursor: default;
+}
+
+.pagination-ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: #777;
+  font-size: 1.2rem;
+}
+
+.no-entries-message {
+  padding: 40px 0;
+  text-align: center;
+  color: #777;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
 /* Media Queries */
 @media (max-width: 768px) {
   .journal-card {
@@ -298,6 +547,13 @@ title: Journal
   .entry-content h2 {
     font-size: 1.5rem;
   }
+  
+  .pagination-number,
+  .pagination-arrow,
+  .pagination-ellipsis {
+    width: 36px;
+    height: 36px;
+  }
 }
 
 @media (max-width: 576px) {
@@ -313,6 +569,19 @@ title: Journal
   
   .entry-content header {
     padding-right: 0;
+  }
+  
+  .pagination-number,
+  .pagination-arrow,
+  .pagination-ellipsis {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+  
+  .pagination-arrow svg {
+    width: 16px;
+    height: 16px;
   }
 }
 </style>
