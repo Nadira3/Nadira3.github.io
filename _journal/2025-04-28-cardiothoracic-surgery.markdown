@@ -80,15 +80,7 @@ Case Study: Chest Trauma(Gunshot Wound)
 5. **Ventilation–perfusion mismatch** → hypoxia.
 
 ```text
-Capillary rupture
-    ↓
-Interstitial hemorrhage
-    ↓
-Alveolar flooding
-    ↓
-↓ Compliance & V/Q mismatch
-    ↓
-Hypoxia & hemoptysis
+Capillary rupture -> Interstitial hemorrhage -> Alveolar flooding -> ↓ Compliance & V/Q mismatch -> Hypoxia & hemoptysis
 ```  
 
 ### Clinical Recognition
