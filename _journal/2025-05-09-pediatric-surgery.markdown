@@ -87,14 +87,8 @@ Circumcision is the surgical removal of the prepuce (foreskin) of the penis.
 
 #### Sequence
 <div class="mermaid">
-flowchart TB
-  	
-  %% Overall Examination Flow
-  	Start[Start_Examination] --> Introduction[Introduce Self]
-  	Introduction --> Consent[Obtain Informed Consent]
-  	Consent --> Patient_Positioning[Appropriate Patient Positioning]
-  	Patient_Positioning --> Systematic_Examination[Systematic Cephalo-Caudal Examination]
-   
+  flowchart TB
+  
     %% Detailed Examination Subgraphs
     subgraph Hair_Findings[Hair Findings]
         Hair --> Hair_Fluffy[Fluffy]
@@ -286,10 +280,12 @@ flowchart TB
     Hands_Findings --> Fingernails_Findings
     Fingernails_Findings --> Legs_Findings
     Legs_Findings --> Examination_Conclusion[Comprehensive Examination Conclusion]
+
+
+
+
+    
 </div>
-
-
-
 ---
 
 ### Vital Signs (Order Matters)
