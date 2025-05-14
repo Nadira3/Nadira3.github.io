@@ -1,6 +1,6 @@
 ---
 layout: journal
-title: "Pediatrics Surgery – Sample Report: Wilm's Tumor"
+title: "Pediatric Surgery – Sample Report: Wilm's Tumor"
 date: 2025-05-07
 category: Daily # Options: Daily, Special
 header_image: /assets/images/day-two.jpeg

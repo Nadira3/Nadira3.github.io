@@ -1,6 +1,6 @@
 ---
 layout: journal
-title: "Pediatrics – Surgical Case Studies"
+title: "Pediatric Surgery – Surgical Case Studies"
 date: 2025-05-10
 category: Daily # Options: Daily, Special
 header_image: /assets/images/day-two.jpeg

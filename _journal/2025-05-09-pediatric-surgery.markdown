@@ -1,6 +1,6 @@
 ---
 layout: journal
-title: "Pediatrics - Post Evaluation Examination"
+title: "Pediatric Surgery - Post Evaluation Examination"
 date: 2025-05-09
 category: Daily # Options: Daily, Special
 header_image: /assets/images/day-two.jpeg

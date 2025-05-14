@@ -1,6 +1,6 @@
 ---
 layout: journal
-title: "PS2 – Surgical Case Studies"
+title: "Plastic Surgery – Surgical Case Studies"
 date: 2025-05-13
 category: Daily # Options: Daily, Special
 header_image: /assets/images/day-two.jpeg
