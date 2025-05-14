@@ -87,15 +87,15 @@ Circumcision is the surgical removal of the prepuce (foreskin) of the penis.
 
 #### Sequence
 <div class="mermaid">
-
-flowchart TD
-  %% Overall Examination Flow
-    Start[Start_Examination] --> Introduction[Introduce Self]
-    Introduction --> Consent[Obtain Informed Consent]                                                                                             Consent --> Patient_Positioning[Appropriate Patient Positioning]
+ graph TB
+    %% Overall Examination Flow
+    Start[Start Comprehensive Medical Examination] --> Introduction[Introduce Self]
+    Introduction --> Consent[Obtain Informed Consent]
+    Consent --> Patient_Positioning[Appropriate Patient Positioning]
     Patient_Positioning --> Systematic_Examination[Systematic Cephalo-Caudal Examination]
-  
+
     %% Detailed Examination Subgraphs
-    subgraph Hair_Findings[Hair Findings]
+    subgraph Hair_Findings["Hair Findings"]
         Hair --> Hair_Fluffy[Fluffy]
         Hair_Fluffy --> Hair_Hypoalbuminemia[Hypoalbuminemia]
         Hair_Hypoalbuminemia --> Hair_Serum_Albumin[Serum Albumin]
@@ -113,8 +113,8 @@ flowchart TD
         Hair_Diffuse --> Hair_Androgenetic_Alopecia[Androgenetic Alopecia]
         Hair_Androgenetic_Alopecia --> Hair_Hormone_Levels[Hormone Levels]
     end
-    
-    subgraph Eyebrows_Findings[Eyebrows Findings]
+
+    subgraph Eyebrows_Findings["Eyebrows Findings"]
         Eyebrows --> Eyebrows_Madarosis[Madarosis]
         Eyebrows_Madarosis --> Eyebrows_Hypothyroidism[Hypothyroidism]
         Eyebrows_Hypothyroidism --> Eyebrows_TSH_T4[TSH and T4]
@@ -123,8 +123,8 @@ flowchart TD
         Eyebrows_Madarosis --> Eyebrows_Blepharitis[Blepharitis]
         Eyebrows_Blepharitis --> Eyebrows_Clinical_Diagnosis[Clinical Diagnosis]
     end
-    
-    subgraph Eyes_Findings[Eyes Findings]
+
+    subgraph Eyes_Findings["Eyes Findings"]
         Eyes --> Eyes_Pallor[Pallor]
         Eyes_Pallor --> Eyes_Anemia[Anemia]
         Eyes_Anemia --> Eyes_Hemoglobin[Hemoglobin]
@@ -136,8 +136,8 @@ flowchart TD
         Eyes_Jaundice --> Eyes_Hemolysis[Hemolysis]
         Eyes_Hemolysis --> Eyes_Bilirubin[Bilirubin Levels]
     end
-    
-    subgraph Nose_Findings[Nose Findings]
+
+    subgraph Nose_Findings["Nose Findings"]
         Nose --> Nose_Deformities[Deformities]
         Nose_Deformities --> Nose_Trauma[Trauma]
         Nose_Trauma --> Nose_Imaging["Imaging (X-ray, CT)"]
@@ -148,8 +148,8 @@ flowchart TD
         Nose_Deformities --> Nose_Tumors[Tumors]
         Nose_Tumors --> Nose_Biopsy[Biopsy]
     end
-    
-    subgraph Mouth_Findings[Mouth Findings]
+
+    subgraph Mouth_Findings["Mouth Findings"]
         Mouth --> Mouth_Hydration[Hydration]
         Mouth_Hydration --> Mouth_Dry[Dry]
         Mouth_Dry --> Mouth_Dehydration[Dehydration]
@@ -190,8 +190,8 @@ flowchart TD
         Mouth_Dentition --> Mouth_Edentulous[Edentulous]
         Mouth_Edentulous --> Mouth_Note_Edentulous[Note if Present]
     end
-    
-    subgraph Lymph_Nodes_Findings[Lymph Nodes Findings]
+
+    subgraph Lymph_Nodes_Findings["Lymph Nodes Findings"]
         Lymph_Nodes --> LN_Enlarged[Enlarged]
         LN_Enlarged --> LN_Firm_Rubbery[Firm, Rubbery]
         LN_Firm_Rubbery --> LN_Lymphoma[Lymphoma]
@@ -203,8 +203,8 @@ flowchart TD
         LN_Tender --> LN_Infection[Infection]
         LN_Infection --> LN_Culture[Culture]
     end
-    
-    subgraph Hands_Findings[Hands Findings]
+
+    subgraph Hands_Findings["Hands Findings"]
         Hands --> Hands_Creases[Creases]
         Hands_Creases --> Hands_Hyperpigmented_Creases[Hyperpigmented]
         Hands_Hyperpigmented_Creases --> Hands_Addisons[Addison's Disease]
@@ -222,8 +222,8 @@ flowchart TD
         Hands_Swollen_Joints --> Hands_OA[Osteoarthritis]
         Hands_OA --> Hands_Xray[X-ray]
     end
-    
-    subgraph Fingernails_Findings[Fingernails Findings]
+
+    subgraph Fingernails_Findings["Fingernails Findings"]
         Fingernails --> FN_Color[Color]
         FN_Color --> FN_Pale[Pale]
         FN_Pale --> FN_Anemia[Anemia]
@@ -250,8 +250,8 @@ flowchart TD
         FN_Clubbing --> FN_GI[GI Causes]
         FN_GI --> FN_Abdominal_Imaging[Abdominal Imaging]
     end
-    
-    subgraph Legs_Findings[Legs Findings]
+
+    subgraph Legs_Findings["Legs Findings"]
         Legs --> Legs_Asterixis[Asterixis]
         Legs_Asterixis --> Legs_Hepatic_Encephalopathy[Hepatic Encephalopathy]
         Legs_Hepatic_Encephalopathy --> Legs_LFTs[Liver Function Tests]
@@ -273,7 +273,7 @@ flowchart TD
         Legs_Non_Pitting --> Legs_Myxedema[Myxedema]
         Legs_Myxedema --> Legs_TFTs[Thyroid Function Tests]
     end
-    
+
     %% Examination Progression
     Systematic_Examination --> Hair_Findings
     Hair_Findings --> Eyebrows_Findings
@@ -284,12 +284,7 @@ flowchart TD
     Lymph_Nodes_Findings --> Hands_Findings
     Hands_Findings --> Fingernails_Findings
     Fingernails_Findings --> Legs_Findings
-    Legs_Findings --> Examination_Conclusion[Comprehensive Examination Conclusion]
-
-
-
-
-    
+    Legs_Findings --> Examination_Conclusion[Comprehensive Examination Conclusion]   
 </div>
 ---
 
