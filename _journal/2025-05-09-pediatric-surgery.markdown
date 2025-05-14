@@ -88,7 +88,7 @@ Circumcision is the surgical removal of the prepuce (foreskin) of the penis.
 #### Sequence
 {::nomarkdown}
 ```mermaid
- graph TD
+ graph TB
     %% Overall Examination Flow
     Start[Start Comprehensive Medical Examination] --> Introduction[Introduce Self]
     Introduction --> Consent[Obtain Informed Consent]
