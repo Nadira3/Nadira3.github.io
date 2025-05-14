@@ -87,13 +87,13 @@ Circumcision is the surgical removal of the prepuce (foreskin) of the penis.
 
 #### Sequence
 <div class="mermaid">
-  flowchart TB
-  
+  flowchart TB 
     %% Overall Examination Flow
     Start[Start_Examination] --> Introduction[Introduce Self]
     Introduction --> Consent[Obtain Informed Consent]
     Consent --> Patient_Positioning[Appropriate Patient Positioning]
     Patient_Positioning --> Systematic_Examination[Systematic Cephalo-Caudal Examination]
+  
     %% Detailed Examination Subgraphs
     subgraph Hair_Findings[Hair Findings]
         Hair --> Hair_Fluffy[Fluffy]
@@ -113,6 +113,7 @@ Circumcision is the surgical removal of the prepuce (foreskin) of the penis.
         Hair_Diffuse --> Hair_Androgenetic_Alopecia[Androgenetic Alopecia]
         Hair_Androgenetic_Alopecia --> Hair_Hormone_Levels[Hormone Levels]
     end
+    
     subgraph Eyebrows_Findings[Eyebrows Findings]
         Eyebrows --> Eyebrows_Madarosis[Madarosis]
         Eyebrows_Madarosis --> Eyebrows_Hypothyroidism[Hypothyroidism]
@@ -122,6 +123,7 @@ Circumcision is the surgical removal of the prepuce (foreskin) of the penis.
         Eyebrows_Madarosis --> Eyebrows_Blepharitis[Blepharitis]
         Eyebrows_Blepharitis --> Eyebrows_Clinical_Diagnosis[Clinical Diagnosis]
     end
+    
     subgraph Eyes_Findings[Eyes Findings]
         Eyes --> Eyes_Pallor[Pallor]
         Eyes_Pallor --> Eyes_Anemia[Anemia]
@@ -134,6 +136,7 @@ Circumcision is the surgical removal of the prepuce (foreskin) of the penis.
         Eyes_Jaundice --> Eyes_Hemolysis[Hemolysis]
         Eyes_Hemolysis --> Eyes_Bilirubin[Bilirubin Levels]
     end
+    
     subgraph Nose_Findings[Nose Findings]
         Nose --> Nose_Deformities[Deformities]
         Nose_Deformities --> Nose_Trauma[Trauma]
@@ -145,6 +148,7 @@ Circumcision is the surgical removal of the prepuce (foreskin) of the penis.
         Nose_Deformities --> Nose_Tumors[Tumors]
         Nose_Tumors --> Nose_Biopsy[Biopsy]
     end
+    
     subgraph Mouth_Findings[Mouth Findings]
         Mouth --> Mouth_Hydration[Hydration]
         Mouth_Hydration --> Mouth_Dry[Dry]
@@ -186,6 +190,7 @@ Circumcision is the surgical removal of the prepuce (foreskin) of the penis.
         Mouth_Dentition --> Mouth_Edentulous[Edentulous]
         Mouth_Edentulous --> Mouth_Note_Edentulous[Note if Present]
     end
+    
     subgraph Lymph_Nodes_Findings[Lymph Nodes Findings]
         Lymph_Nodes --> LN_Enlarged[Enlarged]
         LN_Enlarged --> LN_Firm_Rubbery[Firm, Rubbery]
@@ -198,6 +203,7 @@ Circumcision is the surgical removal of the prepuce (foreskin) of the penis.
         LN_Tender --> LN_Infection[Infection]
         LN_Infection --> LN_Culture[Culture]
     end
+    
     subgraph Hands_Findings[Hands Findings]
         Hands --> Hands_Creases[Creases]
         Hands_Creases --> Hands_Hyperpigmented_Creases[Hyperpigmented]
@@ -216,6 +222,7 @@ Circumcision is the surgical removal of the prepuce (foreskin) of the penis.
         Hands_Swollen_Joints --> Hands_OA[Osteoarthritis]
         Hands_OA --> Hands_Xray[X-ray]
     end
+    
     subgraph Fingernails_Findings[Fingernails Findings]
         Fingernails --> FN_Color[Color]
         FN_Color --> FN_Pale[Pale]
@@ -243,6 +250,7 @@ Circumcision is the surgical removal of the prepuce (foreskin) of the penis.
         FN_Clubbing --> FN_GI[GI Causes]
         FN_GI --> FN_Abdominal_Imaging[Abdominal Imaging]
     end
+    
     subgraph Legs_Findings[Legs Findings]
         Legs --> Legs_Asterixis[Asterixis]
         Legs_Asterixis --> Legs_Hepatic_Encephalopathy[Hepatic Encephalopathy]
@@ -265,6 +273,7 @@ Circumcision is the surgical removal of the prepuce (foreskin) of the penis.
         Legs_Non_Pitting --> Legs_Myxedema[Myxedema]
         Legs_Myxedema --> Legs_TFTs[Thyroid Function Tests]
     end
+    
     %% Examination Progression
     Systematic_Examination --> Hair_Findings
     Hair_Findings --> Eyebrows_Findings
@@ -277,6 +286,8 @@ Circumcision is the surgical removal of the prepuce (foreskin) of the penis.
     Fingernails_Findings --> Legs_Findings
     Legs_Findings --> Examination_Conclusion[Comprehensive Examination Conclusion]
 </div>
+
+
 
 ---
 
