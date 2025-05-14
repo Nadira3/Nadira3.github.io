@@ -81,28 +81,24 @@ img {
   max-width: 100%;
   height: auto;
 }
-
 /* Tables */
 /* Book-style Table Styling that works with markdown-generated tables */
-.table-container {
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
   margin: 2.5rem 0;
-  position: relative;
-  overflow-x: auto;
-  max-width: 100%;
+  font-family: 'Libre Baskerville', serif;
   background: #fff9f0; /* Cream background for aged paper look */
   border: 1px solid rgba(160, 120, 85, 0.3);
   border-radius: 2px;
   box-shadow: 
     0 3px 6px rgba(0,0,0,0.16), 
     0 3px 6px rgba(0,0,0,0.23);
-}
-
-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  font-family: 'Libre Baskerville', serif;
-  table-layout: fixed; /* Ensures columns maintain their width */
+  position: relative;
+  display: block; /* Critical for enabling overflow scrolling */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  max-width: 100%;
 }
 
 /* Table headers */
@@ -110,10 +106,10 @@ thead {
   position: sticky;
   top: 0;
   z-index: 10;
-  background-color: #61412e; /* Rich brown color */
 }
 
 th {
+  background-color: #61412e; /* Rich brown color */
   color: #f3e8d8;
   font-weight: 700;
   text-align: left;
@@ -122,10 +118,7 @@ th {
   border-bottom: 2px solid #8c6e4e;
   text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
   letter-spacing: 0.05em;
-  vertical-align: top;
-  /* Allow text to wrap in headers */
-  white-space: normal;
-  word-wrap: break-word;
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 /* Table rows */
@@ -134,8 +127,6 @@ td {
   border-bottom: 1px solid rgba(160, 120, 85, 0.2);
   color: #382718;
   line-height: 1.6;
-  vertical-align: top;
-  word-wrap: break-word;
 }
 
 /* Last row no bottom border */
@@ -165,35 +156,55 @@ tbody tr:hover {
   z-index: 2;
 }
 
+/* Ensure minimum width for the table to prevent squashing */
+table tbody, table thead {
+  min-width: 650px;
+  display: table;
+  width: 100%;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   th, td {
     padding: 0.75rem 1rem;
     font-size: 0.9rem;
   }
+  
+  /* Subtle scroll indicator instead of shadow */
+  table {
+    background-image: 
+      radial-gradient(
+        circle at right center,
+        rgba(160, 120, 85, 0.05),
+        transparent 70%
+      );
+    background-size: 15% 100%;
+    background-repeat: no-repeat;
+    background-position: right center;
+  }
 }
 
 /* Optional: Custom scrollbar styling for a more vintage look */
-.table-container::-webkit-scrollbar {
+table::-webkit-scrollbar {
   width: 10px;
   height: 8px;
 }
 
-.table-container::-webkit-scrollbar-track {
+table::-webkit-scrollbar-track {
   background: rgba(160, 120, 85, 0.1);
 }
 
-.table-container::-webkit-scrollbar-thumb {
+table::-webkit-scrollbar-thumb {
   background: rgba(160, 120, 85, 0.5);
   border-radius: 5px;
 }
 
-.table-container::-webkit-scrollbar-thumb:hover {
+table::-webkit-scrollbar-thumb:hover {
   background: rgba(160, 120, 85, 0.7);
 }
 
 /* Add aged paper texture effect (optional) */
-.table-container::before {
+table::before {
   content: '';
   position: absolute;
   top: 0;
@@ -207,11 +218,11 @@ tbody tr:hover {
 }
 
 /* Add subtle book binding effect */
-.table-container {
+table {
   position: relative;
 }
 
-.table-container::after {
+table::after {
   content: '';
   position: absolute;
   left: 0;
@@ -226,16 +237,6 @@ tbody tr:hover {
   border-right: 1px solid rgba(120, 80, 40, 0.1);
   pointer-events: none;
   z-index: 1;
-}
-
-/* Optional: For tables with many columns, you might want this helper class */
-.column-sizing-equal table {
-  table-layout: fixed;
-}
-
-.column-sizing-equal th,
-.column-sizing-equal td {
-  width: auto;
 }
 
 /* Navigation */
