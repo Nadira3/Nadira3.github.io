@@ -86,14 +86,13 @@ Circumcision is the surgical removal of the prepuce (foreskin) of the penis.
 - Look for: dysmorphic features, distress signs, cachexia.
 
 #### Sequence
-{% raw %}
 <div class="mermaid">
- graph TB
+ flowchart TB;
     %% Overall Examination Flow
-    Start[Start Comprehensive Medical Examination] --> Introduction[Introduce Self]
-    Introduction --> Consent[Obtain Informed Consent]
-    Consent --> Patient_Positioning[Appropriate Patient Positioning]
-    Patient_Positioning --> Systematic_Examination[Systematic Cephalo-Caudal Examination]
+    Start[Start Comprehensive Medical Examination] --> Introduction[Introduce Self];
+    Introduction --> Consent[Obtain Informed Consent];
+    Consent --> Patient_Positioning[Appropriate Patient Positioning];
+    Patient_Positioning --> Systematic_Examination[Systematic Cephalo-Caudal Examination];
 
     %% Detailed Examination Subgraphs
     subgraph Hair_Findings["Hair Findings"]
@@ -287,7 +286,6 @@ Circumcision is the surgical removal of the prepuce (foreskin) of the penis.
     Fingernails_Findings --> Legs_Findings
     Legs_Findings --> Examination_Conclusion[Comprehensive Examination Conclusion]   
 </div>
-{% endraw %}
 ---
 
 ### Vital Signs (Order Matters)

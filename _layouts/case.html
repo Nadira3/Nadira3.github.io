@@ -3,838 +3,791 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Medical Case Study</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>{{ page.title }} | Medical Case Study</title>
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  
-  <!-- Bootstrap Grid (for layout only) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap-grid.min.css">
-  
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Source+Serif+Pro:wght@400;600&display=swap">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
-    
     :root {
-      --primary-light: #d4e5f2;
-      --primary-dark: #2a607c;
-      --accent-color: #d989b5;
-      --accent-light: #f8e6f0;
-      --neutral-100: #ffffff;
-      --neutral-200: #f7f9fc;
-      --neutral-300: #edf2f7;
-      --neutral-400: #e2e8f0;
-      --neutral-500: #cbd5e0;
-      --neutral-600: #718096;
-      --neutral-700: #4a5568;
-      --neutral-800: #2d3748;
-      --text-color: #374151;
-      --heading-color: #1a365d;
-      --doctor-color: #e7f4fb;
-      --student-color: #fcf2f7;
-      --doctor-border: #bdd9ea;
-      --student-border: #f0d4e3;
-      --drop-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
-      --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
-      --transition-speed: 0.3s;
+      --primary: #2563eb;
+      --primary-dark: #1e40af;
+      --primary-light: #dbeafe;
+      --accent: #db2777;
+      --accent-light: #fce7f3;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --doctor-bg: #eff6ff;
+      --doctor-border: #bfdbfe;
+      --student-bg: #fdf2f8;
+      --student-border: #fbcfe8;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     }
 
-    .case-container {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: var(--gray-700);
+      background-color: var(--gray-50);
+      max-width: 100%;
+      overflow-x: hidden;
     }
 
     h1, h2, h3, h4, h5 {
       font-family: 'Playfair Display', serif;
-      color: var(--heading-color);
-      letter-spacing: -0.01em;
+      color: var(--gray-900);
+      line-height: 1.2;
+      margin-bottom: 1rem;
     }
 
     p {
-      font-family: 'Lora', serif;
+      font-family: 'Source Serif Pro', serif;
+      margin-bottom: 1rem;
       line-height: 1.8;
     }
 
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Site header */
+    .site-header {
+      background-color: white;
+      border-bottom: 1px solid var(--gray-200);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 1.25rem;
+    }
+
+    .navbar-nav {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+
+    .nav-item {
+      margin-left: 1.5rem;
+    }
+
+    .nav-link {
+      color: var(--gray-600);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+      font-size: 0.875rem;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--primary);
+    }
+
+    /* Mobile menu */
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      color: var(--gray-700);
+      border: none;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    /* Case study styles */
+    .case-study {
+      padding: 2rem 0;
+    }
+
     .case-header {
-      position: relative;
-      margin-bottom: 2.5rem;
+      background: white;
+      border-radius: 0.75rem;
       padding: 2rem;
-      background: var(--neutral-100);
-      border-radius: 12px;
-      box-shadow: var(--card-shadow);
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-md);
+      position: relative;
       overflow: hidden;
     }
 
-    .case-header::before {
-      content: '';
+    .case-header::after {
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
-      right: 0;
+      width: 100%;
       height: 5px;
-      background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+      background: linear-gradient(to right, var(--primary), var(--accent));
     }
 
     .case-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin: 0 0 0.5rem 0;
-      background: linear-gradient(to right, var(--primary-dark), var(--primary-color));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: fadeIn 0.8s ease-in;
+      font-size: 2rem;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
     }
 
     .case-subtitle {
-      font-size: 1.1rem;
-      color: var(--neutral-600);
-      margin: 0 0 1.5rem 0;
-      font-weight: 500;
-      font-family: 'Montserrat', sans-serif;
-      animation: fadeIn 1s ease-in;
+      font-size: 1rem;
+      color: var(--gray-500);
+      margin-bottom: 1.5rem;
+      font-weight: 400;
     }
 
-    .case-details {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-top: 2rem;
-      animation: fadeInUp 1s ease-out;
+    .case-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
     }
 
-    .detail-box {
-      background: var(--neutral-100);
-      border-radius: 8px;
-      padding: 1rem 1.25rem;
-      flex: 1;
-      min-width: 140px;
-      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-      border-left: 3px solid var(--primary-color);
+    .meta-item {
+      background-color: var(--gray-50);
+      border-radius: 0.5rem;
+      padding: 0.75rem 1rem;
+      border-left: 3px solid var(--primary);
     }
 
-    .detail-box:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--drop-shadow);
+    .meta-item:nth-child(even) {
+      border-left-color: var(--accent);
     }
 
-    .detail-box:nth-child(2n) {
-      border-left: 3px solid var(--accent-color);
-    }
-
-    .detail-label {
+    .meta-label {
+      display: block;
       font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--neutral-600);
+      letter-spacing: 0.05em;
       font-weight: 600;
-      margin-bottom: 0.35rem;
-      font-family: 'Montserrat', sans-serif;
+      color: var(--gray-500);
+      margin-bottom: 0.25rem;
     }
 
-    .detail-value {
+    .meta-value {
       font-weight: 600;
-      font-size: 1rem;
-      color: var(--neutral-800);
+      color: var(--gray-800);
     }
 
-    .case-summary {
-      background: var(--neutral-100);
-      border-radius: 12px;
-      padding: 2rem;
-      margin-bottom: 2.5rem;
-      box-shadow: var(--card-shadow);
-      position: relative;
-      overflow: hidden;
-      animation: fadeIn 1.2s ease-out;
+    .case-section {
+      background: white;
+      border-radius: 0.75rem;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
     }
 
-    .case-summary::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 150px;
-      height: 150px;
-      background: radial-gradient(circle at bottom right, var(--primary-light) 0%, transparent 70%);
-      opacity: 0.7;
-      border-radius: 50%;
-      z-index: 0;
-    }
-
-    .summary-title {
-      display: inline-block;
-      position: relative;
+    .section-title {
+      font-size: 1.5rem;
       color: var(--primary-dark);
-      font-size: 1.4rem;
-      margin-top: 0;
-      margin-bottom: 1.25rem;
-      font-weight: 600;
-      z-index: 1;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
     }
 
-    .summary-title::after {
+    .section-title::after {
       content: '';
       position: absolute;
-      bottom: -5px;
       left: 0;
-      width: 60px;
-      height: 3px;
-      background: var(--accent-color);
+      bottom: -0.25rem;
+      width: 3rem;
+      height: 0.25rem;
+      background: var(--accent);
+      border-radius: 0.125rem;
     }
 
+    /* Conversation */
     .conversation {
-      margin-bottom: 3rem;
       position: relative;
+      padding: 0.5rem 0;
     }
 
     .conversation::before {
       content: '';
       position: absolute;
       top: 0;
-      bottom: 0;
-      left: 35px;
+      left: 1.5rem;
+      height: 100%;
       width: 2px;
-      background: linear-gradient(to bottom, var(--primary-light), var(--accent-light));
+      background-color: var(--gray-200);
       z-index: 0;
     }
 
     .message {
-      margin-bottom: 1.75rem;
-      display: flex;
-      flex-direction: column;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.5s ease-out forwards;
-    }
-
-    .message-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
       position: relative;
-      z-index: 1;
+      padding-left: 3.5rem;
     }
 
-    .avatar {
-      width: 40px;
-      height: 40px;
+    .message::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 1.5rem;
+      height: 100%;
+      width: 2px;
+      background-color: var(--gray-200);
+      z-index: 0;
+    }
+
+    .msg-avatar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3rem;
+      height: 3rem;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: bold;
-      color: white;
-      margin-right: 1rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-      position: relative;
-      z-index: 2;
-      transition: transform 0.3s ease;
-    }
-
-    .avatar:hover {
-      transform: scale(1.1);
-    }
-
-    .doctor-avatar {
-      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-    }
-
-    .student-avatar {
-      background: linear-gradient(135deg, var(--accent-color), #b05887);
-    }
-
-    .name {
       font-weight: 600;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .doctor-name {
-      color: var(--primary-dark);
-    }
-
-    .student-name {
-      color: #b05887;
-    }
-
-    .timestamp {
-      margin-left: auto;
-      color: var(--neutral-600);
-      font-size: 0.85rem;
-      font-style: italic;
-    }
-
-    .message-content {
-      background: var(--neutral-100);
-      border-radius: 12px;
-      padding: 1.5rem;
-      line-height: 1.8;
-      font-size: 1rem;
-      margin-left: 3.5rem;
-      position: relative;
-      box-shadow: var(--drop-shadow);
-      transition: transform 0.3s ease;
-      font-family: 'Lora', serif;
+      color: white;
       z-index: 1;
     }
 
-    .message-content:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    .doctor-avatar {
+      background: var(--primary);
     }
 
-    .message-content::before {
-      content: '';
-      position: absolute;
-      top: 20px;
-      left: -8px;
-      width: 16px;
-      height: 16px;
-      background: inherit;
-      transform: rotate(45deg);
-      box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.05);
+    .student-avatar {
+      background: var(--accent);
     }
 
-    .doctor .message-content {
-      background-color: var(--doctor-color);
-      border-left: 4px solid var(--doctor-border);
-    }
-
-    .student .message-content {
-      background-color: var(--student-color);
-      border-left: 4px solid var(--student-border);
-    }
-
-    .key-points {
-      background: var(--neutral-100);
-      border-radius: 12px;
-      padding: 2rem;
-      margin-top: 1rem;
-      margin-bottom: 2.5rem;
-      box-shadow: var(--card-shadow);
+    .msg-bubble {
       position: relative;
-      overflow: hidden;
-      transition: transform 0.3s ease;
-      animation: fadeIn 1.4s ease-out;
+      background: white;
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      max-width: 100%;
     }
 
-    .key-points:hover {
-      transform: translateY(-5px);
+    .doctor-msg .msg-bubble {
+      background: var(--doctor-bg);
+      border-left: 3px solid var(--doctor-border);
     }
 
-    .key-points::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+    .student-msg .msg-bubble {
+      background: var(--student-bg);
+      border-left: 3px solid var(--student-border);
     }
 
-    .key-points-title {
-      color: var(--primary-dark);
-      font-size: 1.4rem;
-      margin-top: 0;
-      margin-bottom: 1.25rem;
+    .msg-header {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 0.75rem;
+    }
+
+    .msg-name {
       font-weight: 600;
-      position: relative;
-      display: inline-block;
+      margin-right: 0.5rem;
     }
 
-    .key-points-title::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background: var(--accent-color);
+    .doctor-msg .msg-name {
+      color: var(--primary-dark);
     }
 
-    .key-points-list {
-      margin: 1rem 0 0;
-      padding-left: 1.75rem;
-      list-style-type: none;
+    .student-msg .msg-name {
+      color: var(--accent);
     }
 
-    .key-points-list li {
+    .msg-time {
+      font-size: 0.75rem;
+      color: var(--gray-400);
+    }
+
+    .msg-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Lists */
+    .list-item {
       margin-bottom: 0.75rem;
       position: relative;
-      padding-left: 0.75rem;
-      font-family: 'Lora', serif;
+      padding-left: 1.5rem;
     }
 
-    .key-points-list li::before {
+    .list-item::before {
       content: '•';
       position: absolute;
-      left: -1rem;
-      color: var(--accent-color);
-      font-size: 1.5rem;
-      line-height: 1;
+      left: 0;
+      top: 0;
+      color: var(--accent);
+      font-size: 1.25rem;
     }
 
-    .case-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 2.5rem;
-      padding: 1.5rem;
-      background: var(--neutral-100);
-      border-radius: 12px;
-      box-shadow: var(--drop-shadow);
-      animation: fadeIn 1.6s ease-out;
+    .ordered-list {
+      counter-reset: item;
+      list-style-type: none;
+      padding-left: 0;
     }
 
-    .case-tags {
+    .ordered-list .list-item {
+      padding-left: 2rem;
+    }
+
+    .ordered-list .list-item::before {
+      content: counter(item) '.';
+      counter-increment: item;
+      top: -1px;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Tags */
+    .tags-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem;
+      gap: 0.5rem;
+      margin-top: 1rem;
     }
 
     .tag {
-      background: linear-gradient(to right, var(--primary-light), var(--doctor-color));
-      border-radius: 50px;
-      padding: 0.35rem 1rem;
-      font-size: 0.85rem;
+      background-color: var(--primary-light);
       color: var(--primary-dark);
+      border-radius: 2rem;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.75rem;
       font-weight: 500;
-      border: 1px solid var(--neutral-400);
-      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
     }
 
-    .tag:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      background: linear-gradient(to right, var(--doctor-color), var(--primary-light));
-    }
-
-    .additional-resources {
-      background: var(--neutral-100);
-      border-radius: 12px;
-      padding: 2rem;
-      margin-top: 2.5rem;
-      box-shadow: var(--card-shadow);
-      position: relative;
-      animation: fadeIn 1.8s ease-out;
-    }
-
-    .resources-title {
-      color: var(--primary-dark);
-      font-size: 1.3rem;
-      margin-top: 0;
-      margin-bottom: 1.25rem;
-      position: relative;
-      display: inline-block;
-    }
-
-    .resources-title::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background: var(--accent-color);
-    }
-
+    /* Resources list */
     .resources-list {
-      margin: 1rem 0 0;
-      padding-left: 0;
       list-style-type: none;
+      padding-left: 0;
     }
 
-    .resources-list li {
+    .resource-item {
       margin-bottom: 0.75rem;
+      padding-left: 1.5rem;
       position: relative;
-      padding-left: 1.75rem;
-      transition: transform 0.2s ease;
     }
 
-    .resources-list li:hover {
-      transform: translateX(5px);
-    }
-
-    .resources-list li::before {
+    .resource-item::before {
       content: '\f02d';
       font-family: 'Font Awesome 6 Free';
       font-weight: 900;
       position: absolute;
       left: 0;
-      color: var(--accent-color);
+      color: var(--accent);
     }
 
-    .resources-list a {
-      color: var(--primary-color);
+    .resource-item a {
+      color: var(--primary);
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.2s ease;
+      transition: color 0.2s;
     }
 
-    .resources-list a:hover {
+    .resource-item a:hover {
       color: var(--primary-dark);
       text-decoration: underline;
     }
 
-    .pagination {
+    /* Pagination */
+    .case-pagination {
       display: flex;
       justify-content: space-between;
-      margin-top: 3rem;
-      animation: fadeIn 2s ease-out;
+      margin-top: 2rem;
+      margin-bottom: 3rem;
     }
 
-    .pagination a {
+    .page-link {
       display: inline-flex;
       align-items: center;
       padding: 0.75rem 1.25rem;
-      background: var(--neutral-100);
-      border-radius: 8px;
-      box-shadow: var(--drop-shadow);
-      color: var(--primary-color);
+      background: white;
+      border-radius: 0.5rem;
+      color: var(--primary);
       text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
+      font-weight: 500;
+      box-shadow: var(--shadow);
+      transition: all 0.2s;
     }
 
-    .pagination a::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 100%;
-      background: linear-gradient(to right, var(--primary-light), var(--neutral-100));
-      transition: width 0.3s ease;
-      z-index: -1;
+    .page-link:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      background-color: var(--primary-light);
     }
 
-    .pagination a:hover {
-      color: var(--primary-dark);
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    .page-link-prev i {
+      margin-right: 0.5rem;
     }
 
-    .pagination a:hover::before {
-      width: 100%;
+    .page-link-next i {
+      margin-left: 0.5rem;
     }
 
-    .pagination i {
-      font-size: 1rem;
+    /* Footer */
+    .site-footer {
+      padding: 2rem 0;
+      background-color: white;
+      border-top: 1px solid var(--gray-200);
+      margin-top: 2rem;
     }
 
-    .prev-link i {
-      margin-right: 10px;
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .next-link i {
-      margin-left: 10px;
+    .footer-copyright {
+      color: var(--gray-500);
+      font-size: 0.875rem;
     }
 
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-link {
+      color: var(--gray-600);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+
+    .footer-link:hover {
+      color: var(--primary);
+    }
+
+    /* Responsive styles */
     @media (max-width: 768px) {
-      .container {
+      .navbar-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        align-items: flex-start;
         padding: 1rem;
-        margin: 1rem auto;
+        border-top: 1px solid var(--gray-200);
+        box-shadow: var(--shadow);
       }
 
-      .case-header, 
-      .case-summary, 
-      .key-points, 
-      .case-footer, 
-      .additional-resources {
-        padding: 1.5rem;
+      .navbar-nav.show {
+        display: flex;
+      }
+
+      .nav-item {
+        margin: 0.75rem 0;
+        width: 100%;
+      }
+
+      .menu-toggle {
+        display: block;
       }
 
       .case-title {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
       }
 
-      .case-details {
-        flex-direction: column;
-        gap: 1rem;
+      .section-title {
+        font-size: 1.25rem;
       }
 
-      .detail-box {
-        flex: none;
+      .case-meta {
+        grid-template-columns: 1fr;
+      }
+
+      .case-header, .case-section {
+        padding: 1.25rem;
+      }
+
+      .message {
+        padding-left: 3rem;
+      }
+
+      .msg-avatar {
+        width: 2.5rem;
+        height: 2.5rem;
       }
 
       .conversation::before {
-        left: 25px;
+        left: 1.25rem;
       }
 
-      .avatar {
-        width: 34px;
-        height: 34px;
-        font-size: 0.85rem;
+      .footer-content {
+        flex-direction: column;
+        gap: 1rem;
       }
-
-      .message-content {
-        margin-left: 2.5rem;
-        padding: 1.25rem;
-      }
-    }
-
-    /* Animated elements */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes fadeInUp {
-      from { 
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to { 
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Make conversation messages appear sequentially */
-    .message:nth-child(1) { animation-delay: 0.2s; }
-    .message:nth-child(2) { animation-delay: 0.4s; }
-    .message:nth-child(3) { animation-delay: 0.6s; }
-    .message:nth-child(4) { animation-delay: 0.8s; }
-    .message:nth-child(5) { animation-delay: 1s; }
-    .message:nth-child(6) { animation-delay: 1.2s; }
-    .message:nth-child(7) { animation-delay: 1.4s; }
-    .message:nth-child(8) { animation-delay: 1.6s; }
-    .message:nth-child(9) { animation-delay: 1.8s; }
-    .message:nth-child(10) { animation-delay: 2s; }
-
-    /* Page decorations */
-    .page-decoration {
-      position: fixed;
-      opacity: 0.05;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .deco-1 {
-      top: 10%;
-      left: 3%;
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      background: radial-gradient(circle, var(--primary-color), transparent 70%);
-      animation: float 15s infinite ease-in-out;
-    }
-
-    .deco-2 {
-      bottom: 15%;
-      right: 5%;
-      width: 250px;
-      height: 250px;
-      border-radius: 50%;
-      background: radial-gradient(circle, var(--accent-color), transparent 70%);
-      animation: float 20s infinite ease-in-out reverse;
-    }
-
-    @keyframes float {
-      0% { transform: translate(0, 0); }
-      50% { transform: translate(10px, 15px); }
-      100% { transform: translate(0, 0); }
     }
   </style>
 </head>
 <body>
-  {% include header.html %}
-  <div class="page-decoration deco-1"></div>
-  <div class="page-decoration deco-2"></div>
-  
-  <div class="case-container">
-    <div class="case-header">
-      <h1 class="case-title">{{ page.title }}</h1>
-      <p class="case-subtitle">{{ page.subtitle }}</p>
-      
-      <div class="case-details">
-        <div class="detail-box">
-          <div class="detail-label">Patient</div>
-          <div class="detail-value">{{ page.patient_details }}</div>
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar">
+        <a class="navbar-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+        <button class="menu-toggle" id="menuToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+        <ul class="navbar-nav" id="navMenu">
+          <li class="nav-item">
+            <a class="nav-link {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if page.url == '/about/' %}active{% endif %}" href="{{ '/about/' | relative_url }}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if page.url contains '/blog/' %}active{% endif %}" href="{{ '/blog/' | relative_url }}">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if page.url contains '/cases/' %}active{% endif %}" href="{{ '/cases/' | relative_url }}">Cases</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if page.url == '/contact/' %}active{% endif %}" href="{{ '/contact/' | relative_url }}">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="case-study">
+    <div class="container">
+      <div class="case-header">
+        <h1 class="case-title">{{ page.title }}</h1>
+        <p class="case-subtitle">{{ page.subtitle }}</p>
+        
+        <div class="case-meta">
+          <div class="meta-item">
+            <span class="meta-label">Patient</span>
+            <span class="meta-value">{{ page.patient_details }}</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Category</span>
+            <span class="meta-value">{{ page.category }}</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Difficulty</span>
+            <span class="meta-value">{{ page.difficulty }}</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Date</span>
+            <span class="meta-value">{{ page.date | date: "%B %d, %Y" }}</span>
+          </div>
         </div>
-        <div class="detail-box">
-          <div class="detail-label">Category</div>
-          <div class="detail-value">{{ page.category }}</div>
+      </div>
+
+      <section class="case-section">
+        <h2 class="section-title">Case Overview</h2>
+        <p>{{ page.summary }}</p>
+      </section>
+
+      <section class="case-section">
+        <h2 class="section-title">Consultation</h2>
+        <div class="conversation" id="case-conversation">
+          <!-- Conversation content will be dynamically inserted -->
         </div>
-        <div class="detail-box">
-          <div class="detail-label">Difficulty</div>
-          <div class="detail-value">{{ page.difficulty }}</div>
+      </section>
+
+      <section class="case-section">
+        <h2 class="section-title">Key Learning Points</h2>
+        <ul class="key-points-list">
+          {% for point in page.key_points %}
+            <li class="list-item">{{ point }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <section class="case-section">
+        <h2 class="section-title">Tags</h2>
+        <div class="tags-container">
+          {% for tag in page.tags %}
+            <span class="tag">{{ tag }}</span>
+          {% endfor %}
         </div>
-        <div class="detail-box">
-          <div class="detail-label">Date</div>
-          <div class="detail-value">{{ page.date | date: "%B %d, %Y" }}</div>
+      </section>
+
+      <section class="case-section">
+        <h2 class="section-title">Additional Resources</h2>
+        <ul class="resources-list">
+          {% for resource in page.additional_resources %}
+            <li class="resource-item">
+              <a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <div class="case-pagination">
+        {% if page.previous.url %}
+        <a class="page-link page-link-prev" href="{{ page.previous.url }}">
+          <i class="fas fa-chevron-left"></i>
+          Previous Case
+        </a>
+        {% else %}
+        <span></span>
+        {% endif %}
+        
+        {% if page.next.url %}
+        <a class="page-link page-link-next" href="{{ page.next.url }}">
+          Next Case
+          <i class="fas fa-chevron-right"></i>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-copyright">
+          &copy; {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.
+        </div>
+        <div class="footer-links">
+          <a href="{{ '/privacy/' | relative_url }}" class="footer-link">Privacy Policy</a>
+          <a href="{{ '/terms/' | relative_url }}" class="footer-link">Terms of Use</a>
+          <a href="{{ '/contact/' | relative_url }}" class="footer-link">Contact</a>
         </div>
       </div>
     </div>
+  </footer>
 
-    <div class="case-summary">
-      <h2 class="summary-title">Case Overview</h2>
-      <p>{{ page.summary }}</p>
-    </div>
-
-    <div class="conversation" id="case-conversation">
-      <!-- Doctor message template -->
-      <div class="message doctor">
-        <div class="message-header">
-          <div class="avatar doctor-avatar">D</div>
-          <div class="name doctor-name">Dr. {{ page.doctor_name }}</div>
-        </div>
-        <div class="message-content">
-          This is where the doctor's message will appear. The content will be parsed from the markdown.
-        </div>
-      </div>
-      
-      <!-- Student message template -->
-      <div class="message student">
-        <div class="message-header">
-          <div class="avatar student-avatar">S</div>
-          <div class="name student-name">Student</div>
-        </div>
-        <div class="message-content">
-          This is where the student's message will appear. The content will be parsed from the markdown.
-        </div>
-      </div>
-    </div>
-
-    <div class="key-points">
-      <h2 class="key-points-title">Key Learning Points</h2>
-      <ul class="key-points-list">
-        {% for point in page.key_points %}
-          <li>{{ point }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-
-    <div class="case-footer">
-      <div class="case-tags">
-        {% for tag in page.tags %}
-          <span class="tag">{{ tag }}</span>
-        {% endfor %}
-      </div>
-    </div>
-
-    <div class="additional-resources">
-      <h3 class="resources-title">Additional Resources</h3>
-      <ul class="resources-list">
-        {% for resource in page.additional_resources %}
-          <li><a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a></li>
-        {% endfor %}
-      </ul>
-    </div>
-
-    <div class="pagination">
-      {% if page.previous.url %}
-      <a class="prev-link" href="{{ page.previous.url }}">
-        <i class="fas fa-chevron-left"></i>
-        Previous Case
-      </a>
-      {% else %}
-      <span></span>
-      {% endif %}
-      
-      {% if page.next.url %}
-      <a class="next-link" href="{{ page.next.url }}">
-        Next Case
-        <i class="fas fa-chevron-right"></i>
-      </a>
-      {% endif %}
-    </div>
-  </div>
-
-  {% include footer.html %}
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Fade in elements as they appear on screen
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
+      // Mobile menu toggle
+      const menuToggle = document.getElementById('menuToggle');
+      const navMenu = document.getElementById('navMenu');
+      
+      if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', function() {
+          navMenu.classList.toggle('show');
         });
-      }, {
-        threshold: 0.1
-      });
+      }
       
-      // Observe elements that should fade in
-      document.querySelectorAll('.case-summary, .key-points, .additional-resources, .case-footer').forEach(el => {
-        observer.observe(el);
-      });
-      
-      // Parse the markdown content
+      // Parse conversation content
       const conversationElement = document.getElementById('case-conversation');
       
-      // Clear placeholder content
-      conversationElement.innerHTML = '';
-      
-      // Get conversation content from Jekyll frontmatter
-      const conversationText = `{{ page.conversation | strip }}`;
-      
-      // Split the conversation by speaker indicators
-      const parts = conversationText.split(/(?=^Doctor:|^Student:)/m);
-      
-      // Process each part with a delay for animation
-      parts.forEach((part, index) => {
-        if (!part.trim()) return;
+      if (conversationElement) {
+        // Clear any placeholder content
+        conversationElement.innerHTML = '';
         
-        // Determine speaker
-        let speaker, name, avatar, speakerClass;
+        // Parse the conversation from Jekyll front matter
+        const conversationText = `{{ page.conversation | strip }}`;
         
-        if (part.startsWith('Doctor:')) {
-          speaker = 'Doctor';
-          name = '{{ page.doctor_name }}';
-          avatar = 'D';
-          speakerClass = 'doctor';
-        } else if (part.startsWith('Student:')) {
-          speaker = 'Student';
-          name = 'Student';
-          avatar = 'S';
-          speakerClass = 'student';
-        } else {
-          return;
+        // Split by speaker indicators
+        const speakerRegex = /^(Doctor|Student):/gm;
+        let matches = [];
+        let match;
+        
+        // Find all speaker indicators and their positions
+        while ((match = speakerRegex.exec(conversationText)) !== null) {
+          matches.push({
+            speaker: match[1],
+            position: match.index
+          });
         }
         
-        // Extract content (remove the speaker prefix)
-        const content = part.replace(/^(Doctor:|Student:)/, '').trim();
+        // Extract conversation segments
+        let segments = [];
+        for (let i = 0; i < matches.length; i++) {
+          const currentMatch = matches[i];
+          const nextMatch = matches[i + 1];
+          
+          const start = currentMatch.position;
+          const end = nextMatch ? nextMatch.position : conversationText.length;
+          
+          const content = conversationText.substring(start, end).trim();
+          segments.push({
+            speaker: currentMatch.speaker,
+            content: content.replace(/^(Doctor|Student):/, '').trim()
+          });
+        }
         
-        // Create message element
-        const messageElement = document.createElement('div');
-        messageElement.className = `message ${speakerClass}`;
-        messageElement.style.animationDelay = `${0.2 + index * 0.2}s`;
+        // Function to convert markdown-like formatting to HTML
+        function formatContent(text) {
+          // Handle paragraphs
+          let formattedText = text.split(/\n\s*\n/).map(p => `<p>${p.trim()}</p>`).join('');
+          
+          // Handle unordered lists
+          formattedText = formattedText.replace(/<p>((?:\s*-\s+.+\n?)+)<\/p>/g, function(match, listContent) {
+            const items = listContent.split(/\s*-\s+/).filter(Boolean);
+            return '<ul>' + items.map(item => `<li>${item.trim()}</li>`).join('') + '</ul>';
+          });
+          
+          // Handle ordered lists
+          formattedText = formattedText.replace(/<p>((?:\s*\d+\.\s+.+\n?)+)<\/p>/g, function(match, listContent) {
+            const items = listContent.split(/\s*\d+\.\s+/).filter(Boolean);
+            return '<ol>' + items.map(item => `<li>${item.trim()}</li>`).join('') + '</ol>';
+          });
+          
+          // Handle bold text
+          formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+          
+          // Handle italic text
+          formattedText = formattedText.replace(/\*(.*?)\*/g, '<em>$1</em>');
+          
+          // Handle single line breaks within paragraphs
+          formattedText = formattedText.replace(/<p>(.*?)\n(.*?)<\/p>/g, '<p>$1 $2</p>');
+          
+          return formattedText;
+        }
         
-        // Create message header
-        const headerElement = document.createElement('div');
-        headerElement.className = 'message-header';
-        
-        const avatarElement = document.createElement('div');
-        avatarElement.className = `avatar ${speakerClass}-avatar`;
-        avatarElement.textContent = avatar;
-        
-        const nameElement = document.createElement('div');
-        nameElement.className = `name ${speakerClass}-name`;
-        nameElement.textContent = name;
-        
-        headerElement.appendChild(avatarElement);
-        headerElement.appendChild(nameElement);
-        
-        // Create message content
-        const contentElement = document.createElement('div');
-        contentElement.className = 'message-content';
-        contentElement.innerHTML = content;
-        
-        // Assemble message
-        messageElement.appendChild(headerElement);
-        messageElement.appendChild(contentElement);
-        
-        // Add to conversation
-        conversationElement.appendChild(messageElement);
-      });
+        // Create message elements for each segment
+        segments.forEach((segment, index) => {
+          const isDoctor = segment.speaker === 'Doctor';
+          const className = isDoctor ? 'doctor-msg' : 'student-msg';
+          const avatarClass = isDoctor ? 'doctor-avatar' : 'student-avatar';
+          const avatarText = isDoctor ? 'D' : 'S';
+          const name = isDoctor ? '{{ page.doctor_name }}' : 'Student';
+          const formattedContent = formatContent(segment.content);
+          
+          const messageElement = document.createElement('div');
+          messageElement.className = `message ${className}`;
+          messageElement.innerHTML = `
+            <div class="msg-avatar ${avatarClass}">${avatarText}</div>
+            <div class="msg-bubble">
+              <div class="msg-header">
+                <span class="msg-name">${name}</span>
+              </div>
+              <div class="msg-content">
+                ${formattedContent}
+              </div>
+            </div>
+          `;
+          
+          conversationElement.appendChild(messageElement);
+        });
+      }
     });
   </script>
 </body>
