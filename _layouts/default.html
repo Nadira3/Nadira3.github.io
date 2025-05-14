@@ -222,6 +222,65 @@
         }
       });
     });
+document.addEventListener('DOMContentLoaded', function() {
+  const tables = document.querySelectorAll('table');
+  
+  tables.forEach(table => {
+    // Create wrapper
+    const wrapper = document.createElement('div');
+    wrapper.className = 'table-wrapper';
+    
+    // Insert wrapper before table in the DOM
+    table.parentNode.insertBefore(wrapper, table);
+    
+    // Move table into wrapper
+    wrapper.appendChild(table);
+    
+    // Count columns to determine layout strategy
+    const headerCells = table.querySelectorAll('thead th');
+    if (headerCells.length <= 5) {
+      table.classList.add('small-table');
+    }
+    
+    // Check if table needs horizontal scrolling
+    if (table.offsetWidth > wrapper.offsetWidth) {
+      wrapper.classList.add('scrollable');
+    }
+    
+    // Add smart ellipsis to very long cell content
+    const cells = table.querySelectorAll('td');
+    cells.forEach(cell => {
+      if (cell.textContent.length > 100) {
+        const text = cell.textContent;
+        // Don't truncate if cell contains mostly numbers/data
+        const isDataCell = /^\s*[0-9.,%$+-]+\s*$/.test(text);
+        
+        if (!isDataCell) {
+          // Create a tooltip with full content if content is very long
+          cell.setAttribute('title', text);
+          
+          // If it's running text (not data), implement smart truncation
+          if (text.length > 150) {
+            cell.classList.add('truncate-text');
+          }
+        }
+      }
+    });
+  });
+  
+  // Recalculate on window resize
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('.table-wrapper').forEach(wrapper => {
+      const table = wrapper.querySelector('table');
+      if (table && table.offsetWidth > wrapper.offsetWidth) {
+        wrapper.classList.add('scrollable');
+      } else {
+        wrapper.classList.remove('scrollable');
+      }
+    });
+  });
+});
   </script>
+
 </body>
 </html>

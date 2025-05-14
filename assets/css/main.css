@@ -81,24 +81,31 @@ img {
   max-width: 100%;
   height: auto;
 }
+
 /* Tables */
 /* Book-style Table Styling that works with markdown-generated tables */
-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
+
+/* Wrapper div - will be automatically applied via JavaScript */
+.table-wrapper {
   margin: 2.5rem 0;
-  font-family: 'Libre Baskerville', serif;
+  position: relative;
+  overflow-x: auto;
+  max-width: 100%;
   background: #fff9f0; /* Cream background for aged paper look */
   border: 1px solid rgba(160, 120, 85, 0.3);
   border-radius: 2px;
   box-shadow: 
     0 3px 6px rgba(0,0,0,0.16), 
     0 3px 6px rgba(0,0,0,0.23);
-  position: relative;
-  display: block; /* Critical for enabling overflow scrolling */
-  overflow-x: auto; /* Enable horizontal scrolling */
-  max-width: 100%;
+}
+
+/* Style for all markdown tables */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: 'Libre Baskerville', serif;
+  min-width: 650px; /* Prevents extreme squishing */
 }
 
 /* Table headers */
@@ -106,10 +113,10 @@ thead {
   position: sticky;
   top: 0;
   z-index: 10;
+  background-color: #61412e; /* Rich brown color */
 }
 
 th {
-  background-color: #61412e; /* Rich brown color */
   color: #f3e8d8;
   font-weight: 700;
   text-align: left;
@@ -118,7 +125,20 @@ th {
   border-bottom: 2px solid #8c6e4e;
   text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
   letter-spacing: 0.05em;
-  white-space: nowrap; /* Prevent text wrapping */
+  vertical-align: top;
+  min-width: 100px; /* Minimum column width */
+}
+
+/* Intelligent wrapping for headers */
+th {
+  /* Allow text wrapping but prevent excessive wrapping */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  
+  /* These values ensure reasonable wrapping behavior */
+  max-width: 300px;
+  white-space: normal;
 }
 
 /* Table rows */
@@ -127,6 +147,10 @@ td {
   border-bottom: 1px solid rgba(160, 120, 85, 0.2);
   color: #382718;
   line-height: 1.6;
+  vertical-align: top;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  min-width: 100px; /* Matches the header min-width */
 }
 
 /* Last row no bottom border */
@@ -156,55 +180,39 @@ tbody tr:hover {
   z-index: 2;
 }
 
-/* Ensure minimum width for the table to prevent squashing */
-table tbody, table thead {
-  min-width: 650px;
-  display: table;
-  width: 100%;
+/* Table sizing strategy */
+/* For tables with many columns, prevent extreme squishing */
+table {
+  /* Auto sizing with a minimum */
+  table-layout: auto;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  th, td {
-    padding: 0.75rem 1rem;
-    font-size: 0.9rem;
-  }
-  
-  /* Subtle scroll indicator instead of shadow */
-  table {
-    background-image: 
-      radial-gradient(
-        circle at right center,
-        rgba(160, 120, 85, 0.05),
-        transparent 70%
-      );
-    background-size: 15% 100%;
-    background-repeat: no-repeat;
-    background-position: right center;
-  }
+/* Tables with <= 5 columns get fixed layout for equal columns */
+table.small-table {
+  table-layout: fixed;
 }
 
 /* Optional: Custom scrollbar styling for a more vintage look */
-table::-webkit-scrollbar {
+.table-wrapper::-webkit-scrollbar {
   width: 10px;
   height: 8px;
 }
 
-table::-webkit-scrollbar-track {
+.table-wrapper::-webkit-scrollbar-track {
   background: rgba(160, 120, 85, 0.1);
 }
 
-table::-webkit-scrollbar-thumb {
+.table-wrapper::-webkit-scrollbar-thumb {
   background: rgba(160, 120, 85, 0.5);
   border-radius: 5px;
 }
 
-table::-webkit-scrollbar-thumb:hover {
+.table-wrapper::-webkit-scrollbar-thumb:hover {
   background: rgba(160, 120, 85, 0.7);
 }
 
 /* Add aged paper texture effect (optional) */
-table::before {
+.table-wrapper::before {
   content: '';
   position: absolute;
   top: 0;
@@ -218,11 +226,7 @@ table::before {
 }
 
 /* Add subtle book binding effect */
-table {
-  position: relative;
-}
-
-table::after {
+.table-wrapper::after {
   content: '';
   position: absolute;
   left: 0;
@@ -237,6 +241,86 @@ table::after {
   border-right: 1px solid rgba(120, 80, 40, 0.1);
   pointer-events: none;
   z-index: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  th, td {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  /* Visual indicator for scrollable tables */
+  .table-wrapper.scrollable::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 30px;
+    background: linear-gradient(to left, 
+      rgba(160, 120, 85, 0.15),
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  th, td {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+    /* Set minimum width to prevent excessive wrapping */
+    min-width: 80px;
+  }
+  
+  /* Further reduce visual weight */
+  .table-wrapper {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+  }
+}
+
+/* Additional styling for very long text in cells */
+.truncate-text {
+  position: relative;
+  max-height: 6.4em; /* About 4 lines of text */
+  overflow: hidden;
+}
+
+.truncate-text::after {
+  content: '...';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(to right, transparent, #fff9f0 30%);
+  padding-left: 40px;
+}
+
+/* Print styles - ensure tables print nicely */
+@media print {
+  .table-wrapper {
+    overflow: visible;
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+  
+  th {
+    background-color: #f3f3f3 !important;
+    color: #000 !important;
+    border-bottom: 1px solid #000;
+  }
+  
+  .truncate-text {
+    max-height: none;
+    overflow: visible;
+  }
+  
+  .truncate-text::after {
+    display: none;
+  }
 }
 
 /* Navigation */
