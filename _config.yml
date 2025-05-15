@@ -21,7 +21,7 @@ collections:
   journal:
     output: true
 
-markdown: GFM
+markdown: kramdown
 
 # Default front matter
 defaults:
