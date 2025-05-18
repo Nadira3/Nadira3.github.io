@@ -3,7 +3,7 @@ layout: journal
 title: "Pediatric Surgery – Sample Report: Wilm's Tumor"
 date: 2025-05-07
 category: Daily # Options: Daily, Special
-header_image: /assets/images/day-two.jpeg
+header_image: /assets/images/wilms.jpeg
 mood: Serious # Optional: Add your mood
 ---
 Case Study: Sample Report and tutorial OSCE challenges
