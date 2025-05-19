@@ -1,12 +1,18 @@
 (function(){
-  const allowedPaths = ["/", "/index.html", "/journal/", "/journal/index.html", "/contact/"];
   const path = window.location.pathname;
 
-  if (!allowedPaths.includes(path)) {
+  // Allow root (home) and anything under /journal/
+  const isPublic =
+    path === "/" ||
+    path === "/index.html" ||
+    path.startsWith("/journal/") ||
+    path === "/journal";
+
+  if (!isPublic) {
     const modal = document.getElementById("auth-modal");
     modal.style.display = "flex";
 
-    const password = "N4dir4Only"; // Set your password here
+    const password = "N4dir4Only"; // Your real password here
 
     document.getElementById("auth-submit").onclick = function() {
       const entered = document.getElementById("auth-input").value;
