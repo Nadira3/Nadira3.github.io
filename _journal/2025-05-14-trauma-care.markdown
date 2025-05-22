@@ -118,7 +118,7 @@ Detailed mindmap on shock
 #### CLASS DIAGRAM
 
 
-<div class="mermaid">
+<code class="language-mermaid"> 
 classDiagram
     class Shock {
         +Definition: Acute circulatory failure
@@ -210,11 +210,11 @@ classDiagram
     
     Shock --> ClinicalFeatures
     Shock --> Management
-</div>
+</code>
 
 
 #### FLOW CHART
-<div class="mermaid">
+<code class="language-mermaid"> 
 flowchart LR
     %% Main Shock Overview
     SHOCK[SHOCK\nAcute circulatory failure compromising tissue perfusion] --> INTRODUCTION
@@ -398,4 +398,4 @@ flowchart LR
     class SHOCK main;
     class INTRODUCTION,TYPES,CLINICAL,INVESTIGATIONS,MANAGEMENT section;
     class HYPO,CARDIO,DISTRIB,OBSTRUCT,ENDO,GEN_FEATURES,SEVERE_SIGNS,SEPTIC_UNIQUE,GEN_STEPS,SPEC_TREAT,COMP subsection;
-</div>
+</code>
