@@ -118,7 +118,7 @@ Detailed mindmap on shock
 #### CLASS DIAGRAM
 
 
-<code class="language-mermaid"> 
+<code class="mermaid"> 
 classDiagram
     class Shock {
         +Definition: Acute circulatory failure
@@ -214,7 +214,7 @@ classDiagram
 
 
 #### FLOW CHART
-<code class="language-mermaid"> 
+<code class="mermaid"> 
 flowchart LR
     %% Main Shock Overview
     SHOCK[SHOCK\nAcute circulatory failure compromising tissue perfusion] --> INTRODUCTION
