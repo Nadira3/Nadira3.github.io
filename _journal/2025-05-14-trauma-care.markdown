@@ -117,7 +117,7 @@ Detailed mindmap on shock
 
 #### CLASS DIAGRAM
 
-```mermaid
+<div class="mermaid">
 classDiagram
     class Shock {
         +Definition: Acute circulatory failure
@@ -209,7 +209,7 @@ classDiagram
     
     Shock --> ClinicalFeatures
     Shock --> Management
-```
+</div>
 
 
 #### FLOW CHART
