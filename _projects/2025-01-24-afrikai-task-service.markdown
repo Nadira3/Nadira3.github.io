@@ -272,7 +272,7 @@ Query Parameters:
    - System errors
 
 ## Execution Flow
-<div class="mermaid">
+```mermaid
 sequenceDiagram
     participant C as Client
     participant G as Gateway
@@ -307,4 +307,4 @@ sequenceDiagram
             T-->>C: Error Response
         end
     end
-</div>
+```

@@ -91,7 +91,7 @@ Interactive API documentation available at: `http://localhost:8083/swagger-ui.ht
 ## Execution Flow
 
 ### Label Service Interactions
-<div class="mermaid">
+```mermaid
 graph TD
     subgraph "External Systems"
         Client[External Client]
@@ -133,11 +133,11 @@ graph TD
     RepositoryLayer --> Database
 
     ServiceLayer <-->|Task Management| TaskService
-</div>
+```
 
 
 ### Detailed Service Sequence
-<div class="mermaid">
+```mermaid
 sequenceDiagram
     participant Client
     participant APIGateway
@@ -197,7 +197,7 @@ sequenceDiagram
     else Authentication Failed
         APIGateway-->>Client: Authentication Error
     end
-</div>
+```
 
 
 ## License

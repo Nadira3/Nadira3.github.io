@@ -202,7 +202,7 @@ void whenValidUser_thenReturnsJwtToken() throws Exception {
 ![Architectural Design]({{ "/assets/images/design.jpg" | relative_url }})
 
 **exexcution flow**
-<div class="mermaid">
+```mermaid
 graph LR
     A[Service Registry - Eureka] --> B[API Gateway]
     
@@ -264,7 +264,7 @@ graph LR
         O[Health Check]
         P[Metrics]
     end
-</div>
+```
 
 ## Key Workflow:
 

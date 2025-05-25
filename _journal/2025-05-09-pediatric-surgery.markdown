@@ -86,7 +86,7 @@ Circumcision is the surgical removal of the prepuce (foreskin) of the penis.
 - Look for: dysmorphic features, distress signs, cachexia.
 
 #### Sequence
-<div class="mermaid">
+```mermaid
  flowchart TB;
     %% Overall Examination Flow
     Start[Start Comprehensive Medical Examination] --> Introduction[Introduce Self];
@@ -285,7 +285,7 @@ Circumcision is the surgical removal of the prepuce (foreskin) of the penis.
     Hands_Findings --> Fingernails_Findings
     Fingernails_Findings --> Legs_Findings
     Legs_Findings --> Examination_Conclusion[Comprehensive Examination Conclusion]   
-</div>
+```
 ---
 
 ### Vital Signs (Order Matters)
