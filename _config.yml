@@ -63,6 +63,7 @@ paginate_path: "/blog/page:num/"
 exclude:
   - README.md
   - vendor
+  - sitemap.xml
   - .sass-cache
   - .jekyll-cache
   - gemfiles
