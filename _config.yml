@@ -46,7 +46,10 @@ defaults:
       path: ""
     values:
       layout: "default"
-
+    - scope:
+      path: ""
+    values:
+      sitemap: true
 # Plugins
 plugins:
   - jekyll-paginate
