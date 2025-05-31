@@ -5,7 +5,7 @@ date: 2024-11-18
 technologies: [Java, JDBC, MySQL]
 github_link: https://github.com/Nadira3/legendary-java-journey/tree/main/projects/bankapp_jdbc
 demo_link: https://drive.google.com/file/d/1zbHDum57chpQ08yfXop_zBzPqq4x-gSo/view?usp=drivesdk
-header_image: /assets/images/logo.png
+header_image: /assets/images/defaultpost.jpg
 excerpt: "A brief description of your project."
 ---
 # Simple Banking Application
