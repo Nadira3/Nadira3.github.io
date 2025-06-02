@@ -6,6 +6,7 @@ description: A personal portfolio website. Exploring the intersection of medicin
 lang: en
 baseurl: ""
 url: "https://nadira3.github.io"
+permalink: /:categories/:title/
 
 # Social media
 twitter_username: techdoctorP
