@@ -1,0 +1,38 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Precious Ikhianose Aitanun</h3>
+        <p>Clinical journal &amp; preserved archive. The full portfolio lives on the new site.</p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Navigate</h3>
+        <ul>
+          <li><a href="{{ '/' | relative_url }}">Home</a></li>
+          <li><a href="{{ '/journal/' | relative_url }}">Journal</a></li>
+          <li><a href="{{ site.portfolio_url }}">Portfolio&nbsp;↗</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Connect</h3>
+        <ul>
+          {% if site.twitter_username %}
+          <li><a href="https://twitter.com/{{ site.twitter_username }}" target="_blank" rel="noopener">Twitter</a></li>
+          {% endif %}
+          {% if site.linkedin_username %}
+          <li><a href="https://linkedin.com/in/{{ site.linkedin_username }}" target="_blank" rel="noopener">LinkedIn</a></li>
+          {% endif %}
+          {% if site.github_username %}
+          <li><a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">GitHub</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

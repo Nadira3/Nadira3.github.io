@@ -1,0 +1,93 @@
+---
+layout: default
+title: Precious Ikhianose Aitanun — Clinical Journal & Archive
+---
+
+<div class="home">
+  <div class="home-inner">
+
+    <!-- Archive notice -->
+    <div class="home-notice">
+      <span class="dot"></span>
+      <span>Preserved archive · The main portfolio has moved</span>
+    </div>
+
+    <!-- Hero -->
+    <header class="home-hero">
+      <p class="home-kicker">Precious Ikhianose Aitanun</p>
+      <h1 class="home-title">Clinical medicine,<br>written down.</h1>
+      <p class="home-lede">
+        This is the original home of my work at the intersection of
+        <strong>medicine</strong> and <strong>software</strong>. The full,
+        redesigned portfolio — projects, résumés, and contact — now lives on a
+        new site. What remains here is the part worth keeping in its own place:
+        my <strong>clinical journal</strong>.
+      </p>
+
+      <div class="home-cta">
+        <a class="home-btn primary" href="{{ site.portfolio_url }}">
+          Visit the new portfolio →
+        </a>
+        <a class="home-btn ghost" href="{{ '/journal/' | relative_url }}">
+          Read the clinical journal
+        </a>
+      </div>
+    </header>
+
+    <!-- Two-track explainer -->
+    <section class="home-tracks">
+      <a class="home-track" href="{{ site.portfolio_url }}">
+        <div class="home-track-label">Channel 01 · The Portfolio</div>
+        <h2>Engineering &amp; projects</h2>
+        <p>
+          CarePulse, DIOS, Chorionyx, AfrikAI and more — production systems
+          built across healthcare and AI. Now on the new site.
+        </p>
+        <span class="home-track-go">precious-aitanun.pages.dev →</span>
+      </a>
+
+      <a class="home-track" href="{{ '/journal/' | relative_url }}">
+        <div class="home-track-label">Channel 02 · This Archive</div>
+        <h2>Clinical journal</h2>
+        <p>
+          Case reports and OSCE tutorials from surgical rotations — pediatric,
+          cardiothoracic, plastic, and trauma. Kept and maintained here.
+        </p>
+        <span class="home-track-go">Browse entries →</span>
+      </a>
+    </section>
+
+    <!-- Latest journal entries -->
+    <section class="home-latest">
+      <div class="home-latest-head">
+        <h2>Latest from the journal</h2>
+        <a href="{{ '/journal/' | relative_url }}">All entries →</a>
+      </div>
+
+      <div class="home-latest-list">
+        {% assign recent = site.posts | slice: 0, 4 %}
+        {% for entry in recent %}
+        <a class="home-entry" href="{{ entry.url | relative_url }}">
+          <div class="home-entry-thumb">{% include journal-cover.html entry=entry variant="thumb" %}</div>
+          <div class="home-entry-text">
+            <div class="home-entry-meta">
+              <time datetime="{{ entry.date | date_to_xmlschema }}">{{ entry.date | date: "%b %-d, %Y" }}</time>
+              {% if entry.category %}<span class="home-entry-cat {{ entry.category | downcase }}">{{ entry.category }}</span>{% endif %}
+            </div>
+            <h3>{{ entry.title }}</h3>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Footer line -->
+    <footer class="home-foot">
+      <p>
+        Looking for résumés, project demos, or to get in touch?
+        <a href="{{ site.portfolio_url }}">Everything's on the new site →</a>
+      </p>
+    </footer>
+
+  </div>
+</div>

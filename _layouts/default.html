@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="9Osx7qNCubonRPc8vydiN4whXldpEGy7BFJu0vIcWSM" />
+  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Bootstrap Grid (for layout only) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap-grid.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/journal.css">
+  
+  <!-- Meta Tags -->
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  
+  <!-- Favicon -->
+  <link rel="stylesheet" href='{{ "/assets/images/favicon.ico" | relative_url }}'>
+  <link rel="apple-touch-icon" sizes="180x180" href='{{ "/assets/images/apple-touch-icon.png" | relative_url }}'>
+  <link rel="android-chrome" type="image/png" sizes="192x192" href='{{ "/assets/images/android-chrome-192x192.png" | relative_url }}'>
+  <link rel="android-chrome" type="image/png" sizes="512x512" href='{{ "/assets/images/android-chrome-512x512.png" | relative_url }}'>
+  <link rel="icon" type="image/png" sizes="32x32" href='{{ "/assets/images/favicon-32x32.png" | relative_url }}'>
+  <link rel="icon" type="image/png" sizes="16x16" href='{{ "/assets/images/favicon-16x16.png" | relative_url }}'>
+  <link rel="manifest" href='{{ "/assets/images/site.webmanifest" | relative_url }}'>
+  {% seo %}
+</head>
+<body>
+  {% include header.html %}
+  
+
+  <main class="site-content fade-in">
+    {{ content }}
+  </main>
+  
+  {% include footer.html %}
+ 
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+    // Convert Jekyll's ```mermaid code fences (rendered as <pre><code class="language-mermaid">)
+    // into <div class="mermaid"> nodes that mermaid can render.
+    const blocks = document.querySelectorAll('pre > code.language-mermaid, pre > code.mermaid');
+    blocks.forEach(function (codeBlock) {
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      // Use textContent to preserve the raw graph definition (no HTML entity escaping).
+      mermaidDiv.textContent = codeBlock.textContent;
+      codeBlock.parentNode.parentNode.replaceChild(mermaidDiv, codeBlock.parentNode);
+    });
+
+    // Initialize without startOnLoad, then explicitly render the nodes we just created.
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'base',
+      themeVariables: {
+        primaryColor: '#dde9e3',
+        primaryBorderColor: '#356559',
+        primaryTextColor: '#24221e',
+        secondaryColor: '#e7e0d2',
+        tertiaryColor: '#f1ece2',
+        lineColor: '#356559',
+        textColor: '#24221e',
+        fontFamily: 'Inter, sans-serif'
+      },
+      securityLevel: 'loose',
+      flowchart: { useMaxWidth: true, htmlLabels: true }
+    });
+
+    if (document.querySelectorAll('.mermaid').length > 0) {
+      await mermaid.run({ querySelector: '.mermaid' });
+    }
+  </script>
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+
+  <!-- Floating Telegram Icon -->
+  <style>
+    .telegram-float {
+      position: fixed;
+      left: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 60px;
+      height: 60px;
+      background-color: #0088cc;
+      border-radius: 50%;
+      box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      cursor: move; /* Changed cursor to indicate draggable */
+      transition: box-shadow 0.3s ease, background-color 0.3s ease;
+      animation: pulse 2s infinite;
+      user-select: none; /* Prevents text selection during drag */
+      touch-action: none; /* Improves touch behavior */
+    }
+    
+    .telegram-float:hover {
+      box-shadow: 0 6px 20px rgba(0, 136, 204, 0.6);
+      background-color: #0099e6;
+    }
+    
+    .telegram-float i {
+      color: white;
+      font-size: 28px;
+      animation: wiggle 3s ease-in-out infinite;
+      transform-origin: center;
+      pointer-events: none; /* Makes icon not interfere with dragging */
+    }
+    
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(0, 136, 204, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 15px rgba(0, 136, 204, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 136, 204, 0);
+      }
+    }
+    
+    @keyframes wiggle {
+      0%, 100% {
+        transform: rotate(0deg);
+      }
+      25% {
+        transform: rotate(10deg);
+      }
+      75% {
+        transform: rotate(-10deg);
+      }
+    }
+    
+    /* Notification dot */
+    .telegram-float::after {
+      content: '';
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 12px;
+      height: 12px;
+      background-color: #ff3366;
+      border-radius: 50%;
+      border: 2px solid white;
+      animation: blink 1.5s infinite;
+      pointer-events: none; /* Makes dot not interfere with dragging */
+    }
+    
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    @media (max-width: 600px) {
+      .telegram-float {
+        width: 42px;
+        height: 42px;
+        left: 16px;
+      }
+      .telegram-float i { font-size: 19px; }
+      .telegram-float::after {
+        width: 9px;
+        height: 9px;
+        top: 3px;
+        right: 3px;
+        border-width: 1.5px;
+      }
+    }
+
+  </style>
+  
+  <a id="telegram-float" href="https://t.me/medquizz" class="telegram-float" title="Join My Telegram Community">
+    <i class="fab fa-telegram-plane"></i>
+  </a>
+  
+  <script>
+    // Draggable functionality for the Telegram float button
+    document.addEventListener('DOMContentLoaded', function() {
+      const telegramFloat = document.getElementById('telegram-float');
+      let isDragging = false;
+      let offsetX, offsetY;
+      
+      // Prevent default link behavior while dragging
+      telegramFloat.addEventListener('click', function(e) {
+        if (isDragging) {
+          e.preventDefault();
+        }
+      });
+      
+      // Mouse events for desktop
+      telegramFloat.addEventListener('mousedown', function(e) {
+        isDragging = true;
+        offsetX = e.clientX - telegramFloat.getBoundingClientRect().left;
+        offsetY = e.clientY - telegramFloat.getBoundingClientRect().top;
+        e.preventDefault(); // Prevent text selection
+      });
+      
+      document.addEventListener('mousemove', function(e) {
+        if (isDragging) {
+          const x = e.clientX - offsetX;
+          const y = e.clientY - offsetY;
+          
+          // Keep button within viewport bounds
+          const maxX = window.innerWidth - telegramFloat.offsetWidth;
+          const maxY = window.innerHeight - telegramFloat.offsetHeight;
+          
+          telegramFloat.style.left = Math.max(0, Math.min(x, maxX)) + 'px';
+          telegramFloat.style.top = Math.max(0, Math.min(y, maxY)) + 'px';
+          telegramFloat.style.transform = 'none'; // Remove the initial transform
+        }
+      });
+      
+      document.addEventListener('mouseup', function() {
+        if (isDragging) {
+          isDragging = false;
+          // Store position in localStorage to persist across page loads
+          localStorage.setItem('telegramFloatX', telegramFloat.style.left);
+          localStorage.setItem('telegramFloatY', telegramFloat.style.top);
+        }
+      });
+      
+      // Touch events for mobile
+      telegramFloat.addEventListener('touchstart', function(e) {
+        isDragging = true;
+        offsetX = e.touches[0].clientX - telegramFloat.getBoundingClientRect().left;
+        offsetY = e.touches[0].clientY - telegramFloat.getBoundingClientRect().top;
+      });
+      
+      document.addEventListener('touchmove', function(e) {
+        if (isDragging) {
+          const x = e.touches[0].clientX - offsetX;
+          const y = e.touches[0].clientY - offsetY;
+          
+          // Keep button within viewport bounds
+          const maxX = window.innerWidth - telegramFloat.offsetWidth;
+          const maxY = window.innerHeight - telegramFloat.offsetHeight;
+          
+          telegramFloat.style.left = Math.max(0, Math.min(x, maxX)) + 'px';
+          telegramFloat.style.top = Math.max(0, Math.min(y, maxY)) + 'px';
+          telegramFloat.style.transform = 'none'; // Remove the initial transform
+          e.preventDefault(); // Prevent scrolling while dragging
+        }
+      }, { passive: false });
+      
+      document.addEventListener('touchend', function() {
+        if (isDragging) {
+          isDragging = false;
+          // Store position in localStorage
+          localStorage.setItem('telegramFloatX', telegramFloat.style.left);
+          localStorage.setItem('telegramFloatY', telegramFloat.style.top);
+        }
+      });
+      
+      // Restore position from localStorage if available
+      window.addEventListener('load', function() {
+        const savedX = localStorage.getItem('telegramFloatX');
+        const savedY = localStorage.getItem('telegramFloatY');
+        
+        if (savedX && savedY) {
+          telegramFloat.style.left = savedX;
+          telegramFloat.style.top = savedY;
+          telegramFloat.style.transform = 'none'; // Remove the initial transform
+        }
+      });
+    });
+document.addEventListener('DOMContentLoaded', function() {
+  const tables = document.querySelectorAll('table');
+  
+  tables.forEach(table => {
+    // Create wrapper
+    const wrapper = document.createElement('div');
+    wrapper.className = 'table-wrapper';
+    
+    // Insert wrapper before table in the DOM
+    table.parentNode.insertBefore(wrapper, table);
+    
+    // Move table into wrapper
+    wrapper.appendChild(table);
+    
+    // Count columns to determine layout strategy
+    const headerCells = table.querySelectorAll('thead th');
+    if (headerCells.length <= 5) {
+      table.classList.add('small-table');
+    }
+    
+    // Check if table needs horizontal scrolling
+    if (table.offsetWidth > wrapper.offsetWidth) {
+      wrapper.classList.add('scrollable');
+    }
+    
+    // Add smart ellipsis to very long cell content
+    const cells = table.querySelectorAll('td');
+    cells.forEach(cell => {
+      if (cell.textContent.length > 100) {
+        const text = cell.textContent;
+        // Don't truncate if cell contains mostly numbers/data
+        const isDataCell = /^\s*[0-9.,%$+-]+\s*$/.test(text);
+        
+        if (!isDataCell) {
+          // Create a tooltip with full content if content is very long
+          cell.setAttribute('title', text);
+          
+          // If it's running text (not data), implement smart truncation
+          if (text.length > 150) {
+            cell.classList.add('truncate-text');
+          }
+        }
+      }
+    });
+  });
+  
+  // Recalculate on window resize
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('.table-wrapper').forEach(wrapper => {
+      const table = wrapper.querySelector('table');
+      if (table && table.offsetWidth > wrapper.offsetWidth) {
+        wrapper.classList.add('scrollable');
+      } else {
+        wrapper.classList.remove('scrollable');
+      }
+    });
+  });
+});
+  </script>
+
+</body>
+</html>

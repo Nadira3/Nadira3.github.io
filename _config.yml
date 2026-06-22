@@ -1,0 +1,57 @@
+# Site settings
+title: Precious Ikhianose Aitanun
+author: Precious Ikhianose Aitanun
+email: paitanun35@gmail.com
+description: Clinical journal and case reports by Precious Ikhianose Aitanun — surgical rotations, OSCE tutorials, and medical notes. Portfolio now at precious-aitanun.pages.dev.
+lang: en
+baseurl: ""
+url: "https://nadira3.github.io"
+
+# Social media
+twitter_username: techdoctorP
+github_username: Nadira3
+linkedin_username: precious-aitanun
+
+# New portfolio site
+portfolio_url: "https://precious-aitanun.pages.dev"
+
+markdown: GFM
+
+# Journal entries are stored as posts. Keep the /journal/ URL structure.
+permalink: /journal/:title/
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "journal"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+
+# Pagination (jekyll-paginate v1 — auto-generates /journal/page2/ etc.)
+paginate: 6
+paginate_path: "/journal/page:num/"
+
+exclude:
+  - README.md
+  - vendor
+  - .sass-cache
+  - .jekyll-cache
+  - gemfiles
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/

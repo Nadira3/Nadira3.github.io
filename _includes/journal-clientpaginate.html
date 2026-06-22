@@ -1,0 +1,50 @@
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var PER_PAGE = 6;
+    var container = document.getElementById('cat-entries');
+    var pagEl = document.getElementById('cat-pagination');
+    if (!container) return;
+
+    var cards = Array.prototype.slice.call(container.querySelectorAll('.jrnl-list-card'));
+    var total = cards.length;
+    var totalPages = Math.ceil(total / PER_PAGE);
+    var current = 1;
+
+    function show() {
+      cards.forEach(function (c) { c.style.display = 'none'; });
+      var start = (current - 1) * PER_PAGE;
+      cards.slice(start, start + PER_PAGE).forEach(function (c) { c.style.display = 'flex'; });
+      render();
+    }
+
+    function render() {
+      if (!pagEl) return;
+      pagEl.innerHTML = '';
+      if (totalPages <= 1) return;
+
+      function make(label, page, opts) {
+        opts = opts || {};
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'jrnl-page' + (opts.active ? ' active' : '') + (opts.disabled ? ' disabled' : '');
+        b.textContent = label;
+        if (!opts.disabled && !opts.active) {
+          b.addEventListener('click', function () {
+            current = page;
+            show();
+            container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        }
+        return b;
+      }
+
+      pagEl.appendChild(make('←', current - 1, { disabled: current === 1 }));
+      for (var i = 1; i <= totalPages; i++) {
+        pagEl.appendChild(make(String(i), i, { active: i === current }));
+      }
+      pagEl.appendChild(make('→', current + 1, { disabled: current === totalPages }));
+    }
+
+    show();
+  });
+</script>

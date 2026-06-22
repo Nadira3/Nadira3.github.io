@@ -1,0 +1,42 @@
+---
+layout: default
+title: Clinical Journal — Special
+permalink: /journal/special/
+---
+<div class="jrnl-list">
+  <div class="jrnl-list-inner">
+
+    <div class="jrnl-list-head">
+      <h1>Clinical Journal</h1>
+      <p>Special entries — extended case studies and OSCE tutorials.</p>
+
+      <div class="jrnl-filters">
+        <a class="jrnl-filter" href="{{ '/journal/' | relative_url }}">All</a>
+        <a class="jrnl-filter" href="{{ '/journal/daily/' | relative_url }}">Daily</a>
+        <a class="jrnl-filter active" href="{{ '/journal/special/' | relative_url }}">Special</a>
+      </div>
+    </div>
+
+    <div class="jrnl-list-entries" id="cat-entries">
+      {% assign special_entries = site.posts | where: "category", "Special" %}
+      {% for entry in special_entries %}
+      <a class="jrnl-list-card" href="{{ entry.url | relative_url }}">
+        <div class="jrnl-list-thumb">{% include journal-cover.html entry=entry variant="thumb" %}</div>
+        <div class="jrnl-list-text">
+          <div class="jrnl-list-metarow">
+            <time datetime="{{ entry.date | date_to_xmlschema }}">{{ entry.date | date: "%b %-d, %Y" }}</time>
+            <span class="jrnl-list-cat special">Special</span>
+          </div>
+          <h2 class="jrnl-list-title">{{ entry.title }}</h2>
+          <p class="jrnl-list-excerpt">{{ entry.excerpt | strip_html | truncate: 140 }}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+
+    <div class="jrnl-pagination" id="cat-pagination"></div>
+
+  </div>
+</div>
+
+{% include journal-clientpaginate.html %}

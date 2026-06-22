@@ -1,0 +1,67 @@
+{%- comment -%}
+  Reusable journal cover graphic.
+  Generates a deterministic SVG from the entry's category + title —
+  no per-article image upload needed.
+
+  Usage:
+    {% include journal-cover.html entry=entry variant="thumb" %}
+    {% include journal-cover.html entry=entry variant="banner" %}
+
+  - category "Special" -> ochre palette, "Daily" (default) -> green palette
+  - a hash of the title picks one of several glyph motifs so entries
+    look distinct from one another.
+{%- endcomment -%}
+
+{%- assign e = include.entry -%}
+{%- assign cat = e.category | default: "Daily" | downcase -%}
+
+{%- comment -%} Derive a small stable number from the title for variety {%- endcomment -%}
+{%- assign seed = e.title | default: e.slug | size -%}
+{%- assign titlechars = e.title | default: "x" | split: "" -%}
+{%- assign acc = 0 -%}
+{%- for c in titlechars -%}
+  {%- assign acc = acc | plus: forloop.index -%}
+{%- endfor -%}
+{%- assign motif = acc | modulo: 4 -%}
+
+{%- if cat == "special" -%}
+  {%- assign c1 = "#b8862f" -%}{%- assign c2 = "#8f6314" -%}{%- assign cbg1 = "#faf4e6" -%}{%- assign cbg2 = "#f0e4c8" -%}
+{%- else -%}
+  {%- assign c1 = "#3f7d6e" -%}{%- assign c2 = "#2f6657" -%}{%- assign cbg1 = "#eaf2ee" -%}{%- assign cbg2 = "#d8e7e0" -%}
+{%- endif -%}
+
+<svg class="jcover jcover--{{ include.variant | default: 'thumb' }}" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="{{ e.category | default: 'Journal' }} entry cover" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="jbg-{{ acc }}" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="{{ cbg1 }}"/>
+      <stop offset="1" stop-color="{{ cbg2 }}"/>
+    </linearGradient>
+    <pattern id="jgrid-{{ acc }}" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="{{ c1 }}" stroke-opacity="0.10" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="400" height="400" fill="url(#jbg-{{ acc }})"/>
+  <rect width="400" height="400" fill="url(#jgrid-{{ acc }})"/>
+
+  {%- comment -%} ECG/heartbeat baseline — common clinical motif {%- endcomment -%}
+  <path d="M0 300 H120 L140 300 L155 250 L170 340 L185 220 L200 300 L240 300 L255 270 L270 320 L285 300 H400"
+        fill="none" stroke="{{ c1 }}" stroke-opacity="0.35" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  {%- comment -%} Rotating glyph motif so entries differ {%- endcomment -%}
+  {%- if motif == 0 -%}
+    <circle cx="200" cy="165" r="58" fill="none" stroke="{{ c2 }}" stroke-width="6"/>
+    <path d="M200 130 V200 M165 165 H235" stroke="{{ c2 }}" stroke-width="6" stroke-linecap="round"/>
+  {%- elsif motif == 1 -%}
+    <path d="M200 110 C150 110 140 175 200 220 C260 175 250 110 200 110 Z" fill="{{ c1 }}" fill-opacity="0.18" stroke="{{ c2 }}" stroke-width="5"/>
+  {%- elsif motif == 2 -%}
+    <rect x="150" y="120" width="100" height="100" rx="14" fill="none" stroke="{{ c2 }}" stroke-width="6"/>
+    <path d="M170 170 H230 M200 140 V200" stroke="{{ c2 }}" stroke-width="6" stroke-linecap="round"/>
+  {%- else -%}
+    <circle cx="200" cy="165" r="14" fill="{{ c2 }}"/>
+    <circle cx="200" cy="165" r="42" fill="none" stroke="{{ c2 }}" stroke-width="5" stroke-opacity="0.7"/>
+    <circle cx="200" cy="165" r="68" fill="none" stroke="{{ c2 }}" stroke-width="4" stroke-opacity="0.4"/>
+  {%- endif -%}
+
+  <text x="28" y="56" font-family="'JetBrains Mono', monospace" font-size="20" letter-spacing="3" fill="{{ c2 }}" font-weight="600">{{ e.category | default: "LOG" | upcase }}</text>
+</svg>
