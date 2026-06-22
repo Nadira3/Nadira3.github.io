@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initContactForm();
   initAnimations();
   initJournalFilters();
-  mermaid.initialize({ startOnLoad: true });
+  // Note: mermaid is initialized in default.html's module script (it's module-scoped, not global).
 });
 
 // Navigation enhancement
@@ -174,6 +174,8 @@ function initJournalFilters() {
   document.addEventListener('DOMContentLoaded', function() {
     // Recommendations slider functionality
     const track = document.querySelector('.recommendations-track');
+    // Bail out on pages that don't have the slider (homepage, journal, posts, etc.)
+    if (!track || track.children.length === 0) return;
     const slides = Array.from(track.children);
     const nextButton = document.querySelector('.next-button');
     const prevButton = document.querySelector('.prev-button');
@@ -269,3 +271,4 @@ function initJournalFilters() {
       }, 100);
     });
   });
+
