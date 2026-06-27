@@ -34,6 +34,14 @@ jobs:
         with:
           source: ./
           destination: ./_site
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Pre-render Mermaid diagrams to SVG
+        run: |
+          npm install --no-save --no-fund --no-audit cheerio@1 @mermaid-js/mermaid-cli@^10
+          node tools/prerender-mermaid.mjs _site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
