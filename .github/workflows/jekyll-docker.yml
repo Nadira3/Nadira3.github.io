@@ -40,6 +40,8 @@ jobs:
           node-version: '20'
       - name: Pre-render Mermaid diagrams to SVG
         run: |
+          sudo chown -R "$USER":"$USER" _site
+          chmod -R u+w _site
           npm install --no-save --no-fund --no-audit cheerio@1 @mermaid-js/mermaid-cli@^10
           node tools/prerender-mermaid.mjs _site
       - name: Upload artifact
