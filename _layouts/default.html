@@ -46,42 +46,8 @@
   
   {% include footer.html %}
  
-  <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-
-    // Convert Jekyll's ```mermaid code fences (rendered as <pre><code class="language-mermaid">)
-    // into <div class="mermaid"> nodes that mermaid can render.
-    const blocks = document.querySelectorAll('pre > code.language-mermaid, pre > code.mermaid');
-    blocks.forEach(function (codeBlock) {
-      const mermaidDiv = document.createElement('div');
-      mermaidDiv.className = 'mermaid';
-      // Use textContent to preserve the raw graph definition (no HTML entity escaping).
-      mermaidDiv.textContent = codeBlock.textContent;
-      codeBlock.parentNode.parentNode.replaceChild(mermaidDiv, codeBlock.parentNode);
-    });
-
-    // Initialize without startOnLoad, then explicitly render the nodes we just created.
-    mermaid.initialize({
-      startOnLoad: false,
-      theme: 'base',
-      themeVariables: {
-        primaryColor: '#dde9e3',
-        primaryBorderColor: '#356559',
-        primaryTextColor: '#24221e',
-        secondaryColor: '#e7e0d2',
-        tertiaryColor: '#f1ece2',
-        lineColor: '#356559',
-        textColor: '#24221e',
-        fontFamily: 'Inter, sans-serif'
-      },
-      securityLevel: 'loose',
-      flowchart: { useMaxWidth: true, htmlLabels: true }
-    });
-
-    if (document.querySelectorAll('.mermaid').length > 0) {
-      await mermaid.run({ querySelector: '.mermaid' });
-    }
-  </script>
+  <!-- Mermaid diagrams are pre-rendered to inline SVG at build time
+       (see tools/prerender-mermaid.mjs), so no client-side script is needed. -->
   <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 
   <!-- Floating Telegram Icon -->
