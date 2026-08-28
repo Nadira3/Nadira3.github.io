@@ -1,7 +1,7 @@
 # Site settings
 title: Precious Ikhianose Aitanun
 author: Precious Ikhianose Aitanun
-email: paitanun35@gmail.com
+email: aitanun@precious.me.uk
 description: Clinical journal and case reports by Precious Ikhianose Aitanun — surgical rotations, OSCE tutorials, and medical notes. Portfolio now at precious-aitanun.pages.dev.
 lang: en
 baseurl: ""
@@ -13,7 +13,7 @@ github_username: Nadira3
 linkedin_username: precious-aitanun
 
 # New portfolio site
-portfolio_url: "https://precious-aitanun.pages.dev"
+portfolio_url: "https://www.precious.me.uk"
 
 markdown: GFM
 
